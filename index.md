@@ -19,3 +19,63 @@ Have questions or feedback? Feel free to reach out to us at [contact@healthmedia
 ---
 
 Thank you for visiting HealthMedia. We hope you find our content helpful and inspiring!
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table of Contents</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Table of Contents</h2>
+    <table>
+        <tr>
+            <th>Section</th>
+            <th>Link</th>
+        </tr>
+        <tr>
+            <td>Home</td>
+            <td><a href="index.html">Go to Home</a></td>
+        </tr>
+        <tr>
+            <td>About Us</td>
+            <td><a href="about.html">Go to About Us</a></td>
+        </tr>
+        <tr>
+            <td>Services</td>
+            <td><a href="services.html">Go to Services</a></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><a href="contact.html">Go to Contact</a></td>
+        </tr>
+        <tr>
+            <td>Blog</td>
+            <td><a href="blog.html">Go to Blog</a></td>
+        </tr>
+    </table>
+</body>
+</html>
