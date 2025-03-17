@@ -21,6 +21,7 @@ Have questions or feedback? Feel free to reach out to us at [contact@healthmedia
 Thank you for visiting HealthMedia. We hope you find our content helpful and inspiring!
 
 
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,14 +29,15 @@ Thank you for visiting HealthMedia. We hope you find our content helpful and ins
     <title>Table of Contents</title>
     <style>
         table {
-            width: 50%;
+            width: 80%;
             border-collapse: collapse;
             margin: 20px 0;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 15px;
             text-align: left;
+            color: black;
         }
         th {
             background-color: #f4f4f4;
