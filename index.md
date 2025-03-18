@@ -5,8 +5,7 @@
 
 
 
-
-## Your Source for Health and Wellness
+## Your Source for Health and Wellness 
 
 ### About Us
 At HealthMedia, we are dedicated to providing you with the latest news, tips, and resources to help you live a healthier life. Our team of experts is committed to bringing you reliable and up-to-date information on a variety of health topics.
@@ -83,6 +82,10 @@ Thank you for visiting HealthMedia. We hope you find our content helpful and ins
         <tr>
             <td>Blog</td>
             <td><a href="blog.html">Go to Blog</a></td>
+        </tr>
+        <tr>
+            <td>Binary Numbers Lesson</td>
+            <td><a href="binarymath.md">Go to Lesson</a></td>
         </tr>
     </table>
 </body>
