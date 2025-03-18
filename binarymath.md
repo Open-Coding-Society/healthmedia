@@ -1,9 +1,3 @@
----
-layout: post
-title: BI 3 Binary Base 2 Math
-permalink: /binarybase2math/
----
-
 
 # Binary Base-2 Math & Logic Gates  
 
@@ -161,4 +155,3 @@ Binary numbers and logic gates **form the foundation of computing**! Mastering t
 - Explore **Karnaugh Maps (K-Maps)** for simplifying logic expressions.  
 - Learn how transistors implement **logic gates in hardware**.  
 ```
-
