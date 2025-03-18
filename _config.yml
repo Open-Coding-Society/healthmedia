@@ -12,4 +12,5 @@ minima:
 plugins:
   - jekyll-remote-theme
 header_pages:
-
+- navigation/teamteach/mainhome.md
+- navigation/healthmedia/mainhome.md
