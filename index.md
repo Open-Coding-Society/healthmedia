@@ -83,10 +83,6 @@ Thank you for visiting HealthMedia. We hope you find our content helpful and ins
             <td>Blog</td>
             <td><a href="blog.html">Go to Blog</a></td>
         </tr>
-        <tr>
-            <td>Binary Numbers Lesson</td>
-            <td><a href="binarymath.md">Go to Lesson</a></td>
-        </tr>
     </table>
 </body>
 </html>
