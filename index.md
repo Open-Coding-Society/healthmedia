@@ -83,6 +83,10 @@ Thank you for visiting HealthMedia. We hope you find our content helpful and ins
             <td>Blog</td>
             <td><a href="blog.html">Go to Blog</a></td>
         </tr>
+        <tr>
+            <td>Water Tester</td>
+            <td><a href="waterintake.html">Go to test</a></td>
+        </tr>
     </table>
 </body>
 </html>
