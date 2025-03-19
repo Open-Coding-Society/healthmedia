@@ -8,6 +8,7 @@ permalink: /binarymath/
 # Binary Base-2 Math & Logic Gates  
 
 ## Introduction to Binary (Base-2)
+
 Binary is a number system that only uses **two digits**:  
 - `0` (Off)  
 - `1` (On)  
@@ -17,6 +18,7 @@ It is the fundamental language of computers, where every piece of data is stored
 ---
 
 ## Binary Number System
+
 Each place in a binary number represents a power of **2**, starting from `2^0` on the right.
 
 | Decimal (Base-10) | Binary (Base-2) |
@@ -36,6 +38,7 @@ Each place in a binary number represents a power of **2**, starting from `2^0` o
 ---
 
 ## Binary Addition
+
 Adding binary numbers follows simple rules:
 
 | A | B | Sum | Carry |
@@ -56,6 +59,7 @@ Adding binary numbers follows simple rules:
 ---
 
 ## Binary Subtraction
+
 Binary subtraction follows similar rules but includes **borrowing**:
 
 | A | B | Difference | Borrow |
@@ -76,9 +80,11 @@ Binary subtraction follows similar rules but includes **borrowing**:
 ---
 
 ## Logic Gates & Boolean Algebra
+
 Logic gates are the building blocks of digital circuits, controlling how computers make decisions.
 
 ### 1. AND Gate (&&)
+
 The output is `1` **only** if both inputs are `1`.
 
 | A | B | Output (A AND B) |
@@ -93,6 +99,7 @@ The output is `1` **only** if both inputs are `1`.
 ---
 
 ### 2. OR Gate (||)
+
 The output is `1` if **at least one** input is `1`.
 
 | A | B | Output (A OR B) |
@@ -107,6 +114,7 @@ The output is `1` if **at least one** input is `1`.
 ---
 
 ### 3. NOT Gate (!A)
+
 The NOT gate **inverts** the input.
 
 | A | Output (NOT A) |
@@ -119,6 +127,7 @@ The NOT gate **inverts** the input.
 ---
 
 ### 4. XOR Gate (⊕)
+
 The output is `1` if inputs are **different**.
 
 | A | B | Output (A XOR B) |
@@ -133,6 +142,7 @@ The output is `1` if inputs are **different**.
 ---
 
 ### 5. NAND & NOR Gates
+
 - **NAND** (`NOT AND`): Inverts the AND gate output.
 - **NOR** (`NOT OR`): Inverts the OR gate output.
 
@@ -146,6 +156,7 @@ The output is `1` if inputs are **different**.
 ---
 
 ## Applications of Binary & Logic Gates
+
 ✅ **Arithmetic Operations** (Addition, Subtraction, Multiplication)  
 ✅ **Digital Circuits** (CPUs, Memory, ALU)  
 ✅ **Decision Making in AI**  
@@ -154,21 +165,10 @@ The output is `1` if inputs are **different**.
 ---
 
 ## Conclusion
+
 Binary numbers and logic gates **form the foundation of computing**! Mastering them will help you understand **programming, circuits, and AI logic**.
 
 **Next Steps:**  
-- Try building **truth tables** for complex circuits.  
-- Explore **Karnaugh Maps (K-Maps)** for simplifying logic expressions.  
-- Learn how transistors implement **logic gates in hardware**.  
-
-
-
-
-## Popcorn Hack #1
-
-This task involves converting binary numbers (which use only 0s and 1s) into decimal numbers (base 10) by calculating the value of each binary digit based on its position in the number. It demonstrates how binary, the language of computers, can be translated into a format humans commonly use for arithmetic and computation.
-
- 
  
 #### Binary to Decimal Converter
 
