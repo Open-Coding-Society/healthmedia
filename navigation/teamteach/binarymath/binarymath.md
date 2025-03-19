@@ -7,6 +7,7 @@ permalink: /binarymath/
 
 # Binary Base-2 Math & Logic Gates  
 
+
 ## Introduction to Binary (Base-2)
 
 Binary is a number system that only uses **two digits**:  
