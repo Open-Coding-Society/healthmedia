@@ -247,3 +247,58 @@ def binary_addition_battle():
 binary_addition_battle()
 ```
 
+
+
+How it Works:
+
+Students will be given a random decimal number to convert into binary, and a random binary number to convert into decimal.
+They have to answer as fast as possible, and if they are correct, they get a point.
+
+
+#### Popcorn Hack #3
+
+```python
+import random
+import time
+
+def decimal_to_binary(decimal_num):
+    return bin(decimal_num)[2:]
+
+def binary_to_decimal(binary_str):
+    return int(binary_str, 2)
+
+def conversion_race():
+    print("Welcome to the Binary Conversion Race! Convert as fast as you can!")
+
+    # Decimal to Binary Challenge
+    decimal_num = random.randint(1, 100)
+    print(f"\nChallenge 1: Convert the following decimal number to binary:")
+    print(f"Decimal: {decimal_num}")
+    start_time = time.time()
+    user_answer = input("Your answer in binary: ")
+    end_time = time.time()
+
+    if user_answer == decimal_to_binary(decimal_num):
+        print("Correct!")
+    else:
+        print(f"Oops! The correct binary is {decimal_to_binary(decimal_num)}.")
+
+    time.sleep(1)
+
+    # Binary to Decimal Challenge
+    binary_num = bin(random.randint(1, 100))[2:]
+    print(f"\nChallenge 2: Convert the following binary number to decimal:")
+    print(f"Binary: {binary_num}")
+    start_time = time.time()
+    user_answer = int(input("Your answer in decimal: "))
+    end_time = time.time()
+
+    if user_answer == binary_to_decimal(binary_num):
+        print("Correct!")
+    else:
+        print(f"Oops! The correct decimal is {binary_to_decimal(binary_num)}.")
+
+    print("\nRace finished!")
+
+# Run the race
+conversion_race()
