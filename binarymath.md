@@ -3,7 +3,7 @@ layout: post
 title: Binary Math Lesson
 permalink: /binarymath/
 ---
-
+{% include healthmediatheme.html %}
 
 # Binary Base-2 Math & Logic Gates  
 

@@ -8,7 +8,7 @@
     }
 
     body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
     background: radial-gradient(ellipse at top left, #4CAF50 0%, #81C784 30%, transparent 100%), 
                 radial-gradient(ellipse at bottom right, #2196F3 0%, #64B5F6 40%, transparent 100%);
     background-color: #5effcf;
@@ -87,7 +87,86 @@
     padding: 25px 0;
     margin-top: 50px;
     }
+    
+    h1,h2,h3,h4,h5,h6{
+        font-family: 'Poppins', sans-serif !important;
+        color:#ffffff !important;
+        font-weight: bolder !important;
+    }
+    p, li{
+        color:#ffffffeb !important;
+    }
+    
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #000000be;
+        margin: 1em 0;
+        padding: 0;
+    }
 
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-family: 'Open Sans', sans-serif;
+        background: rgba(24, 24, 24, 0.162); /* 50% transparency */
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    /* Make thead semi-transparent too */
+    thead {
+        background: rgba(107, 175, 109, 0.334); /* 50% transparency green */
+        backdrop-filter: blur(10px);
+        color: #fff;
+    }
+
+    /* Make tbody cells semi-transparent */
+    tbody td {
+        background: rgba(45, 45, 45, 0.403); /* subtle glass look */
+        padding: 15px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        color: #fbfbfbb3;
+    }
+
+    tbody tr:nth-child(even) {
+        background: rgba(88, 98, 116, 0.403);
+    }
+
+    tbody tr:nth-child(odd) {
+        background: rgba(136, 153, 141, 0.15);
+    }
+
+    /* Optional: make table rows more glassy on hover */
+    tbody tr:hover td {
+        background: rgba(97, 96, 96, 0.4);
+        backdrop-filter: blur(8px);
+        transition: 0.3s ease;
+    }
+
+    thead th {
+        padding: 15px;
+        text-align: left;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        background-color: #494949b2;
+        color:#aaaaaa !important;
+    }
+
+    /* Optional caption styling */
+    caption {
+        caption-side: top;
+        text-align: center;
+        padding: 10px;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+        color: #00000060;
+    }
 
 
 </style>
