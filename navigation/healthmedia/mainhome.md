@@ -1,5 +1,5 @@
 ---
 layout: post
 title: Health Media 
-permalink: /healthmediahome/
+permalink: healthmedia/home/
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: BI 3 Binary Base 2 Math
-permalink: /binarymathlesson/
+permalink: binarymath/lesson/
 ---
 
 ## Introduction to Binary (Base-2)

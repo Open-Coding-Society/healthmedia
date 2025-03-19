@@ -1,7 +1,7 @@
 ---
 layout: post
 title: BI 3 Logic Gates
-permalink: /logicgateslesson/
+permalink: logicgates/lesson/
 ---
 
 ## Logic Gates & Boolean Algebra
