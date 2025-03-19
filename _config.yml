@@ -14,3 +14,4 @@ plugins:
 header_pages:
 - navigation/teamteach/mainhome.md
 - navigation/healthmedia/mainhome.md
+- navigation/teamteach/binarymath.md
