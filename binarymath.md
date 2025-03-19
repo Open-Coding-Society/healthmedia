@@ -5,9 +5,6 @@ permalink: /binarymath/
 ---
 
 
-
-
-
 # Binary Base-2 Math & Logic Gates  
 
 ## Introduction to Binary (Base-2)
@@ -163,7 +160,7 @@ Binary numbers and logic gates **form the foundation of computing**! Mastering t
 - Try building **truth tables** for complex circuits.  
 - Explore **Karnaugh Maps (K-Maps)** for simplifying logic expressions.  
 - Learn how transistors implement **logic gates in hardware**.  
-```
+
 
 
 
@@ -171,16 +168,18 @@ Binary numbers and logic gates **form the foundation of computing**! Mastering t
 
 This task involves converting binary numbers (which use only 0s and 1s) into decimal numbers (base 10) by calculating the value of each binary digit based on its position in the number. It demonstrates how binary, the language of computers, can be translated into a format humans commonly use for arithmetic and computation.
 
+ 
+ 
+#### Binary to Decimal Converter
 
 
 ```python
-# Binary to Decimal Converter
-
 def binary_to_decimal(binary_str):
     decimal = 0
     for i in range(len(binary_str)):
         decimal += int(binary_str[-(i + 1)]) * (2 ** i)
     return decimal
+```
 
 # Get user input
 binary_input = input("Enter a binary number: ")
