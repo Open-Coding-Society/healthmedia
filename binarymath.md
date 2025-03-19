@@ -299,3 +299,19 @@ def conversion_race():
 #Run the race
 conversion_race()
 ```
+
+
+
+
+
+
+
+#### Example Output for Hack 1
+
+
+<img src="{{site.baseurl}}/images/q.png" alt="ex">
+
+
+#### Example Output for Hack 2
+
+<img src="{{site.baseurl}}/images/l.png" alt="ex">
