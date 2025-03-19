@@ -189,3 +189,12 @@ binary_input = input("Enter a binary number: ")
 decimal_output = binary_to_decimal(binary_input)
 print(f"The decimal representation of {binary_input} is {decimal_output}.")
 
+### Real World Application 
+
+- Computers & Smartphones: Every app, image, and video is stored in binary.
+
+- Internet & Networking: IP addresses and data transmission rely on binary.
+
+- CDs, DVDs, & USB Drives: Store and read data using binary sequences.
+
+- Machine Learning & AI: AI decisions are based on binary logic.
