@@ -1,98 +1,123 @@
-# Welcome to HealthMedia
-
-
-<img src="{{site.baseurl}}/images/mm.webp" alt="image">
-
-
-
-## Your Source for Health and Wellness 
-
-### About Us
-
-At HealthMedia, we are dedicated to providing you with the latest news, tips, and resources to help you live a healthier life. Our team of experts is committed to bringing you reliable and up-to-date information on a variety of health topics.
-
-### Featured Articles
-
-- **Nutrition Tips**: Learn how to eat healthier with our expert advice.
-
-- **Exercise Routines**: Discover new workouts to keep you fit and active.
-
-
-- **Mental Health**: Find out how to manage stress and improve your mental well-being.
-
-### Join Our Community
-
-Stay connected with us by joining our community. Sign up for our newsletter to receive the latest updates and exclusive content.
-
-### Contact Us
-Have questions or feedback? Feel free to reach out to us at [contact@healthmedia.com](mailto:contact@healthmedia.com).
-
+---
+layout: base
+title: Flocker Social Media Site
+search_exclude: true
+description: Login and explore our social media hub for everything DNHS
+hide: true
 ---
 
-Thank you for visiting HealthMedia. We hope you find our content helpful and inspiring!
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthMedia</title>
+{% include healthmediatheme.html %}
 
+<section class="hero">
+    <h2>Your Source for Health and Wellness</h2>
+    <p>Stay informed, stay healthy. Explore reliable tips and articles to boost your lifestyle and well-being.</p>
+    <a href="{{site.baseurl}}/subscribe"><button>Join Our Community</button></a>
+</section>
 
+<section id="features" class="features">
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table of Contents</title>
-    <style>
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
-            color: black;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        a {
-            text-decoration: none;
-            color: #007BFF;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <h2>Table of Contents</h2>
-    <table>
-        <tr>
-            <th>Section</th>
-            <th>Link</th>
-        </tr>
-        <tr>
-            <td>Home</td>
-            <td><a href="index.html">Go to Home</a></td>
-        </tr>
-        <tr>
-            <td>About Us</td>
-            <td><a href="about.html">Go to About Us</a></td>
-        </tr>
-        <tr>
-            <td>Services</td>
-            <td><a href="services.html">Go to Services</a></td>
-        </tr>
-        <tr>
-            <td>Contact</td>
-            <td><a href="contact.html">Go to Contact</a></td>
-        </tr>
-        <tr>
-            <td>Blog</td>
-            <td><a href="blog.html">Go to Blog</a></td>
-        </tr>
-        <tr>
-            <td>Water Tester</td>
-            <td><a href="waterintake.html">Go to test</a></td>
-        </tr>
-    </table>
-</body>
-</html>
+<a href="{{site.baseurl}}/nutrition" style="text-decoration: none; color: inherit;">
+    <div class="feature">
+        <h3>Nutrition Tips</h3>
+        <p>Learn how to eat healthier with our expert advice on balanced diets and superfoods.</p>
+    </div>
+</a>
+
+<a href="{{site.baseurl}}/exercise" style="text-decoration: none; color: inherit;">
+    <div class="feature">
+        <h3>Exercise Routines</h3>
+        <p>Discover new workouts to keep you fit, active, and energized every day.</p>
+    </div>
+</a>
+
+<a href="{{site.baseurl}}/mental-health" style="text-decoration: none; color: inherit;">
+    <div class="feature">
+        <h3>Mental Health</h3>
+        <p>Find out how to manage stress and boost your mental well-being with our resources.</p>
+    </div>
+</a>
+
+<a href="{{site.baseurl}}/blog" style="text-decoration: none; color: inherit;">
+    <div class="feature">
+        <h3>Health Blog</h3>
+        <p>Read the latest articles, tips, and research updates on living a healthier life.</p>
+    </div>
+</a>
+
+<a href="{{site.baseurl}}/contact" style="text-decoration: none; color: inherit;">
+    <div class="feature">
+        <h3>Contact Us</h3>
+        <p>Have questions or feedback? Reach out to our team and let's connect!</p>
+    </div>
+</a>
+
+</section>
+
+<style>
+.hero {
+    padding: 30px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+button {
+    font-size: 1rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(45deg, #2a9d8f, #21867a, #3eb59b, #35a18a);
+    color: white;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-size: 400% 400%;
+}
+
+button:hover {
+    background-position: 100% 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature h3 {
+    color: #2a9d8f;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Optional typewriter for the hero */
+h2 {
+    font-size: 2rem;
+    overflow: hidden;
+    white-space: nowrap;
+}
+</style>
