@@ -155,12 +155,14 @@ The output is `1` if inputs are **different**.
 
 ---
 
-## Applications of Binary & Logic Gates
-
+## Applications of Binary 
 ✅ **Arithmetic Operations** (Addition, Subtraction, Multiplication)  
 ✅ **Digital Circuits** (CPUs, Memory, ALU)  
 ✅ **Decision Making in AI**  
 ✅ **Cryptography & Security Systems**  
+
+- Binary is the foundation of modern technology, enabling data storage in computers and smartphones, powering internet communication, encoding information on storage devices, and driving AI decision-making through logical operations.
+
 
 ---
 
@@ -245,12 +247,3 @@ def binary_addition_battle():
 binary_addition_battle()
 ```
 
-### Real World Application 
-
-- Computers & Smartphones: Every app, image, and video is stored in binary.
-
-- Internet & Networking: IP addresses and data transmission rely on binary.
-
-- CDs, DVDs, & USB Drives: Store and read data using binary sequences.
-
-- Machine Learning & AI: AI decisions are based on binary logic.
