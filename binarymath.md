@@ -186,15 +186,11 @@ def binary_to_decimal(binary_str):
     for i in range(len(binary_str)):
         decimal += int(binary_str[-(i + 1)]) * (2 ** i)
     return decimal
-```
 
-
-# Get user input
-
-```python
+#Get user input
 binary_input = input("Enter a binary number: ")
 decimal_output = binary_to_decimal(binary_input)
-print(f"The decimal representation of {binary_input} is {decimal_output}.") 
+print(f"The decimal representation of {binary_input} is {decimal_output}.")
 ```
 
 
@@ -300,5 +296,6 @@ def conversion_race():
 
     print("\nRace finished!")
 
-# Run the race
+#Run the race
 conversion_race()
+```
