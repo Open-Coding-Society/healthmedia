@@ -173,9 +173,10 @@ This task involves converting binary numbers (which use only 0s and 1s) into dec
 #### Binary to Decimal Converter
 
 
-python
+
 # Binary to Decimal Converter
 
+```python
 def binary_to_decimal(binary_str):
     decimal = 0
     for i in range(len(binary_str)):
