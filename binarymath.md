@@ -170,7 +170,9 @@ Binary numbers and logic gates **form the foundation of computing**! Mastering t
 
 **Next Steps:**  
  
-#### Binary to Decimal Converter
+
+
+#### Popcorn Hack 1:  Binary to Decimal Converter
 
 
 
@@ -184,10 +186,64 @@ def binary_to_decimal(binary_str):
     return decimal
 ```
 
+
 # Get user input
+
+```python
 binary_input = input("Enter a binary number: ")
 decimal_output = binary_to_decimal(binary_input)
-print(f"The decimal representation of {binary_input} is {decimal_output}.")
+print(f"The decimal representation of {binary_input} is {decimal_output}.") 
+```
+
+
+
+
+
+#### Popcorn Hack 2: Binary Addition Battle
+
+How it works:
+
+Step 1: The game randomly generates two binary numbers (between 0 and 255).
+Step 2: The user has to add these binary numbers and input the result.
+Step 3: The game checks if the result is correct and measures how fast the user solved it, providing feedback and points based on performance.
+
+```python
+import random
+import time
+
+def binary_addition_battle():
+    # Generate two random binary numbers (up to 8 bits)
+    num1 = bin(random.randint(0, 255))[2:]
+    num2 = bin(random.randint(0, 255))[2:]
+    
+    # Show the binary numbers
+    print(f"Add the following binary numbers:")
+    print(f"Number 1: {num1}")
+    print(f"Number 2: {num2}")
+    
+    # Start the timer
+    start_time = time.time()
+    
+    # Ask the user for the sum
+    user_answer = input("Your answer (in binary): ")
+    
+    # End the timer
+    end_time = time.time()
+    
+    # Calculate the correct binary sum
+    correct_answer = bin(int(num1, 2) + int(num2, 2))[2:]
+    
+    # Check if the answer is correct
+    if user_answer == correct_answer:
+        print(f"Correct! You took {end_time - start_time:.2f} seconds.")
+        print(f"Your score: +10 points!")
+    else:
+        print(f"Oops! The correct answer was {correct_answer}.")
+        print(f"Your score: -5 points.")
+
+# Run the game
+binary_addition_battle()
+```
 
 ### Real World Application 
 
