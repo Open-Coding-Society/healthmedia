@@ -5,7 +5,7 @@ permalink: teamteach/binarymath
 ---
 {% include healthmediatheme.html %}
 
-# Binary Base-2 Math & Logic Gates  
+# Binary Base-2 Math 
 
 ## Introduction to Binary (Base-2)
 
@@ -76,82 +76,6 @@ Binary subtraction follows similar rules but includes **borrowing**:
 ------------
    0011  (3 in decimal)
 ```
-
----
-
-## Logic Gates & Boolean Algebra
-
-Logic gates are the building blocks of digital circuits, controlling how computers make decisions.
-
-### 1. AND Gate (&&)
-
-The output is `1` **only** if both inputs are `1`.
-
-| A | B | Output (A AND B) |
-|---|---|-----------------|
-| 0 | 0 | 0 |
-| 0 | 1 | 0 |
-| 1 | 0 | 0 |
-| 1 | 1 | 1 |
-
-**Boolean Expression**: `A ⋅ B`
-
----
-
-### 2. OR Gate (||)
-
-The output is `1` if **at least one** input is `1`.
-
-| A | B | Output (A OR B) |
-|---|---|----------------|
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 1 |
-
-**Boolean Expression**: `A + B`
-
----
-
-### 3. NOT Gate (!A)
-
-The NOT gate **inverts** the input.
-
-| A | Output (NOT A) |
-|---|---------------|
-| 0 | 1 |
-| 1 | 0 |
-
-**Boolean Expression**: `Ā`
-
----
-
-### 4. XOR Gate (⊕)
-
-The output is `1` if inputs are **different**.
-
-| A | B | Output (A XOR B) |
-|---|---|-----------------|
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 0 |
-
-**Boolean Expression**: `A ⊕ B`
-
----
-
-### 5. NAND & NOR Gates
-
-- **NAND** (`NOT AND`): Inverts the AND gate output.
-- **NOR** (`NOT OR`): Inverts the OR gate output.
-
-| A | B | NAND (¬(A ⋅ B)) | NOR (¬(A + B)) |
-|---|---|---------------|--------------|
-| 0 | 0 | 1 | 1 |
-| 0 | 1 | 1 | 0 |
-| 1 | 0 | 1 | 0 |
-| 1 | 1 | 0 | 0 |
 
 ---
 
