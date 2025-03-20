@@ -97,12 +97,3 @@ The output is `1` if inputs are **different**.
 
 ---
 
-## Conclusion
-Binary numbers and logic gates **form the foundation of computing**! Mastering them will help you understand **programming, circuits, and AI logic**.
-
-**Next Steps:**  
-- Try building **truth tables** for complex circuits.  
-- Explore **Karnaugh Maps (K-Maps)** for simplifying logic expressions.  
-- Learn how transistors implement **logic gates in hardware**.  
-```
-
