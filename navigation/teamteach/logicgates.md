@@ -3,6 +3,7 @@ layout: post
 title: BI 3 Logic Gates
 permalink: teamteach/logicgates
 ---
+{% include healthmediatheme.html %}
 
 ## What are Logic Gates?
 Logic gates are electronic devices that perform **Boolean operations**. They receive one or more binary inputs (`0` or `1`) and produce a single binary output. These gates form the foundation of all digital systems, including computers, mobile devices, and other technologies. 
