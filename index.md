@@ -92,7 +92,9 @@ button:hover {
 }
 
 .feature {
-    background: #ffffff;
+    background:radial-gradient(ellipse at bottom left,rgb(133, 213, 136) 0%, #81C784 30%, transparent 170%), 
+                radial-gradient(ellipse at top right,rgb(86, 179, 255) 0%, #64B5F6 40%, transparent 200%);
+    background-color:rgba(103, 255, 204, 0.5);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -105,12 +107,12 @@ button:hover {
 }
 
 .feature h3 {
-    color: #2a9d8f;
+    color:rgb(255, 255, 255) !   important;
     margin-bottom: 10px;
 }
 
 .feature p {
-    color: #555;
+    color:rgb(230, 230, 230) !important;
     font-size: 0.95rem;
 }
 
