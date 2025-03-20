@@ -1,12 +1,11 @@
 ---
 layout: post
-title: BI 3 Binary Base 2 Math
-permalink: teamteach/binarymath
+title: Binary Math Lesson
+permalink: /binarymath/
 ---
+{% include healthmediatheme.html %}
 
-
-# Binary Base-2 Math
-
+# Binary Base-2 Math & Logic Gates  
 
 ## Introduction to Binary (Base-2)
 
@@ -80,20 +79,96 @@ Binary subtraction follows similar rules but includes **borrowing**:
 
 ---
 
-## Applications of Binary & Logic Gates
+## Logic Gates & Boolean Algebra
 
+Logic gates are the building blocks of digital circuits, controlling how computers make decisions.
+
+### 1. AND Gate (&&)
+
+The output is `1` **only** if both inputs are `1`.
+
+| A | B | Output (A AND B) |
+|---|---|-----------------|
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+**Boolean Expression**: `A ⋅ B`
+
+---
+
+### 2. OR Gate (||)
+
+The output is `1` if **at least one** input is `1`.
+
+| A | B | Output (A OR B) |
+|---|---|----------------|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+
+**Boolean Expression**: `A + B`
+
+---
+
+### 3. NOT Gate (!A)
+
+The NOT gate **inverts** the input.
+
+| A | Output (NOT A) |
+|---|---------------|
+| 0 | 1 |
+| 1 | 0 |
+
+**Boolean Expression**: `Ā`
+
+---
+
+### 4. XOR Gate (⊕)
+
+The output is `1` if inputs are **different**.
+
+| A | B | Output (A XOR B) |
+|---|---|-----------------|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+**Boolean Expression**: `A ⊕ B`
+
+---
+
+### 5. NAND & NOR Gates
+
+- **NAND** (`NOT AND`): Inverts the AND gate output.
+- **NOR** (`NOT OR`): Inverts the OR gate output.
+
+| A | B | NAND (¬(A ⋅ B)) | NOR (¬(A + B)) |
+|---|---|---------------|--------------|
+| 0 | 0 | 1 | 1 |
+| 0 | 1 | 1 | 0 |
+| 1 | 0 | 1 | 0 |
+| 1 | 1 | 0 | 0 |
+
+---
+
+## Applications of Binary 
 ✅ **Arithmetic Operations** (Addition, Subtraction, Multiplication)  
 ✅ **Digital Circuits** (CPUs, Memory, ALU)  
 ✅ **Decision Making in AI**  
 ✅ **Cryptography & Security Systems**  
+
+- Binary is the foundation of modern technology, enabling data storage in computers and smartphones, powering internet communication, encoding information on storage devices, and driving AI decision-making through logical operations.
+
 
 ---
 
 ## Conclusion
 
 Binary numbers and logic gates **form the foundation of computing**! Mastering them will help you understand **programming, circuits, and AI logic**.
-
-
 
 **Next Steps:**  
  
@@ -111,15 +186,11 @@ def binary_to_decimal(binary_str):
     for i in range(len(binary_str)):
         decimal += int(binary_str[-(i + 1)]) * (2 ** i)
     return decimal
-```
 
-
-# Get user input
-
-```python
+#Get user input
 binary_input = input("Enter a binary number: ")
 decimal_output = binary_to_decimal(binary_input)
-print(f"The decimal representation of {binary_input} is {decimal_output}.") 
+print(f"The decimal representation of {binary_input} is {decimal_output}.")
 ```
 
 
@@ -172,12 +243,75 @@ def binary_addition_battle():
 binary_addition_battle()
 ```
 
-### Real World Application 
 
-- Computers & Smartphones: Every app, image, and video is stored in binary.
 
-- Internet & Networking: IP addresses and data transmission rely on binary.
+How it Works:
 
-- CDs, DVDs, & USB Drives: Store and read data using binary sequences.
+Students will be given a random decimal number to convert into binary, and a random binary number to convert into decimal.
+They have to answer as fast as possible, and if they are correct, they get a point.
 
-- Machine Learning & AI: AI decisions are based on binary logic.
+
+#### Popcorn Hack #3
+
+```python
+import random
+import time
+
+def decimal_to_binary(decimal_num):
+    return bin(decimal_num)[2:]
+
+def binary_to_decimal(binary_str):
+    return int(binary_str, 2)
+
+def conversion_race():
+    print("Welcome to the Binary Conversion Race! Convert as fast as you can!")
+
+    # Decimal to Binary Challenge
+    decimal_num = random.randint(1, 100)
+    print(f"\nChallenge 1: Convert the following decimal number to binary:")
+    print(f"Decimal: {decimal_num}")
+    start_time = time.time()
+    user_answer = input("Your answer in binary: ")
+    end_time = time.time()
+
+    if user_answer == decimal_to_binary(decimal_num):
+        print("Correct!")
+    else:
+        print(f"Oops! The correct binary is {decimal_to_binary(decimal_num)}.")
+
+    time.sleep(1)
+
+    # Binary to Decimal Challenge
+    binary_num = bin(random.randint(1, 100))[2:]
+    print(f"\nChallenge 2: Convert the following binary number to decimal:")
+    print(f"Binary: {binary_num}")
+    start_time = time.time()
+    user_answer = int(input("Your answer in decimal: "))
+    end_time = time.time()
+
+    if user_answer == binary_to_decimal(binary_num):
+        print("Correct!")
+    else:
+        print(f"Oops! The correct decimal is {binary_to_decimal(binary_num)}.")
+
+    print("\nRace finished!")
+
+#Run the race
+conversion_race()
+```
+
+
+
+
+
+
+
+#### Example Output for Hack 1
+
+
+<img src="{{site.baseurl}}/images/q.png" alt="ex">
+
+
+#### Example Output for Hack 2
+
+<img src="{{site.baseurl}}/images/l.png" alt="ex">
