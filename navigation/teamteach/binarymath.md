@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Binary Math Lesson
-permalink: /binarymath/
+permalink: teamteach/binarymath
 ---
 {% include healthmediatheme.html %}
 
