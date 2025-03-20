@@ -1,7 +1,7 @@
 ---
 layout: post
 title: BI 3 Logic Gates
-permalink: logicgates/lesson/
+permalink: teamteach/logicgates
 ---
 
 ## What are Logic Gates?
