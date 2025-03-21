@@ -17,7 +17,7 @@ It is the fundamental language of computers, where every piece of data is stored
 
 ![Binary Number System](https://mathematicalmysteries.org/wp-content/uploads/2022/08/binary-number-system.png?w=1400)
 
-testt
+testing
 
 ---
 
