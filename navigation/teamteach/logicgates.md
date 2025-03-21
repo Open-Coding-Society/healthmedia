@@ -2,6 +2,7 @@
 layout: post
 title: BI 3 Logic Gates
 permalink: teamteach/logicgates
+authors: Claire Lee, Travis Callow, Mihir Thaha
 ---
 {% include healthmediatheme.html %}
 
