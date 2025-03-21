@@ -1,5 +1,6 @@
 
-baseurl: "/michellekuruvilla_2025"
+github_repo: "healthmedia" 
+baseurl: "/healthmedia"
 future: true
 remote_theme: jekyll/minima
 minima:
