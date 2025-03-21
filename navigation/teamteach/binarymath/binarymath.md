@@ -7,7 +7,6 @@ permalink: /binarymath/
 
 # Binary Base-2 Math   
 
-
 ## Introduction to Binary (Base-2)
 
 Binary is a number system that only uses **two digits**:  
@@ -18,7 +17,7 @@ It is the fundamental language of computers, where every piece of data is stored
 
 ![Binary Number System](https://mathematicalmysteries.org/wp-content/uploads/2022/08/binary-number-system.png?w=1400)
 
-test
+testt
 
 ---
 
