@@ -43,6 +43,9 @@ Each place in a binary number represents a power of **2**, starting from `2^0` o
 
 ## Binary Addition
 
+![Image](https://i.ytimg.com/vi/QXJHsqNl824/maxresdefault.jpg)
+
+
 Adding binary numbers follows simple rules:
 
 | A | B | Sum | Carry |
@@ -63,6 +66,9 @@ Adding binary numbers follows simple rules:
 ---
 
 ## Binary Subtraction
+
+![Image](https://i.ytimg.com/vi/EjUBzGA3DHY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBSocyaj5A3vvDESoVoS13OxHa4cA)
+
 
 Binary subtraction follows similar rules but includes **borrowing**:
 
