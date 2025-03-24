@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Binary Math Lesson
+title: BI 3 Binary Base 2 Math 
 permalink: teamteach/binarymath
 authors: Michelle Kuruvilla, Rutvik Chavda, Ava S
 ---
