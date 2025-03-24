@@ -16,6 +16,9 @@ Binary is a number system that only uses **two digits**:
 
 It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s.
 
+[![Binary](https://img.youtube.com/vi/sXxwr66Y79Y/0.jpg)](https://www.youtube.com/watch?v=sXxwr66Y79Y)
+
+
 ---
 
 ## Binary Number System
@@ -240,6 +243,10 @@ conversion_race()
 #### Example Output for Hack 2
 
 <img src="{{site.baseurl}}/images/l.png" alt="ex">
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSciyNyFSSK6VAL27Q-yr4XM_jt3bzu9sxOHhDC4rEdLCN78og/viewform" style="color:black;">Click here to fill out the form</a>
+
+
 
 
 
