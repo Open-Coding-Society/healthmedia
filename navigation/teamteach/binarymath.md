@@ -97,7 +97,67 @@ Binary subtraction follows similar rules but includes **borrowing**:
 
 - Binary is the foundation of modern technology, enabling data storage in computers and smartphones, powering internet communication, encoding information on storage devices, and driving AI decision-making through logical operations.
 
+## AP MC QUESTIONS:
 
+
+## 2018 MC
+
+
+Question 28:
+
+
+A text-editing application uses binary sequences to represent each of 200 different characters. What is the minimum number of bits needed to assign a unique bit sequence to each of the possible characters?
+
+- A) 4
+- B) 6
+- C) 7
+- D) 8
+
+**Answer:** D  
+This option is correct. Using 8 bits will allow for up to 256 characters (2^8 = 256).
+
+Question 36:
+
+A computer program performs the operation 2 divided by 3 and represents the result as the value 0.6666666667. Which of the following best explains this result?
+
+- A) An overflow error occurred.
+- B) The precision of the result is limited due to the constraints of using a floating-point representation.
+- C) The program attempted to execute the operation with the arguments in reverse order.
+- D) The program attempted to represent a floating-point number as an integer.
+
+**Answer:** B  
+This option is correct. The fixed number of bits used to represent real numbers (as floating-point numbers) limits the range of floating-point values.
+
+Question 42: 
+
+Internet protocol version 4 (IPv4) represents each IP address as a 32-bit binary number. Internet protocol version 6 (IPv6) represents each IP address as a 128-bit binary number.  
+Which of the following best describes the result of using 128-bit addresses instead of 32-bit addresses?
+
+- A) 4 times as many addresses are available.
+- B) 96 times as many addresses are available.
+- C) 2 to the fourth power times as many addresses are available.
+- D) 2 raised to the ninety-sixth power times as many addresses are available.
+
+**Answer:** D  
+This option is correct. With 32-bit addressing, IPv4 has 2^32 possible addresses. With 128-bit addressing, IPv6 has 2^128 possible addresses, which is 2^96 times as many.
+
+Question 44:
+
+A computer program uses 4 bits to represent nonnegative integers. Which of the following statements describe a possible result when the program uses this number representation?
+
+I. The operation 4 plus 8 will result in an overflow error.  
+II. The operation 7 plus 10 will result in an overflow error.  
+III. The operation 12 plus 3 will result in an overflow error.
+
+- A) I only
+- B) II only
+- C) II and III only
+- D) I, II, and III
+
+**Answer:** D  
+This option is correct. With 4 bits, the maximum value that can be represented is 15 (binary 1111). Any operation resulting in a sum greater than 15 will cause an overflow.
+
+## 2020 MC
 ---
 
 ## Conclusion
@@ -178,11 +238,26 @@ binary_addition_battle()
 ```
 
 
-
 How it Works:
 
 Students will be given a random decimal number to convert into binary, and a random binary number to convert into decimal.
 They have to answer as fast as possible, and if they are correct, they get a point.
+
+
+example 
+
+111010
++ 1110111
+-----------
+  10110001
+
+0 + 1 = 1 (No carry)
+1 + 1 = 10 → write 0 and carry 1.
+0 + 1 + 1 (carry) = 10 → write 0 and carry 1.
+1 + 0 + 1 (carry) = 10 → write 0 and carry 1.
+1 + 1 + 1 (carry) = 11 → write 1 and carry 1.
+1 + 1 + 1 (carry) = 11 → write 1 and carry 1.
+Finally, there's a carry of 1 left, so we write it down.
 
 
 #### Popcorn Hack #3
