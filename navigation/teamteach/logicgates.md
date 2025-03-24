@@ -22,10 +22,13 @@ In digital circuits, the most common logic gates are:
 - **XOR Gate:** Produces `1` when the inputs are **different**.
 - **XNOR Gate:** Produces `1` when the inputs are **the same**.
 
+![Image](https://github.com/user-attachments/assets/09b0c48f-784e-4c49-a2bb-4f14ebf3e8bc)
+
 ---
 
 ### 1. AND Gate (&&)
-The output is `1` **only** if both inputs are `1`.
+If inputs are the *same*, *AND* returns the same output. If both inputs are `1`, then the output returns `1`(true). 
+Else, it returns `0`(false).
 
 | A | B | Output (A AND B) |
 |---|---|-----------------|
@@ -35,11 +38,15 @@ The output is `1` **only** if both inputs are `1`.
 | 1 | 1 | 1 |
 
 **Boolean Expression**: `A ⋅ B`
+**Impact** --> Authorization process (keycard *AND* PIN required)  
+
+![Image](https://github.com/user-attachments/assets/d71eab7d-caea-46df-a577-b7562bb2380f)
 
 ---
 
 ### 2. OR Gate (||)
-The output is `1` if **at least one** input is `1`.
+If at least one output is `1`,**OR* returns `1`.
+Else `0`.
 
 | A | B | Output (A OR B) |
 |---|---|----------------|
@@ -49,11 +56,14 @@ The output is `1` if **at least one** input is `1`.
 | 1 | 1 | 1 |
 
 **Boolean Expression**: `A + B`
+**Impact** --> Automatic door activation (motion sensor *OR* button press)
+
+![Image](https://github.com/user-attachments/assets/7ac28546-1bdd-465e-ac7d-49f078469d19)
 
 ---
 
 ### 3. NOT Gate (!A)
-The NOT gate **inverts** the input.
+Inverts the input. If the input is `1`, *NOT* returns `0`, and vice versa. 
 
 | A | Output (NOT A) |
 |---|---------------|
@@ -61,12 +71,15 @@ The NOT gate **inverts** the input.
 | 1 | 0 |
 
 **Boolean Expression**: `Ā`
+**Impact** --> Thermostat system (when temperature threshold is reached, *NOT* signals to turn off)
+
+![Image](https://github.com/user-attachments/assets/2f57b4f9-8998-48b2-80b2-1fc41d378f56)
 
 ---
 
 ### 4. NAND & NOR Gates
-- **NAND** (`NOT AND`): Inverts the AND gate output.
-- **NOR** (`NOT OR`): Inverts the OR gate output.
+- **NAND** (`NOT AND`): Inverts *AND* gate output. 
+- **NOR** (`NOT OR`): Inverts *OR* gate output. 
 
 | A | B | NAND (¬(A ⋅ B)) | NOR (¬(A + B)) |
 |---|---|---------------|--------------|
@@ -76,11 +89,14 @@ The NOT gate **inverts** the input.
 | 1 | 1 | 0 | 0 |
 
 - **NAND & NOR are universal gates** - any circuit can be built using only NAND or only NOR gates.
-- **Challenge:** Try building **AND, OR, and XOR using only NAND gates**.
+**Impact** --> Self-driving cars (whether to break or steer from conditions)  
+
+![Image](https://github.com/user-attachments/assets/c72b868e-917c-4b4b-97a6-d1f04395d2d0)
+
 ---
 
 ### 5. XOR Gate (⊕)
-The output is `1` if inputs are **different**.
+The output is `1`(true) if inputs are *different*. If inputs are the same, *XOR* returns `0`(false).
 
 | A | B | Output (A XOR B) |
 |---|---|-----------------|
@@ -90,11 +106,14 @@ The output is `1` if inputs are **different**.
 | 1 | 1 | 0 |
 
 **Boolean Expression**: `A ⊕ B`
+**Impact** --> Computer memory (whether data is the *same* or *different*) 
+
+![Image](https://github.com/user-attachments/assets/770543d7-f7cc-463d-94d4-e8c37f429fb0)
 
 ---
 ### 6. XNOR Gate (⊙)
-The XNOR (Exclusive NOR) gate is the **opposite of XOR**.
-The output is `1` when **both inputs are the same**,
+The XNOR (Exclusive NOR) gate is the *opposite of XOR*.
+The output is `1` when *both inputs are the same*.
 
 | A | B | Output (A XNOR B) |
 |---|---|---------------|
@@ -104,21 +123,14 @@ The output is `1` when **both inputs are the same**,
 | 1 | 1 | 1 |
 
 **Boolean Expression**: `A ⊙ B = ĀB + A B̄ = ¬(A ⊕ B)`
+**Impact** --> Pattern recognition (evaluate similarities)
+
+![Image](https://github.com/user-attachments/assets/17b41d37-3b70-4d6b-ada3-d8c87c4b1125)
 
 ---
-
-## Real-World Applications of Logic Gates
-✅ **AND** → Security systems (keycard **AND** PIN required)  
-✅ **OR** → Automatic doors (motion sensor **OR** button press)  
-✅ **XOR** → **Parity bits** for error detection in networking  
-✅ **NAND/NOR** → **Memory storage** (SR Latch, Flip-Flops)  
-
-
----
-
 
 ## Boolean Algebra & Simplification
-Logic circuits can often be **simplified** using Boolean algebra, making them **more efficient**.
+Logic circuits can often be *simplified** using Boolean algebra, making them **more efficient*.
 
 
 ### **De Morgan’s Theorems**
@@ -129,16 +141,12 @@ Logic circuits can often be **simplified** using Boolean algebra, making them **
 \overline{A + B} = \overline{A} \cdot \overline{B}
 \]
 
-
 ---
 
+## Popcorn Hacks
 
-## Interactive Coding Challenges 💡
-
-
-### 🍿 Hack #1: Secure Entry System Using Logic Gates
-🔧 **Task**: Implement a Python function that simulates a **secure entry system** using an **AND gate**.
-
+### Hack #1: Authorization
+**Task**: Implement a Python function that simulates a secure entry system using an *AND* gate.
 
 ```python
 def secure_entry_system(keycard, pin):
@@ -148,16 +156,14 @@ def secure_entry_system(keycard, pin):
 
     return AND(keycard, pin)
 
-
 # Test cases
-print(secure_entry_system(1, 1))  # ✅ Expected Output: 1 (Access Granted)
-print(secure_entry_system(0, 1))  # ❌ Expected Output: 0 (Access Denied)
+print(secure_entry_system(1, 1))  # Expected Output: 1 (Access Granted)
+print(secure_entry_system(0, 1))  # Expected Output: 0 (Access Denied)
 ```
 
 
-### 🍿 Hack 2: Burglar Alarm System (OR & NOT Logic)
-🔧 **Task**: Implement a burglar alarm that activates if a door is forced open OR a window is broken, unless manually disabled.
-
+### Hack 2: Security system
+**Task**: Implement a burglar alarm that activates if a door is forced open OR a window is broken, unless manually disabled.
 
 ```python
 def burglar_alarm(door, window, alarm_disabled):
@@ -176,21 +182,14 @@ def burglar_alarm(door, window, alarm_disabled):
     alarm_triggered = AND(OR(door, window), NOT(alarm_disabled))
     return "Alarm ON" if alarm_triggered else "Alarm OFF"
 
-
 # Test cases
-print(burglar_alarm(1, 0, 0))  # ✅ Expected Output: Alarm ON
-print(burglar_alarm(0, 0, 1))  # ❌ Expected Output: Alarm OFF (Manually Disabled)
+print(burglar_alarm(1, 0, 0))  # Expected Output: Alarm ON
+print(burglar_alarm(0, 0, 1))  # Expected Output: Alarm OFF (Manually Disabled)
 ```
 
 
-**Your Challenge**: Add a motion detector (D) that when only when triggred will set off the alarm.
-
-
-### 🍿 Hack #3: Smart Traffic Light Controller (NAND & NOR Logic)
-
-
-🔧 **Task**: Implement a traffic light controller that turns green only if no cars are present AND no pedestrian button is pressed.
-
+### Hack #3: Traffic Light Controller
+**Task**: Implement a traffic light controller that turns green only if no cars are present AND no pedestrian button is pressed.
 
 ```python
 def traffic_light(cars_cross_street, pedestrian_button):
@@ -205,35 +204,10 @@ def traffic_light(cars_cross_street, pedestrian_button):
     green_light = NOR(cars_cross_street, pedestrian_button)
     return "Green Light" if green_light else "Red Light"
 
-
 # Test cases
-print(traffic_light(0, 0))  # ✅ Expected Output: Green Light
-print(traffic_light(1, 0))  # ❌ Expected Output: Red Light
+print(traffic_light(0, 0))  # Expected Output: Green Light
+print(traffic_light(1, 0))  # Expected Output: Red Light
 ```
 
-
-
-
-### 🍿 Task #3: Smart Traffic Light (NAND & NOR)
-
-
-🔧 **Scenario**:
-A smart traffic light should turn green only if:
-
-
-No cars are detected on the cross-street (A = 0).
-The pedestrian button is NOT pressed (B = 0).
-📌 Instructions: Implement a function that determines the light state.
-
-
-```python
-def traffic_light(cars_cross_street, pedestrian_button):
-    return not (cars_cross_street or pedestrian_button)  # NOR logic
-
-
-# Test cases
-print(traffic_light(0, 0))  # ✅ Expected: Green Light
-print(traffic_light(1, 0))  # ❌ Expected: Red Light
-print(traffic_light(0, 1))  # ❌ Expected: Red Light
-print(traffic_light(1, 1))  # ❌ Expected: Red Light
-```
+### Extra Credit
+**Task**: Think of your own system to create with minimal code using any of the logic gates! 
