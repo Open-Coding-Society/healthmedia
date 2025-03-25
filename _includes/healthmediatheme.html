@@ -30,39 +30,47 @@
 
     /* Hero */
     .hero {
-    position: relative;
-    height: 20vh;
-    background-color: #1f1f1fa3;
+    position: relative; /* Change from absolute if it was */
+    top: 0; /* Ensure it starts at the top */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw; /* Adjust width for responsiveness */
+    max-width: 1200px; /* Prevent excessive stretching */
+    height: 25vh; /* Slightly larger for emphasis */
+    background-color: rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    overflow: hidden;
     border-radius: 25px;
-    }
+    margin: 20px auto; /* Adds spacing below */
+}
 
-    .hero::before {
+
+.hero::before {
     content: '';
     position: absolute;
     width: 150%;
     height: 150%;
     background: url('https://www.transparenttextures.com/patterns/cubes.png');
     opacity: 0.02;
-    }
+}
 
-    .hero::after {
+.hero::after {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.25);
-    }
+}
 
-    .hero-content {
+.hero-content {
     position: relative;
     z-index: 1;
     color: #fff;
-    }
+    padding: 20px;
+}
+
 
     /* Cards with glassmorphism */
     .card {
@@ -175,6 +183,54 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
         z-index: -11111111 !important;
         display: none !important;
+    }
+
+   
+
+    .site-header {
+        background: rgba(192, 238, 202, 0.297) !important;
+        box-shadow: 0px 2px 5px rgba(52, 52, 52, 0.274);
+        z-index: 100000000 !important;
+        position: fixed;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0; /* remove left and right padding */
+        width: 100%;
+    }
+
+    .site-title {
+        margin-left: 20px; /* optional spacing from the edge */
+    }
+
+    .site-nav {
+        margin-right: 20px; /* optional spacing from the edge */
+        background: rgba(0,0,0,0) !important;
+        background-color: #00000000;
+    }
+    .slab {
+        background: rgba(0,0,0,0) !important;
+        background-color: #00000000;
+    }
+    .nav-item, a {
+        color:#ffffff !important;
+        transition-duration: 0.5s;
+    }
+
+    .nav-item:hover, a:hover{
+        color:#7fff84 !important;
+        text-decoration: none;
+    }
+
+
+
+    code{
+        background-color: rgba(223, 223, 223, 0.56) !important;
     }
 
 

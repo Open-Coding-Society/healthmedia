@@ -11,11 +11,7 @@ hide: true
 <title>HealthMedia</title>
 {% include healthmediatheme.html %}
 
-<section class="hero">
-    <h2>Your Source for Health and Wellness</h2>
-    <p>Stay informed, stay healthy. Explore reliable tips and articles to boost your lifestyle and well-being.</p>
-    <a href="{{site.baseurl}}/subscribe"><button>Join Our Community</button></a>
-</section>
+
 
 <section id="features" class="features">
 
