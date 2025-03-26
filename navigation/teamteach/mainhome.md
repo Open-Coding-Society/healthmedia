@@ -7,6 +7,9 @@ permalink: teamteach/home/
 <style>
 
 .button {
+    background:radial-gradient(ellipse at bottom left,rgb(133, 213, 136) 0%, #81C784 30%, transparent 170%), 
+                radial-gradient(ellipse at top right,rgb(86, 179, 255) 0%, #64B5F6 40%, transparent 200%);
+    background-color:rgba(103, 255, 204, 0.5);
     display: inline-block;
     color: white !important;
     padding: 20px 40px;
@@ -16,6 +19,8 @@ permalink: teamteach/home/
     font-size: 20px;
     border: none; 
     margin: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 .button button {
     background: inherit;
@@ -30,6 +35,10 @@ permalink: teamteach/home/
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+.button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 </style>
