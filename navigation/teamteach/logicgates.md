@@ -209,5 +209,8 @@ print(traffic_light(0, 0))  # Expected Output: Green Light
 print(traffic_light(1, 0))  # Expected Output: Red Light
 ```
 
-### Extra Credit
+### Extra Credit Hack
 **Task**: Think of your own system to create with minimal code using any of the logic gates! 
+
+### Homework Submission
+Submit your homework on [here](https://docs.google.com/forms/d/e/1FAIpQLSfhYjzZPqp9BeAGxF6gtZujIi1niikv8NR68jeFasxzC648pg/viewform?usp=header). There are also MCQ questions to test your acquired logic gates knowledge. 
