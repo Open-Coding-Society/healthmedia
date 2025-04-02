@@ -134,16 +134,19 @@ th {
 }
 
 tr {
-    background-color: #80808078;
+    background-color: rgba(98, 98, 98, 0.3);
     transition: all 0.3s ease;
 }
 
 tr:nth-child(even) {
-    background-color: rgba(128, 128, 128, 0.3); /* Slightly darker */
+    background-color: rgba(0, 0, 0, 0.3) !important; /* Slightly darker */
 }
 
 tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(166, 165, 165, 0.1) !important;
+}
+tr:nth-child(even):hover {
+    background-color: rgba(118, 118, 118, 0.1) !important;
 }
 
 
@@ -178,7 +181,7 @@ tr:hover {
 
 .nav-item:hover, a:hover{
     color: #7fff84 !important;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 /* Responsive Media Queries */
