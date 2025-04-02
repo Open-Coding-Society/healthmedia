@@ -3,7 +3,6 @@ layout: post
 title: Team Teach 
 permalink: teamteach/home/
 ---
-{% include healthmediatheme.html %}
 <style>
 
 .button {

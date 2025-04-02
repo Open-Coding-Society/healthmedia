@@ -1,5 +1,5 @@
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap" rel="stylesheet">
-<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap');
+
     /* Base Reset */
 * {
     margin: 0;
@@ -12,11 +12,20 @@ body {
     background: radial-gradient(ellipse at top left, #4CAF50 0%, #81C784 30%, transparent 100%), 
                 radial-gradient(ellipse at bottom right, #2196F3 0%, #64B5F6 40%, transparent 100%);
     background-color: #5effcf;
-    color: #000000;
+    color: #dadada;
     min-height: 100vh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+}
+
+code{
+    background-color: #00000044;
+    color: #ffd727;
+}
+
+p,li,span{
+    color:#ececec;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -95,19 +104,51 @@ footer {
 }
 
 /* Responsive Table */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Keep the table scrollable on small screens */
+    margin: 20px 0;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
     font-family: 'Open Sans', sans-serif;
     background: rgba(24, 24, 24, 0.162);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius: 15px;
     overflow: hidden;
-    display: block;
-    overflow-x: auto;
 }
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+th {
+    background-color: rgba(176, 176, 176, 0.3);
+    font-weight: bold;
+}
+
+tr {
+    background-color: #80808078;
+    transition: all 0.3s ease;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(128, 128, 128, 0.3); /* Slightly darker */
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
 
 /* Responsive Navigation */
 .site-header {
@@ -168,6 +209,3 @@ table {
     }
 }
 
-
-
-</style>
