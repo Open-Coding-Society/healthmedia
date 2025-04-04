@@ -186,6 +186,20 @@ tr:nth-child(even):hover {
     background: rgba(42, 126, 74, 0.9) !important;
     border-left: 1px solid rgb(36, 106, 63) !important;
 }
+.Box.box-shadow-medium.rounded-1.col-12{
+    background:radial-gradient(ellipse at bottom left,rgb(103, 164, 105) 0%, #659c68 30%, transparent 170%), 
+    radial-gradient(ellipse at top right,rgb(61, 128, 183) 0%, #477fae 40%, transparent 200%);
+    border-radius: 50px;
+    border:none;
+}
+
+.js-search-input{
+    background:#555555;
+}
+
+.post-meta{
+    color:#eeeeee;
+}
 
 .nav-item, a {
     color: #ffffff !important;
