@@ -172,11 +172,13 @@ tr:nth-child(even):hover {
 }
 
 .site-nav {
+    position:absolute;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    float:right !important;
+    float: right;
     background-color: #00000000;
+    padding-right: 1%;
 }
 
 .nav-item, a {
