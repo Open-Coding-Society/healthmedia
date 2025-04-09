@@ -1,11 +1,11 @@
 ---
 layout: post
-title: BI 3 Binary Base 2 Math 
-permalink: teamteach/binarymath
-authors: Michelle Kuruvilla, Rutvik Chavda, Ava S
+title: Binary Math Lesson
+permalink: /binarymath/
 ---
 
-# Binary Base-2 Math 
+
+# Binary Base-2 Math & Logic Gates  
 
 ## Introduction to Binary (Base-2)
 
@@ -14,9 +14,6 @@ Binary is a number system that only uses **two digits**:
 - `1` (On)  
 
 It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s.
-
-[![Binary](https://img.youtube.com/vi/sXxwr66Y79Y/0.jpg)](https://www.youtube.com/watch?v=sXxwr66Y79Y)
-
 
 ---
 
@@ -42,9 +39,6 @@ Each place in a binary number represents a power of **2**, starting from `2^0` o
 
 ## Binary Addition
 
-![Image](https://i.ytimg.com/vi/QXJHsqNl824/maxresdefault.jpg)
-
-
 Adding binary numbers follows simple rules:
 
 | A | B | Sum | Carry |
@@ -66,9 +60,6 @@ Adding binary numbers follows simple rules:
 
 ## Binary Subtraction
 
-![Image](https://i.ytimg.com/vi/EjUBzGA3DHY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBSocyaj5A3vvDESoVoS13OxHa4cA)
-
-
 Binary subtraction follows similar rules but includes **borrowing**:
 
 | A | B | Difference | Borrow |
@@ -88,6 +79,82 @@ Binary subtraction follows similar rules but includes **borrowing**:
 
 ---
 
+## Logic Gates & Boolean Algebra
+
+Logic gates are the building blocks of digital circuits, controlling how computers make decisions.
+
+### 1. AND Gate (&&)
+
+The output is `1` **only** if both inputs are `1`.
+
+| A | B | Output (A AND B) |
+|---|---|-----------------|
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+**Boolean Expression**: `A ⋅ B`
+
+---
+
+### 2. OR Gate (||)
+
+The output is `1` if **at least one** input is `1`.
+
+| A | B | Output (A OR B) |
+|---|---|----------------|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+
+**Boolean Expression**: `A + B`
+
+---
+
+### 3. NOT Gate (!A)
+
+The NOT gate **inverts** the input.
+
+| A | Output (NOT A) |
+|---|---------------|
+| 0 | 1 |
+| 1 | 0 |
+
+**Boolean Expression**: `Ā`
+
+---
+
+### 4. XOR Gate (⊕)
+
+The output is `1` if inputs are **different**.
+
+| A | B | Output (A XOR B) |
+|---|---|-----------------|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+**Boolean Expression**: `A ⊕ B`
+
+---
+
+### 5. NAND & NOR Gates
+
+- **NAND** (`NOT AND`): Inverts the AND gate output.
+- **NOR** (`NOT OR`): Inverts the OR gate output.
+
+| A | B | NAND (¬(A ⋅ B)) | NOR (¬(A + B)) |
+|---|---|---------------|--------------|
+| 0 | 0 | 1 | 1 |
+| 0 | 1 | 1 | 0 |
+| 1 | 0 | 1 | 0 |
+| 1 | 1 | 0 | 0 |
+
+---
+
 ## Applications of Binary 
 ✅ **Arithmetic Operations** (Addition, Subtraction, Multiplication)  
 ✅ **Digital Circuits** (CPUs, Memory, ALU)  
@@ -102,7 +169,7 @@ Binary subtraction follows similar rules but includes **borrowing**:
 ## 2018 MC
 
 
-Question 28:
+**Question 28:**
 
 
 A text-editing application uses binary sequences to represent each of 200 different characters. What is the minimum number of bits needed to assign a unique bit sequence to each of the possible characters?
@@ -112,10 +179,13 @@ A text-editing application uses binary sequences to represent each of 200 differ
 - C) 7
 - D) 8
 
+
 **Answer:** D  
 This option is correct. Using 8 bits will allow for up to 256 characters (2^8 = 256).
 
-Question 36:
+
+
+**Question 36:**
 
 A computer program performs the operation 2 divided by 3 and represents the result as the value 0.6666666667. Which of the following best explains this result?
 
@@ -127,7 +197,9 @@ A computer program performs the operation 2 divided by 3 and represents the resu
 **Answer:** B  
 This option is correct. The fixed number of bits used to represent real numbers (as floating-point numbers) limits the range of floating-point values.
 
-Question 42: 
+
+
+**Question 42:**
 
 Internet protocol version 4 (IPv4) represents each IP address as a 32-bit binary number. Internet protocol version 6 (IPv6) represents each IP address as a 128-bit binary number.  
 Which of the following best describes the result of using 128-bit addresses instead of 32-bit addresses?
@@ -140,7 +212,9 @@ Which of the following best describes the result of using 128-bit addresses inst
 **Answer:** D  
 This option is correct. With 32-bit addressing, IPv4 has 2^32 possible addresses. With 128-bit addressing, IPv6 has 2^128 possible addresses, which is 2^96 times as many.
 
-Question 44:
+
+
+**Question 44:**
 
 A computer program uses 4 bits to represent nonnegative integers. Which of the following statements describe a possible result when the program uses this number representation?
 
@@ -323,10 +397,3 @@ conversion_race()
 #### Example Output for Hack 2
 
 <img src="{{site.baseurl}}/images/l.png" alt="ex">
-
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSciyNyFSSK6VAL27Q-yr4XM_jt3bzu9sxOHhDC4rEdLCN78og/viewform" style="color:black;">Click here to fill out the form</a>
-
-
-
-
-

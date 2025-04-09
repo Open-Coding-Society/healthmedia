@@ -4,7 +4,6 @@ title: BI 3 Logic Gates
 permalink: teamteach/logicgates
 authors: Claire Lee, Travis Callow, Mihir Thaha
 ---
-{% include healthmediatheme.html %}
 
 ## What are Logic Gates?
 Logic gates are electronic devices that perform **Boolean operations**. They receive one or more binary inputs (`0` or `1`) and produce a single binary output. These gates form the foundation of all digital systems, including computers, mobile devices, and other technologies. 
@@ -209,5 +208,8 @@ print(traffic_light(0, 0))  # Expected Output: Green Light
 print(traffic_light(1, 0))  # Expected Output: Red Light
 ```
 
-### Extra Credit
+### Extra Credit Hack
 **Task**: Think of your own system to create with minimal code using any of the logic gates! 
+
+### Homework Submission
+Submit your homework on [here](https://docs.google.com/forms/d/e/1FAIpQLSfhYjzZPqp9BeAGxF6gtZujIi1niikv8NR68jeFasxzC648pg/viewform?usp=header). There are also MCQ questions to test your acquired logic gates knowledge. 

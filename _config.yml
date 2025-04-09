@@ -15,4 +15,6 @@ plugins:
 header_pages:
 - navigation/teamteach/mainhome.md
 - navigation/healthmedia/mainhome.md
+- navigation/blog.md
+- navigation/search.md
 
