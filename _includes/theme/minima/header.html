@@ -1,10 +1,10 @@
 <!-- Style should be in SASS -->
 <header class="site-header">
-
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     {%- assign page_titles = site.pages | map: 'title' | compact %}
+
     <a class="site-title" rel="author" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
 
     {%- unless page_titles == empty %}
@@ -19,8 +19,17 @@
             {%- include nav-items.html paths = page_paths %}
           </div>
         </div>
+
         <div class="slab">
-          {%- include nav-items.html paths = page_paths %}
+          <!-- Only include nav-items once in the slab -->
+          <div class="nav-items">
+            {%- for path in page_paths %}
+              {%- assign hyperpage = site.pages | where: "path", path | first -%}
+              {%- if hyperpage.title %}
+                <a class="nav-item" href="{{ hyperpage.url | relative_url }}">{{ hyperpage.title | escape }}</a>
+              {%- endif %}
+            {%- endfor %}
+          </div>
           <a id="loginArea" href="{{ site.baseurl }}/login">Login</a>
         </div>
       </nav>
