@@ -206,6 +206,7 @@ function initSearch() {
             resultRelUrl.classList.add('search-result-rel-date');
             resultRelUrl.innerText = doc.date;
             resultTitle.appendChild(resultRelUrl);
+            document.createElement('br')
   
             var metadata = result.matchData.metadata;
             var contentFound = false;
