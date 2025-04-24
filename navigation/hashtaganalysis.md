@@ -1,11 +1,5 @@
----
-layout: page
-title: Hashtag Analysis
-permalink: /hashtaganalysis/
----
-
 <head>
-  <title>Hashtag Effectiveness Predictor</title>
+  <title>Hashtag View Predictor</title>
   <style>
     .container {
       width: 400px;
@@ -27,7 +21,7 @@ permalink: /hashtaganalysis/
       margin-top: 15px;
       padding: 10px 20px;
       border-radius: 5px;
-      background-color: #28a745;
+      background-color: #007bff;
       color: white;
       border: none;
     }
@@ -41,11 +35,11 @@ permalink: /hashtaganalysis/
 
 <body>
   <div class="container">
-    <h2>Hashtag Effectiveness Predictor</h2>
-    <textarea id="hashtagInput" placeholder="#legoland #fun #familytime" rows="3"></textarea>
+    <h2>Hashtag View Predictor</h2>
+    <textarea id="hashtagInput" rows="4">#legoland #legolandcalifornia #buildthefun #familyadventure #themeparkfun #miniland #bricklife</textarea>
     <br />
-    <button onclick="analyzeHashtags()">Analyze</button>
-    <div id="result">Score: --</div>
+    <button onclick="analyzeHashtags()">Predict Views</button>
+    <div id="result">Predicted Views: --</div>
   </div>
 
   <script>
@@ -62,10 +56,10 @@ permalink: /hashtaganalysis/
         });
 
         const data = await res.json();
-        document.getElementById('result').textContent = `Score: ${data.score}`;
+        document.getElementById('result').textContent = `Predicted Views: ${data.views.toLocaleString()}`;
       } catch (err) {
-        document.getElementById('result').textContent = 'Error analyzing hashtags.';
-        console.error('Failed to analyze hashtags:', err);
+        document.getElementById('result').textContent = 'Error predicting views.';
+        console.error('Failed to fetch prediction:', err);
       }
     }
   </script>
