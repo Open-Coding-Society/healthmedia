@@ -23,7 +23,64 @@ search_exclude: true
             <button type="submit">Add Insight</button>
         </form>
     </div>
-    <div class="best-length" id="bestLengthBox">
+```javascript
+// Add error handling for fetch requests
+async function fetchLengths() {
+    try {
+        const res = await fetch(`${API_BASE}/lengths`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
+        displayLengths(data);
+        drawChart(data);
+    } catch (error) {
+        console.error('Error fetching lengths:', error);
+    }
+}
+
+async function fetchBestLength() {
+    try {
+        const res = await fetch(`${API_BASE}/lengths/best`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
+        const bestText = data.video_length
+            ? `${data.video_length} minutes with ${data.efficiency.toFixed(2)} engagement/min`
+            : "No best length found.";
+        document.getElementById('bestLengthText').textContent = bestText;
+    } catch (error) {
+        console.error('Error fetching best length:', error);
+    }
+}
+
+// Improve form submission handling
+document.getElementById('lengthForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const videoLength = parseFloat(document.getElementById('videoLength').value);
+    const engagement = parseInt(document.getElementById('engagement').value);
+    if (isNaN(videoLength) || isNaN(engagement)) {
+        alert('Please enter valid numbers for video length and engagement.');
+        return;
+    }
+    try {
+        const res = await fetch(`${API_BASE}/lengths`, {
+            method: 'POST', // Change to POST to create a new resource
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ video_length: videoLength, engagement: engagement })
+        });
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        fetchLengths();
+        fetchBestLength();
+        document.getElementById('lengthForm').reset();
+    } catch (error) {
+        console.error('Error submitting form:', error);
+    }
+});
+```    <div class="best-length" id="bestLengthBox">
         <h2>🔥 Most Efficient Length</h2>
         <p id="bestLengthText">Loading...</p>
     </div>
