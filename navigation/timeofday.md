@@ -43,7 +43,7 @@ permalink: /timeofday/
   <thead>
     <tr>
       <th>Time Posted</th>
-      <th>Likes/Views</th>
+      <th>Likes</th>
       <th>Post URL</th>
     </tr>
   </thead>
