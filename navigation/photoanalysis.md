@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Photo Analysis
 permalink: /photoanalysis/
 ---
@@ -7,66 +7,50 @@ permalink: /photoanalysis/
 #### Upload a photo you would like to post, and receive a prediction of how many likes it will get (media performance)!
 
 <head>
-  <title>Photo Upload with Likes</title>
+  <title>Photo Upload - Predict Likes</title>
   <style>
     .container {
-      width: 300px;
-      margin: auto;
+      width: 350px;
+      margin: 50px auto;
       text-align: center;
       border: 2px dashed #aaa;
       padding: 20px;
       border-radius: 10px;
+      font-family: Arial, sans-serif;
     }
     img {
       max-width: 100%;
       margin-top: 10px;
       display: none;
+      border-radius: 6px;
     }
     button {
-      margin-top: 10px;
-      padding: 8px 12px;
+      margin-top: 15px;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .results {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #333;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h2>Upload a Photo</h2>
+    <h2>Upload a Photo to Predict Likes</h2>
     <input type="file" accept="image/*" id="photoInput" />
-    <img id="preview" />
-    <div>
-      <button onclick="likePhoto()">Like</button>
-      <p>Likes: <span id="likeCounter">Loading...</span></p>
-    </div>
+    <img id="preview" style="display: none;" />
+    <button onclick="predictLikes()">Predict</button>
+    <div class="results" id="results"></div>
   </div>
 
   <script>
-    const likeCounter = document.getElementById('likeCounter');
     const preview = document.getElementById('preview');
     const input = document.getElementById('photoInput');
-
-    // Load like count from backend
-    async function fetchLikes() {
-      try {
-        const res = await fetch('/api/likes');
-        const data = await res.json();
-        likeCounter.textContent = data.likes;
-      } catch (err) {
-        likeCounter.textContent = 'Error';
-        console.error('Failed to fetch likes:', err);
-      }
-    }
-
-    // Send like to backend
-    async function likePhoto() {
-      try {
-        const res = await fetch('/api/like', { method: 'POST' });
-        const data = await res.json();
-        likeCounter.textContent = data.likes;
-      } catch (err) {
-        console.error('Failed to like photo:', err);
-      }
-    }
+    const results = document.getElementById('results');
 
     // Preview uploaded photo
     input.addEventListener('change', function () {
@@ -76,12 +60,74 @@ permalink: /photoanalysis/
         reader.onload = function (e) {
           preview.src = e.target.result;
           preview.style.display = 'block';
+          results.textContent = '';
         };
         reader.readAsDataURL(file);
       }
     });
 
-    // Initial fetch
-    fetchLikes();
+    // Send photo to backend and display predicted likes
+    async function predictLikes() {
+      const file = input.files[0];
+      if (!file) {
+        alert('Please upload a photo first.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      try {
+        const res = await fetch('http://localhost:5001/api/predict-likes', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.error) {
+          results.innerHTML = `<span style="color:red;">Error: ${data.error}</span>`;
+          return;
+        }
+
+        results.innerHTML = `
+          <strong>Predicted Likes:</strong> ${Math.round(data.predicted_likes)}}<br>
+        `;
+      } catch (err) {
+        console.error('Error contacting backend:', err);
+        results.innerHTML = `<span style="color:red;">Unable to contact prediction server.</span>`;
+      }
+    }
   </script>
 </body>
+
+<title>Performance Based on Like Count</title>
+
+<h2 style="text-align:center;">Likes and Ratings</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th># of Likes</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0-100</td>
+            <td>Mediocre 😐</td>
+        </tr>
+        <tr>
+            <td>101-500</td>
+            <td>Good 🙂</td>
+        </tr>
+        <tr>
+            <td>501-2000</td>
+            <td>Great 😊</td>
+        </tr>
+        <tr>
+            <td>2000+</td>
+            <td>Amazing 🤩</td>
+        </tr>
+    </tbody>
+</table>
