@@ -91,3 +91,7 @@ permalink: /photoanalysis/
 
         results.innerHTML = `
           <strong>Predicted Likes:</strong> ${data.predicted_likes.toFixed(2)}<br>
+          `
+      }
+    }
+        
