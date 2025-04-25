@@ -11,10 +11,10 @@ hide: true
 <title>Legoland Media</title>
 
 <section id="features" class="features">
-  <a href="{{site.baseurl}}/nutrition" class="feature-link">
+  <a href="{{site.baseurl}}/timeofday" class="feature-link">
     <div class="feature">
-      <h3>Build Your Adventure</h3>
-      <p>Explore new Lego sets and create your own LEGO world with our building guides.</p>
+      <h3>Time Of Day</h3>
+      <p>This will show the most optimal time of day to publish a video to reach the most view/likes possible.</p>
     </div>
   </a>
 
