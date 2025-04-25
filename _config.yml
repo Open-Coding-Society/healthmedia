@@ -1,4 +1,4 @@
-
+title: Legoland Media
 github_repo: "healthmedia" 
 baseurl: "/healthmedia"
 future: true
@@ -15,6 +15,7 @@ plugins:
 header_pages:
 - navigation/teamteach/mainhome.md
 - navigation/healthmedia/mainhome.md
+- navigation/photoanalysis.md
 - navigation/blog.md
 - navigation/search.md
 

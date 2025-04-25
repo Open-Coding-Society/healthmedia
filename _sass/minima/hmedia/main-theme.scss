@@ -190,6 +190,23 @@ tr:nth-child(even):hover {
     radial-gradient(ellipse at top right,rgb(61, 128, 183) 0%, #477fae 40%, transparent 200%);
     border-radius: 50px;
     border:none;
+    transition: all 0.3s ease;
+}
+
+.search-results-list-item{
+    background:radial-gradient(ellipse at bottom left,rgb(103, 164, 105) 0%, #659c68 30%, transparent 170%), 
+    radial-gradient(ellipse at top right,rgb(61, 128, 183) 0%, #477fae 40%, transparent 200%);
+    border-radius: 10px;
+    border:none;
+    padding-bottom:10px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.search-results-list-item:hover, .Box.box-shadow-medium.rounded-1.col-12:hover{
+    translate: 0px -5px;
+    background-position: 100% 0;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 
 .post-meta{
