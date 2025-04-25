@@ -1,61 +1,59 @@
+export const baseurl = "/healthmedia";
+
 export var pythonURI;
-if (location.hostname === "localhost") {
-        pythonURI = "http://localhost:8205";
-} else if (location.hostname === "127.0.0.1") {
-        pythonURI = "http://127.0.0.1:8205";
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    pythonURI = "http://localhost:8087";  // Same URI for localhost or 127.0.0.1
 } else {
-        pythonURI = "https://restaurant.stu.nighthawkcodingsociety.com";
+    pythonURI = "https://flask2025.nighthawkcodingsociety.com";
 }
+
 export var javaURI;
-if (location.hostname === "localhost") {
-        javaURI = "http://localhost:8885";
-} else if (location.hostname === "127.0.0.1") {
-        javaURI = "http://127.0.0.1:8885"; //rey
+// 127.0.0.1:8085 does not work for some machines
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+        javaURI = "http://localhost:8085";
 } else {
-        javaURI = "https://flocker-j.nighthawkcodingsociety.com";
+    javaURI = "https://spring2025.nighthawkcodingsociety.com";
 }
 
 export const fetchOptions = {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'include', // include, same-origin, omit
+    method: 'GET',  // Default method is GET
+    mode: 'cors', // Enable CORS (Cross-Origin Resource Sharing)
+    cache: 'default', // Default caching behavior
+    credentials: 'include', // Include credentials (cookies, etc.)
     headers: {
         'Content-Type': 'application/json',
-        'X-Origin': 'client' // New custom header to identify source
+        'X-Origin': 'client' // Custom header to identify source
     },
 };
-// User Login Function 
+
+// User Login Function (allows both GET and POST)
 export function login(options) {
-        // Modify the options to use the POST method and include the request body.
-        const requestOptions  = {
-                ...fetchOptions, // This will copy all properties from options
-                method: options.method, // Override the method property
-                cache: options.cache, // Set the cache property
-                body: JSON.stringify(options.body)
-        };
+    // Modify the options to use the correct method and include the request body
+    const requestOptions  = {
+        ...fetchOptions,  // Spread the existing fetchOptions object
+        method: options.method || 'POST',  // Dynamically set the method (default to POST)
+        body: options.method === 'POST' ? JSON.stringify(options.body) : undefined  // Only add body for POST requests
+    };
 
-        // Clear the message area
-        document.getElementById(options.message).textContent = "";
+    // Clear the message area
+    document.getElementById(options.message).textContent = "";
 
-        // Fetch JWT
-        fetch(options.URL, requestOptions)
-        .then(response => {
-                // Trap error response from Web API
-                if (!response.ok) {
-                        const errorMsg = 'Login error: ' + response.status;
-                        console.log(errorMsg);
-                        document.getElementById(options.message).textContent = errorMsg;
-                        return;
-                }
-                // Success!!!
-                // Redirect to the Database location
-                options.callback();
-        })
-        .catch(error => {
-                // Handle network errors
-                console.log('Possible CORS or Service Down error: ' + error);
-                document.getElementById(options.message).textContent = 'Possible CORS or service down error: ' + error;
-        });
+    // Fetch JWT from the server
+    fetch(options.URL, requestOptions)
+    .then(response => {
+        // Trap error response from the Web API
+        if (!response.ok) {
+            const errorMsg = 'Login error: ' + response.status;
+            console.log(errorMsg);
+            document.getElementById(options.message).textContent = errorMsg;
+            return response;  // Exit early if response is not OK
+        }
+        // Success: Proceed with callback
+        options.callback();
+    })
+    .catch(error => {
+        // Handle network errors
+        console.log('Possible CORS or Service Down error: ' + error);
+        document.getElementById(options.message).textContent = 'Possible CORS or service down error: ' + error;
+    });
 }
-
