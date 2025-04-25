@@ -1,6 +1,6 @@
 ---
 layout: base
-title: Flocker Social Media Site
+title: Legoland Social Media
 search_exclude: true
 description: Login and explore our social media hub for everything Legoland
 hide: true
