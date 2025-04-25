@@ -6,49 +6,13 @@ description: Login and explore our social media hub for everything Legoland
 hide: true
 ---
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Legoland Media</title>
-
-<section id="features" class="features">
-  <a href="{{site.baseurl}}/timeofday" class="feature-link">
-    <div class="feature">
-      <h3>Time Of Day</h3>
-      <p>This will show the most optimal time of day to publish a video to reach the most view/likes possible.</p>
-    </div>
-  </a>
-
-  <a href="{{site.baseurl}}/exercise" class="feature-link">
-    <div class="feature">
-      <h3>LEGO Parks & Rides</h3>
-      <p>Discover the best attractions at Legoland and plan your next family adventure.</p>
-    </div>
-  </a>
-
-  <a href="{{site.baseurl}}/mental-health" class="feature-link">
-    <div class="feature">
-      <h3>LEGO News & Updates</h3>
-      <p>Stay up-to-date with the latest happenings from Legoland, new sets, and park events.</p>
-    </div>
-  </a>
-
-  <a href="{{site.baseurl}}/blog" class="feature-link">
-    <div class="feature">
-      <h3>LEGO Blog</h3>
-      <p>Read articles, tips, and community stories about all things Legoland and LEGO building!</p>
-    </div>
-  </a>
-
-  <a href="{{site.baseurl}}/contact" class="feature-link">
-    <div class="feature">
-      <h3>Contact Us</h3>
-      <p>Have a question or want to share your Lego creations? Reach out to our team!</p>
-    </div>
-  </a>
-</section>
-
 <style>
   /* Overall page style */
+  title {
+    text-align: left; /* Align title to the left */
+    display: block;
+  }
+  
   body {
     background-color: #fafafa; /* Light gray background for clean look */
     font-family: 'Arial', sans-serif;
@@ -127,7 +91,7 @@ hide: true
     font-size: 2rem;
     overflow: hidden;
     white-space: nowrap;
-    border-right: .15em solid #ffcc00;
+    /*border-right: .15em solid #ffcc00;*/
     animation: typing 3.5s steps(30) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
   }
 
@@ -166,4 +130,99 @@ hide: true
       font-size: 0.85rem;
     }
   }
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align items at the top */
+  height: 100%; /* Ensures the container takes up full height */
+}
+
+.title-container {
+  margin-top: 5px; /* Adjust this to control how high the title is */
+}
+
+.fade-in-up {
+  font-size: 3rem; /* Increase size */
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
 </style>
+
+<div class="container">
+  <div class="title-container">
+    <h1 class="fade-in-up">Welcome to LEGOLAND Media</h1>
+  </div>
+
+<div class="container">
+  <div class="title-container">
+    <h2 class="fade-in-up">Why Us?</h2>
+    <p>By providing real-time, data-driven insights, this project helps businesses fine-tune their content strategy for better engagement. It goes beyond simple performance metrics by examining multiple dimensions, from when and how often posts are made to the overall sentiment of user interactions. With these insights, businesses can make informed decisions that directly impact reach and engagement on social media platforms.</p>
+  </div>
+<br>
+<div class="container">
+  <div class="title-container">
+    <h2 class="fade-in-up">Our Mission</h2>
+    <p>This project provides a comprehensive video analytics solution that not only analyzes post length, hashtag effectiveness, and photo brightness, but also delves into post frequency, time of day for posting, and sentiment analysis. The goal is to provide businesses and content creators of Legoland California with a full-spectrum understanding of what drives engagement and how to optimize content strategies.</p>
+  </div>
+
+<section id="features" class="features">
+  <a href="{{site.baseurl}}/sentiment/analysis/" class="feature-link">
+    <div class="feature">
+      <h3>Sentiment Analysis</h3>
+      <p>Uses data to gauge the sentiment of user comments and interactions, helping businesses understand how their content resonates emotionally with the audience.</p>
+    </div>
+  </a>
+
+  <a href="{{site.baseurl}}/hashtaganalysis" class="feature-link">
+    <div class="feature">
+      <h3>Hashtag Analysis</h3>
+      <p>Measures the impact of hashtags, enabling businesses to identify and utilize the most effective ones for each campaign.</p>
+    </div>
+  </a>
+
+  <a href="{{site.baseurl}}/lengths" class="feature-link">
+    <div class="feature">
+      <h3>Post Length</h3>
+      <p>Automatically determines the optimal post length for maximum engagement, based on historical trends and current data.</p>
+    </div>
+  </a>
+
+  <a href="{{site.baseurl}}/photoanalysis" class="feature-link">
+    <div class="feature">
+      <h3>Photo Analysis</h3>
+      <p>Evaluates the visual qualities of potential post photos, linking these factors to higher engagement rates.</p>
+    </div>
+  </a>
+
+  <a href="{{site.baseurl}}/timeofday" class="feature-link">
+    <div class="feature">
+      <h3>Post Time Analysis</h3>
+      <p>Analyzes the timing of posts to determine when the audience is most active, providing valuable guidance on posting schedules.</p>
+    </div>
+  </a>
+
+  <a href="{{site.baseurl}}/postfrequency" class="feature-link">
+    <div class="feature">
+      <h3>Post Frequency</h3>
+      <p>Tracks how often posts are made and correlates this frequency with user engagement, helping to identify the best posting cadence.</p>
+      </div>
+      </a>
+</section>
+

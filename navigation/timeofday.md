@@ -1,4 +1,6 @@
 ---
+layout: post
+title: Time of Day Analysis
 permalink: /timeofday/
 ---
 

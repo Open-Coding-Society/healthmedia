@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Photo Analysis
 permalink: /photoanalysis/
 ---
@@ -100,3 +100,34 @@ permalink: /photoanalysis/
     }
   </script>
 </body>
+
+<title>Performance Based on Like Count</title>
+
+<h2 style="text-align:center;">Likes and Ratings</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th># of Likes</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0-100</td>
+            <td>Mediocre 😐</td>
+        </tr>
+        <tr>
+            <td>101-500</td>
+            <td>Good 🙂</td>
+        </tr>
+        <tr>
+            <td>501-2000</td>
+            <td>Great 😊</td>
+        </tr>
+        <tr>
+            <td>2000+</td>
+            <td>Amazing 🤩</td>
+        </tr>
+    </tbody>
+</table>

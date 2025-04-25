@@ -1,3 +1,9 @@
+---
+layout: post
+title: Hashtag Analysis
+permalink: /hashtaganalysis/
+---
+
 <head>
   <title>Hashtag View Predictor</title>
   <style>
