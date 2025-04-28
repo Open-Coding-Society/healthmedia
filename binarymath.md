@@ -62,7 +62,12 @@ binary_input = input("Enter a binary number: ")
 decimal_output = binary_to_decimal(binary_input)
 print(f"The decimal representation of {binary_input} is {decimal_output}.")
 ```
-
+### How it works: 
+binary_to_decimal(binary_str) is a function that:
+- Takes a binary string like "1011".
+- Starts from the rightmost digit (least significant bit).
+- For each bit, multiplies it by 2^i where i is its position from the right (starting at 0).
+-Adds all those values together to get the decimal number.
 
 ## Binary Addition
 
