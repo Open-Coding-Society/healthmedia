@@ -20,13 +20,8 @@ It is the fundamental language of computers, where every piece of data is stored
 
 ## Binary Number System
 
-Each place in a binary number represents a power of **2**, starting from `2^0` on the right.
 
-Start from the rightmost digit (smallest place).
-
-Each digit is multiplied by 2^position (position starts at 0 on the right).
-
-Add them up!
+```
 | Decimal (Base-10) | Binary (Base-2) |
 |------------------|----------------|
 | 0 | `0` |
@@ -40,6 +35,8 @@ Add them up!
 | 8 | `1000` |
 | 9 | `1001` |
 | 10 | `1010` |
+```
+
 
 ---
 
@@ -60,6 +57,7 @@ decimal_output = binary_to_decimal(binary_input)
 print(f"The decimal representation of {binary_input} is {decimal_output}.")
 ```
 
+
 ----
 
 ## Binary Addition
@@ -68,6 +66,14 @@ print(f"The decimal representation of {binary_input} is {decimal_output}.")
 
 
 Adding binary numbers follows simple rules:
+
+Each place in a binary number represents a power of **2**, starting from `2^0` on the right.
+
+Start from the rightmost digit (smallest place).
+
+Each digit is multiplied by 2^position (position starts at 0 on the right).
+
+Add them up!
 
 | A | B | Sum | Carry |
 |---|---|-----|-------|
