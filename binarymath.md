@@ -50,9 +50,6 @@ Add them up!
 #### Popcorn Hack 1:  Binary to Decimal Converter
 
 
-
-# Binary to Decimal Converter
-
 ```python
 def binary_to_decimal(binary_str):
     decimal = 0
@@ -329,11 +326,6 @@ A text-editing application uses binary sequences to represent each of 200 differ
 - D) 8
 
 
-**Answer:** D  
-
-This option is correct. Using 8 bits will allow for up to 256 characters (2^8 = 256).
-
-
 
 **Question 36:**
 
@@ -343,10 +335,6 @@ A computer program performs the operation 2 divided by 3 and represents the resu
 - B) The precision of the result is limited due to the constraints of using a floating-point representation.
 - C) The program attempted to execute the operation with the arguments in reverse order.
 - D) The program attempted to represent a floating-point number as an integer.
-
-**Answer:** B  
-
-This option is correct. The fixed number of bits used to represent real numbers (as floating-point numbers) limits the range of floating-point values.
 
 
 
@@ -359,10 +347,6 @@ Which of the following best describes the result of using 128-bit addresses inst
 - B) 96 times as many addresses are available.
 - C) 2 to the fourth power times as many addresses are available.
 - D) 2 raised to the ninety-sixth power times as many addresses are available.
-
-**Answer:** D  
-This option is correct. With 32-bit addressing, IPv4 has 2^32 possible addresses. With 128-bit addressing, IPv6 has 2^128 possible addresses, which is 2^96 times as many.
-
 
 
 **Question 44:**
@@ -378,17 +362,32 @@ III. The operation 12 plus 3 will result in an overflow error.
 - C) II and III only
 - D) I, II, and III
 
-**Answer:** D  
-This option is correct. With 4 bits, the maximum value that can be represented is 15 (binary 1111). Any operation resulting in a sum greater than 15 will cause an overflow.
+<details>
+  <summary>Click here to see the answers</summary>
+  
+  **Question 28:**
+  - Answer: D) 8 bits
+  
+  **Question 36:**
+  - Answer: B) The precision of the result is limited due to the constraints of using a floating-point representation.
+  
+  **Question 42:**
+  - Answer: D) 2 raised to the ninety-sixth power times as many addresses are available.
+  
+  **Question 44:**
+  - Answer: D) I, II, and III
+</details>
 
-## 2020 MC
+
+
+
 ---
 
 ## Conclusion
 
-Binary numbers and logic gates **form the foundation of computing**! Mastering them will help you understand **programming, circuits, and AI logic**.
 
 
+By mastering binary math and logic gates, you are building the foundation for understanding how computers process data, perform calculations, and make decisions. These concepts are essential not only for programming and circuit design but also for the AP exam, where you'll apply this knowledge to solve real-world problems and analyze algorithms. The hands-on practice with binary operations and logic gates will strengthen your problem-solving skills, which are crucial for both the exam and future computer science courses.
 
 
 
