@@ -191,7 +191,7 @@ The output is `1` when *both inputs are the same*.
 ---
 
 ## Boolean Algebra & Simplification
-Logic circuits can often be *simplified** using Boolean algebra, making them **more efficient*.
+Logic circuits can often be simplified using Boolean algebra, making them more efficient.
 
 
 ### **De Morgan’s Theorems**
