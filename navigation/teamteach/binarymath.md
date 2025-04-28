@@ -161,13 +161,19 @@ Binary subtraction follows similar rules but includes **borrowing**:
 | 1 | 0 |  1        |  0     |
 | 1 | 1 |  0        |  0     |
 
+
 **Example:**  
+
+
 ```
    1010  (10 in decimal)
 -  0111  (7 in decimal)
 ------------
    0011  (3 in decimal)
 ```
+
+
+
 ```py
 def binary_subtraction(bin1, bin2):
     # Make sure both binaries have the same length
@@ -359,6 +365,5 @@ else:
 
 1. Explain in 1-2 sentences how to convert a binary number into a decimal number.
 
-2. What does borrowing ("pop and drop") mean in binary subtraction?
 
-3. If you are given the binary number 11111111, what decimal number is that?
+2. If you are given the binary number 11111111, what decimal number is that?
