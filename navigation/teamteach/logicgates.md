@@ -234,7 +234,7 @@ The above is code for a secure entry system - using a keycard and a pin. You'll 
       
       return AND(keycard, pin, voice)
 ```
-
+</details>
 
 ### Homework Submission
 <p>Submit your popcorn and homework hacks <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhYjzZPqp9BeAGxF6gtZujIi1niikv8NR68jeFasxzC648pg/viewform?usp=header" style="color: blue;">here</a>. There are also MCQ questions to test your acquired logic gates knowledge.</p>
