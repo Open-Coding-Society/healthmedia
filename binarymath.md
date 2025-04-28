@@ -15,7 +15,7 @@ Binary is a number system that only uses **two digits**:
 - `0` (Off)  
 - `1` (On)  
 
-It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s. Each binary digit (called a bit) represents a power of 2, depending on its position in the sequence. By combining multiple bits, computers can represent and manipulate everything from numbers and letters to complex images and sounds. Larger units like bytes (8 bits) are used to handle more information, enabling all modern technology to work behind the scenes.
+It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s. Each binary digit (called a bit) represents a power of 2, depending on its position in the sequence. By combining multiple bits, computers can represent and manipulate everything from numbers and letters to complex images and sounds. Larger units like bytes (8 bits) are used to handle more information, enabling all modern technology to work behind the scenes!
 
 ---
 
