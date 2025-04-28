@@ -390,8 +390,6 @@ III. The operation 12 plus 3 will result in an overflow error.
 By mastering binary math and logic gates, you are building the foundation for understanding how computers process data, perform calculations, and make decisions. These concepts are essential not only for programming and circuit design but also for the AP exam, where you'll apply this knowledge to solve real-world problems and analyze algorithms. The hands-on practice with binary operations and logic gates will strengthen your problem-solving skills, which are crucial for both the exam and future computer science courses.
 
 
-
-
 ## HW HACK
 
 
