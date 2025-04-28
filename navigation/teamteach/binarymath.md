@@ -169,8 +169,9 @@ Binary subtraction follows similar rules but includes **borrowing**:
 
 
 ```py
+import random
+
 def binary_subtraction(bin1, bin2):
-    # Make sure both binaries have the same length
     max_len = max(len(bin1), len(bin2))
     bin1 = bin1.zfill(max_len)
     bin2 = bin2.zfill(max_len)
@@ -178,7 +179,6 @@ def binary_subtraction(bin1, bin2):
     result = ''
     borrow = 0
 
-    # Subtract from right to left
     for i in range(max_len-1, -1, -1):
         bit1 = int(bin1[i])
         bit2 = int(bin2[i])
@@ -190,26 +190,38 @@ def binary_subtraction(bin1, bin2):
             borrow = 0
         elif sub == -1:
             result = '1' + result
-            borrow = 1  # Pop left
+            borrow = 1
         elif sub == -2:
             result = '0' + result
-            borrow = 1  # Pop left
+            borrow = 1
 
-    # Remove leading zeros
     result = result.lstrip('0') or '0'
     return result
 
-# --- DRIVER CODE FOR STUDENTS ---
-print("Binary Subtraction Practice 🖥️")
-bin1 = input("Enter the first binary number: ")
-bin2 = input("Enter the second binary number: ")
+=print("🧠 Binary Subtraction Challenge! 🧠")
+score = 0
+total_questions = 3
 
-# Make sure first number is bigger or equal
-if int(bin1, 2) < int(bin2, 2):
-    print("First number must be greater than or equal to second number!")
-else:
-    answer = binary_subtraction(bin1, bin2)
-    print(f"{bin1} - {bin2} = {answer}")
+for question_num in range(1, total_questions + 1):
+    num1 = random.randint(8, 63)
+    num2 = random.randint(0, num1)
+
+    bin1 = bin(num1)[2:]
+    bin2 = bin(num2)[2:]
+
+    print(f"\nProblem {question_num}: {bin1} - {bin2}")
+    user_answer = input("Your answer: ").strip()
+
+    correct_answer = binary_subtraction(bin1, bin2)
+
+    if user_answer == correct_answer:
+        print("✅ Correct!")
+        score += 1
+    else:
+        print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+print(f"\n🎯 You got {score}/{total_questions} correct!")
+print("Thanks for practicing!")
 ```
 
 
