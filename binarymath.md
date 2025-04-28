@@ -15,7 +15,7 @@ Binary is a number system that only uses **two digits**:
 - `0` (Off)  
 - `1` (On)  
 
-It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s.
+It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s. Each binary digit (called a bit) represents a power of 2, depending on its position in the sequence. By combining multiple bits, computers can represent and manipulate everything from numbers and letters to complex images and sounds. Larger units like bytes (8 bits) are used to handle more information, enabling all modern technology to work behind the scenes!
 
 ---
 
@@ -62,7 +62,12 @@ binary_input = input("Enter a binary number: ")
 decimal_output = binary_to_decimal(binary_input)
 print(f"The decimal representation of {binary_input} is {decimal_output}.")
 ```
-
+### How it works: 
+binary_to_decimal(binary_str) is a function that:
+- Takes a binary string like "1011".
+- Starts from the rightmost digit (least significant bit).
+- For each bit, multiplies it by 2^i where i is its position from the right (starting at 0).
+-Adds all those values together to get the decimal number.
 
 ## Binary Addition
 

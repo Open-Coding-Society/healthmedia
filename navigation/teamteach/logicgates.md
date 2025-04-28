@@ -204,16 +204,16 @@ Logic circuits can often be simplified using Boolean algebra, making them more e
 **What are methods of real-world purpose that using logic gates can implement? Explain deeper if using our listed impacts, explaining why this impact is helpful.**
 ---
 ## Homework Hack: Authorization System
-**Task**: Implement a Python function that simulates a secure entry system using an *AND* gate.<br>
+**Task**: Fill in the missing code necessary to implement a Python function that simulates a secure entry system using an *AND* gate.<br>
 
-**Example**:
+**Template**:
 ```python
 def secure_entry_system(keycard, pin):
-    def AND(a, b):
-        return a & b  # AND logic
+    # MISSING: Implement the AND logic (hint: both a and b must be true)
+        
 
-
-    return AND(keycard, pin)
+    # MISSING: Return the result of ANDing keycard and pin
+    
 
 # Test cases
 print(secure_entry_system(1, 1))  # Expected Output: 1 (Access Granted)
@@ -221,7 +221,7 @@ print(secure_entry_system(0, 1))  # Expected Output: 0 (Access Denied)
 ```
 
 ### Extra Credit Hack (capped at .95/1)
-**Task**: Think of your own system to create with minimal code using any of the logic gates! 
+**Task**: Think of your own system using Python to create with minimal code using any of the logic gates! 
 
 ### Homework Submission
-Submit your homework on [here](https://docs.google.com/forms/d/e/1FAIpQLSfhYjzZPqp9BeAGxF6gtZujIi1niikv8NR68jeFasxzC648pg/viewform?usp=header). There are also MCQ questions to test your acquired logic gates knowledge. 
+<p>Submit your popcorn and homework hacks <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhYjzZPqp9BeAGxF6gtZujIi1niikv8NR68jeFasxzC648pg/viewform?usp=header" style="color: blue;">here</a>. There are also MCQ questions to test your acquired logic gates knowledge.</p>

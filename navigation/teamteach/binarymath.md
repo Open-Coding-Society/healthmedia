@@ -7,11 +7,11 @@ authors: Michelle Kuruvilla, Rutvik Chavda, Ava S
 
 ## Introduction to Binary (Base-2)
 
-Binary is a number system that only uses **two digits**:  
+Binary is a number system that only uses **two digits**: . 
 - `0` (Off)  
 - `1` (On)  
 
-It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s.
+It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s. Each binary digit (called a bit) represents a power of 2, depending on its position in the sequence. By combining multiple bits, computers can represent and manipulate everything from numbers and letters to complex images and sounds. Larger units like bytes (8 bits) are used to handle more information, enabling all modern technology to work behind the scenes!
 
 [Binary Numbers](https://www.youtube.com/watch?v=zDNaUi2cjv4)
 
@@ -37,7 +37,8 @@ It is the fundamental language of computers, where every piece of data is stored
 | 10 | `1010` |
 ```
 
-
+Pop Quiz For 0.01 extra credit... raise your hand if you think you know:
+What would 11 be written in binary according to the pattern above?
 ---
 
 
