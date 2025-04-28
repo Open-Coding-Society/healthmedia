@@ -8,6 +8,14 @@ authors: Claire Lee, Travis Callow, Mihir Thaha
 ## What are Logic Gates?
 Logic gates are electronic devices that perform Boolean operations. They receive one or more binary inputs (`0` or `1`) and produce a single binary output. These gates form the foundation of all digital systems, including computers, mobile devices, and other technologies. 
 
+<iframe width="300" height="500" 
+    src="https://www.youtube.com/embed/JvAyNhiJBCM?si=HlhpZgbFpPLwYac3" 
+  title="Logic Gates: Minecraft" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen>
+</iframe>
+
 ---
 
 ## Types 
