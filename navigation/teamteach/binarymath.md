@@ -13,7 +13,7 @@ Binary is a number system that only uses **two digits**:
 
 It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s.
 
-[![Binary](https://img.youtube.com/vi/sXxwr66Y79Y/0.jpg)](https://www.youtube.com/watch?v=sXxwr66Y79Y)
+[Binary Numbers](https://www.youtube.com/watch?v=zDNaUi2cjv4)
 
 
 ---
