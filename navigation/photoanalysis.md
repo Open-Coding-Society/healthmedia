@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Photo Analysis
 permalink: /photoanalysis/
 ---
@@ -42,7 +42,7 @@ permalink: /photoanalysis/
   <div class="container">
     <h2>Upload a Photo to Predict Likes</h2>
     <input type="file" accept="image/*" id="photoInput" />
-    <img id="preview" />
+    <img id="preview" style="display: none;" />
     <button onclick="predictLikes()">Predict</button>
     <div class="results" id="results"></div>
   </div>
@@ -82,6 +82,7 @@ permalink: /photoanalysis/
           method: 'POST',
           body: formData
         });
+
         const data = await res.json();
 
         if (data.error) {
@@ -90,8 +91,43 @@ permalink: /photoanalysis/
         }
 
         results.innerHTML = `
-          <strong>Predicted Likes:</strong> ${data.predicted_likes.toFixed(2)}<br>
-          `
+          <strong>Predicted Likes:</strong> ${Math.round(data.predicted_likes)}}<br>
+        `;
+      } catch (err) {
+        console.error('Error contacting backend:', err);
+        results.innerHTML = `<span style="color:red;">Unable to contact prediction server.</span>`;
       }
     }
-        
+  </script>
+</body>
+
+<title>Performance Based on Like Count</title>
+
+<h2 style="text-align:center;">Likes and Ratings</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th># of Likes</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0-100</td>
+            <td>Mediocre 😐</td>
+        </tr>
+        <tr>
+            <td>101-500</td>
+            <td>Good 🙂</td>
+        </tr>
+        <tr>
+            <td>501-2000</td>
+            <td>Great 😊</td>
+        </tr>
+        <tr>
+            <td>2000+</td>
+            <td>Amazing 🤩</td>
+        </tr>
+    </tbody>
+</table>
