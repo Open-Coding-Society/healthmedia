@@ -329,12 +329,15 @@ By mastering binary math and logic gates, you are building the foundation for un
 
 
 ```PY
+import random
+import time
+
 def binary_addition(a, b):
     return bin(int(a, 2) + int(b, 2))[2:]
 
 def binary_subtraction(a, b):
     if int(a, 2) < int(b, 2):
-        return "Error: cannot subtract larger from smaller."
+        return "Error"
     return bin(int(a, 2) - int(b, 2))[2:]
 
 def decimal_to_binary(n):
@@ -343,27 +346,74 @@ def decimal_to_binary(n):
 def binary_to_decimal(b):
     return int(b, 2)
 
-# --- DRIVER CODE ---
-print("Welcome to Binary Bootcamp 🧠")
-print("1: Add Binaries\n2: Subtract Binaries\n3: Convert Decimal ➡ Binary\n4: Convert Binary ➡ Decimal")
-choice = input("Choose an option (1-4): ")
+def binary_battle_royale():
+    print("👾 Welcome to Binary Battle Royale! 👾")
+    score = 0
+    total_rounds = 3
 
-if choice == '1':
-    a = input("Enter first binary: ")
-    b = input("Enter second binary: ")
-    print("Result:", binary_addition(a, b))
-elif choice == '2':
-    a = input("Enter first binary: ")
-    b = input("Enter second binary: ")
-    print("Result:", binary_subtraction(a, b))
-elif choice == '3':
-    n = int(input("Enter decimal number: "))
-    print("Binary:", decimal_to_binary(n))
-elif choice == '4':
-    b = input("Enter binary number: ")
-    print("Decimal:", binary_to_decimal(b))
-else:
-    print("Invalid choice. Try again.")
+    for round_num in range(1, total_rounds + 1):
+        print(f"\n⚡ Round {round_num} ⚡")
+        mode = random.choice(["addition", "subtraction", "dec_to_bin", "bin_to_dec"])
+
+        if mode == "addition":
+            num1 = bin(random.randint(0, 15))[2:]
+            num2 = bin(random.randint(0, 15))[2:]
+            print(f"Add these two binary numbers: {num1} + {num2}")
+            user_answer = input("Your answer (binary): ").strip()
+            correct_answer = binary_addition(num1, num2)
+            if user_answer == correct_answer:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+        elif mode == "subtraction":
+            num1_val = random.randint(8, 31)
+            num2_val = random.randint(0, num1_val)
+            num1 = bin(num1_val)[2:]
+            num2 = bin(num2_val)[2:]
+            print(f"Subtract these two binary numbers: {num1} - {num2}")
+            user_answer = input("Your answer (binary): ").strip()
+            correct_answer = binary_subtraction(num1, num2)
+            if user_answer == correct_answer:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+        elif mode == "dec_to_bin":
+            decimal_number = random.randint(0, 31)
+            print(f"Convert this decimal number to binary: {decimal_number}")
+            user_answer = input("Your answer (binary): ").strip()
+            correct_answer = decimal_to_binary(decimal_number)
+            if user_answer == correct_answer:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+        elif mode == "bin_to_dec":
+            binary_number = bin(random.randint(0, 31))[2:]
+            print(f"Convert this binary number to decimal: {binary_number}")
+            user_answer = input("Your answer (decimal): ").strip()
+            correct_answer = str(binary_to_decimal(binary_number))
+            if user_answer == correct_answer:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+    print("\n🏆 Game Over! 🏆")
+    print(f"Your final score: {score}/{total_rounds}")
+    if score == total_rounds:
+        print("🌟 Amazing job! You're a Binary Master!")
+    elif score >= total_rounds // 2:
+        print("👍 Good effort! Keep practicing!")
+    else:
+        print("💡 Don't worry — review the rules and try again!")
+
+# --- Start the game ---
+binary_battle_royale()
 ```
 
 
