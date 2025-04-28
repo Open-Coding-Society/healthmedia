@@ -101,7 +101,7 @@ Else, it returns `0`(false).
 **Boolean Expression**: `A ⋅ B`<br>
 **Impact** --> Authorization process (keycard *AND* PIN required)<br>
 
-![Image](https://github.com/user-attachments/assets/d71eab7d-caea-46df-a577-b7562bb2380f)
+<img src="{{site.baseurl}}/images/automatic_door.jpg" width="750px">
 
 ---
 
@@ -119,7 +119,7 @@ Else `0`.
 **Boolean Expression**: `A + B`<br>
 **Impact** --> Automatic door activation (motion sensor *OR* button press)<br>
 
-![Image](https://github.com/user-attachments/assets/7ac28546-1bdd-465e-ac7d-49f078469d19)
+<img src="{{site.baseurl}}/images/keycard_flip.jpg" width="750px">
 
 ---
 
@@ -134,7 +134,7 @@ Inverts the input. If the input is `1`, *NOT* returns `0`, and vice versa.
 **Boolean Expression**: `Ā`<br>
 **Impact** --> Thermostat system (when temperature threshold is reached, *NOT* signals to turn off)<br>
 
-![Image](https://github.com/user-attachments/assets/2f57b4f9-8998-48b2-80b2-1fc41d378f56)
+<img src="{{site.baseurl}}/images/thermostat.jpg" width="750px">
 
 ---
 
@@ -152,7 +152,7 @@ Inverts the input. If the input is `1`, *NOT* returns `0`, and vice versa.
 - **NAND & NOR are universal gates** - any circuit can be built using only NAND or only NOR gates.<br>
 **Impact** --> Self-driving cars (whether to break or steer from conditions)<br>
 
-![Image](https://github.com/user-attachments/assets/c72b868e-917c-4b4b-97a6-d1f04395d2d0)
+<img src="{{site.baseurl}}/images/selfdrivingcar.jpg" width="750px">
 
 ---
 
@@ -169,7 +169,7 @@ The output is `1`(true) if inputs are *different*. If inputs are the same, *XOR*
 **Boolean Expression**: `A ⊕ B`<br>
 **Impact** --> Computer memory (whether data is the *same* or *different*)<br>
 
-![Image](https://github.com/user-attachments/assets/770543d7-f7cc-463d-94d4-e8c37f429fb0)
+<img src="{{site.baseurl}}/images/computermemory.jpg" width="750px">
 
 ---
 ### 6. XNOR Gate (⊙)
@@ -186,22 +186,24 @@ The output is `1` when *both inputs are the same*.
 **Boolean Expression**: `A ⊙ B = ĀB + A B̄ = ¬(A ⊕ B)`<br>
 **Impact** --> Pattern recognition (evaluate similarities)<br>
 
-![Image](https://github.com/user-attachments/assets/17b41d37-3b70-4d6b-ada3-d8c87c4b1125)
 
----
-
-## Boolean Algebra & Simplification
-Logic circuits can often be simplified using Boolean algebra, making them more efficient.
-
-
-### **De Morgan’s Theorems**
-
- **First Law**: ¬(A ∧ B) = (¬A) ∨ (¬B)<br>
- **Second Law**: ¬(A ∨ B) = (¬A) ∧ (¬B)<br>
-
----
 ## Popcorn Hack
 **What are methods of real-world purpose that using logic gates can implement? Explain deeper if using our listed impacts, explaining why this impact is helpful.**
+
+
+## Popcorn Hack 2
+A digital circuit receives three binary inputs: X, Y, and Z.
+The circuit outputs 1 if and only if X AND Y are both 1, OR Z is 1.
+
+Which of the following expressions represents the circuit's behavior?
+
+A. (X AND Y) OR Z
+B. X AND (Y OR Z)
+C. (X OR Y) AND Z
+D. NOT(X AND Y) OR Z
+ 
+
+
 ---
 ## Homework Hack: Authorization System
 **Task**: Fill in the missing code necessary to implement a Python function that simulates a secure entry system using an *AND* gate.<br>
@@ -209,19 +211,30 @@ Logic circuits can often be simplified using Boolean algebra, making them more e
 **Template**:
 ```python
 def secure_entry_system(keycard, pin):
-    # MISSING: Implement the AND logic (hint: both a and b must be true)
-        
+    def AND(a, b):
+        return a & b  # AND logic
 
-    # MISSING: Return the result of ANDing keycard and pin
-    
+
+    return AND(keycard, pin)
 
 # Test cases
 print(secure_entry_system(1, 1))  # Expected Output: 1 (Access Granted)
 print(secure_entry_system(0, 1))  # Expected Output: 0 (Access Denied)
 ```
+The above is code for a secure entry system - using a keycard and a pin. You'll notice that to have access into the system, you need to have both a keycard and a pin (And Gate). Your task is to add another variable (like voice authorization) that is required to have access into the building. 
 
-### Extra Credit Hack (capped at .95/1)
-**Task**: Think of your own system using Python to create with minimal code using any of the logic gates! 
+
+<details>
+  <summary>Answer</summary>
+
+  ```python
+  def secure_entry_system(keycard, pin, voice):
+      def AND(a, b, c):
+          return a & b & c  # AND logic
+      
+      return AND(keycard, pin, voice)
+```
+
 
 ### Homework Submission
 <p>Submit your popcorn and homework hacks <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhYjzZPqp9BeAGxF6gtZujIi1niikv8NR68jeFasxzC648pg/viewform?usp=header" style="color: blue;">here</a>. There are also MCQ questions to test your acquired logic gates knowledge.</p>
