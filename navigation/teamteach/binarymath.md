@@ -216,13 +216,6 @@ else:
 ✅ **Decision Making in AI**  
 ✅ **Cryptography & Security Systems**  
 
-- Binary is the foundation of modern technology, enabling data storage in computers and smartphones, powering internet communication, encoding information on storage devices, and driving AI decision-making through logical operations.
-
-## Applications of Binary 
-✅ **Arithmetic Operations** (Addition, Subtraction, Multiplication)  
-✅ **Digital Circuits** (CPUs, Memory, ALU)  
-✅ **Decision Making in AI**  
-✅ **Cryptography & Security Systems**  
 
 - Binary is the foundation of modern technology, enabling data storage in computers and smartphones, powering internet communication, encoding information on storage devices, and driving AI decision-making through logical operations.
 
@@ -230,6 +223,7 @@ else:
 
 
 ## AP MC QUESTIONS:
+
 
 
 
@@ -242,6 +236,7 @@ A text-editing application uses binary sequences to represent each of 200 differ
 - B) 6
 - C) 7
 - D) 8
+
 
 
 
@@ -267,6 +262,8 @@ Which of the following best describes the result of using 128-bit addresses inst
 - D) 2 raised to the ninety-sixth power times as many addresses are available.
 
 
+
+
 **Question 44:**
 
 A computer program uses 4 bits to represent nonnegative integers. Which of the following statements describe a possible result when the program uses this number representation?
@@ -279,6 +276,8 @@ III. The operation 12 plus 3 will result in an overflow error.
 - B) II only
 - C) II and III only
 - D) I, II, and III
+
+
 
 <details>
   <summary>Click here to see the answers</summary>
