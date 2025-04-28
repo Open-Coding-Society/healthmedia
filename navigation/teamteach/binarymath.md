@@ -7,7 +7,7 @@ authors: Michelle Kuruvilla, Rutvik Chavda, Ava S
 
 ## Introduction to Binary (Base-2)
 
-Binary is a number system that only uses **two digits**:  
+Binary is a number system that only uses **two digits**: . 
 - `0` (Off)  
 - `1` (On)  
 
