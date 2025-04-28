@@ -155,13 +155,6 @@ They have to answer as fast as possible, and if they are correct, they get a poi
 
 Binary subtraction follows similar rules but includes **borrowing**:
 
-| A | B | Difference | Borrow |
-|---|---|-----------|--------|
-| 0 | 0 |  0        |  0     |
-| 0 | 1 |  1        |  1     |
-| 1 | 0 |  1        |  0     |
-| 1 | 1 |  0        |  0     |
-
 
 **Example:**  
 
