@@ -50,9 +50,9 @@ permalink: aboutthepark/home/
 
       <div class="grid grid-cols-2 gap-4">
   <img src="{{ site.baseurl }}/images/park.webp" alt="LEGOLAND fun" class="rounded-2xl shadow-lg object-cover">
-  <img src="{{ site.baseurl }}/images/legoland....jpg" alt="Water Park fun" class="rounded-2xl shadow-lg object-cover">
-  <img src="{{ site.baseurl }}/images/dragon-coaster.jpg" alt="Dragon Coaster" class="rounded-2xl shadow-lg object-cover">
-  <img src="{{ site.baseurl }}/images/miniland-usa.jpg" alt="MINILAND USA" class="rounded-2xl shadow-lg object-cover">
+  <img src="{{ site.baseurl }}/images/legoland...jpg" alt="Water Park fun" class="rounded-2xl shadow-lg object-cover">
+  <img src="{{ site.baseurl }}/images/dragon.webp" alt="Dragon Coaster" class="rounded-2xl shadow-lg object-cover">
+  <img src="{{ site.baseurl }}/images/california.jpg" alt="MINILAND USA" class="rounded-2xl shadow-lg object-cover">
 </div>
 
 
