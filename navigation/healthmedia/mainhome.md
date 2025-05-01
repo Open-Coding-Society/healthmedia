@@ -49,7 +49,7 @@ permalink: aboutthepark/home/
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <img src="legoland...jpg" alt="LEGOLAND fun" class="rounded-2xl shadow-lg object-cover">
+        <img src="legoland....jpg" alt="LEGOLAND fun" class="rounded-2xl shadow-lg object-cover">
         <img src="https://www.legoland.com/california/media/g3zhqzbc/water-park.jpg" alt="Water Park fun" class="rounded-2xl shadow-lg object-cover">
         <img src="https://www.legoland.com/california/media/3kbhjzbs/dragon-coaster.jpg" alt="Dragon Coaster" class="rounded-2xl shadow-lg object-cover">
         <img src="https://www.legoland.com/california/media/bgrjluhl/miniland-usa.jpg" alt="MINILAND USA" class="rounded-2xl shadow-lg object-cover">
