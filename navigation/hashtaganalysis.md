@@ -68,10 +68,10 @@ permalink: /hashtaganalysis/
 
         const data = await res.json();
         // Display the result
-        document.getElementById('result').textContent = `Predicted Views: ${data.views.toLocaleString()}`;
+        document.getElementById('result').textContent = `Predicted Likes: ${data.views.toLocaleString()}`;
       } catch (err) {
         // Handle any errors that occur during the fetch
-        document.getElementById('result').textContent = 'Error predicting views.';
+        document.getElementById('result').textContent = 'Error predicting likes.';
         console.error('Failed to fetch prediction:', err);
       }
     }
