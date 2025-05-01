@@ -65,7 +65,13 @@ permalink: /hashtaganalysis/
       });
 
       const data = await res.json();
-      document.getElementById('result').textContent = `Predicted Likes: ${data.views.toLocaleString()}`;
+
+      if (res.ok && data.views !== undefined) {
+        document.getElementById('result').textContent = `Predicted Likes: ${data.views.toLocaleString()}`;
+      } else {
+        document.getElementById('result').textContent = data.error || 'Hashtag not found or bad input.';
+        console.error('API error response:', data);
+      }
     } catch (err) {
       document.getElementById('result').textContent = 'Error predicting likes.';
       console.error('Failed to fetch prediction:', err);
