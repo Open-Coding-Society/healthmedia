@@ -4,8 +4,12 @@ title: Hashtag Analysis
 permalink: /hashtaganalysis/
 ---
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Hashtag View Predictor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hashtag Likes Predictor</title>
   <style>
     .container {
       width: 400px;
@@ -41,7 +45,7 @@ permalink: /hashtaganalysis/
 
 <body>
   <div class="container">
-    <h2>Hashtag View Predictor</h2>
+    <h2>Hashtag Likes Predictor</h2>
     <textarea id="hashtagInput" rows="4">#legoland #legolandcalifornia #buildthefun #familyadventure #themeparkfun #miniland #bricklife</textarea>
     <br />
     <button onclick="analyzeHashtags()">Predict Views</button>
@@ -53,6 +57,7 @@ permalink: /hashtaganalysis/
       const input = document.getElementById('hashtagInput').value;
 
       try {
+        // Make API request to your Flask backend
         const res = await fetch('/api/hashtag-analysis', {
           method: 'POST',
           headers: {
@@ -62,11 +67,14 @@ permalink: /hashtaganalysis/
         });
 
         const data = await res.json();
+        // Display the result
         document.getElementById('result').textContent = `Predicted Views: ${data.views.toLocaleString()}`;
       } catch (err) {
+        // Handle any errors that occur during the fetch
         document.getElementById('result').textContent = 'Error predicting views.';
         console.error('Failed to fetch prediction:', err);
       }
     }
   </script>
 </body>
+</html>
