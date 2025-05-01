@@ -4,6 +4,7 @@ title: About Us
 permalink: /aboutus/
 ---
 
+<img src="{{ site.baseurl }}/images/logo.jpg" alt="LEGOLAND Fun" class="rounded-xl shadow-lg w-full max-w-md mx-auto my-4">
 
 
 We’re Michelle, Claire, Ava, Travis, Mihir, and Rutvik — a team of student coders and proud creators of this LEGOLAND® California hashtag analysis project. As huge fans of creativity and innovation (just like LEGOLAND!), we wanted to explore what makes Instagram posts really stand out in the world of theme parks.
