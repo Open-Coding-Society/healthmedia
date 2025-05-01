@@ -52,28 +52,25 @@ permalink: /hashtaganalysis/
   </div>
 
   <script>
-    async function analyzeHashtags() {
-      const input = document.getElementById('hashtagInput').value;
+  async function analyzeHashtags() {
+    const input = document.getElementById('hashtagInput').value;
 
-      try {
-        // Make API request to your Flask backend
-        const res = await fetch('/api/hashtag', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ hashtags: input })
-        });
+    try {
+      const res = await fetch('http://localhost:8887/api/hashtag', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ hashtags: input })
+      });
 
-        const data = await res.json();
-        // Display the result
-        document.getElementById('result').textContent = `Predicted Likes: ${data.views.toLocaleString()}`;
-      } catch (err) {
-        // Handle any errors that occur during the fetch
-        document.getElementById('result').textContent = 'Error predicting likes.';
-        console.error('Failed to fetch prediction:', err);
-      }
+      const data = await res.json();
+      document.getElementById('result').textContent = `Predicted Likes: ${data.views.toLocaleString()}`;
+    } catch (err) {
+      document.getElementById('result').textContent = 'Error predicting likes.';
+      console.error('Failed to fetch prediction:', err);
     }
-  </script>
+  }
+</script>
 </body>
 </html>
