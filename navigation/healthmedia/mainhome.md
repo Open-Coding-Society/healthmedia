@@ -27,13 +27,16 @@ permalink: aboutthepark/home/
 </head>
 <body class="bg-yellow-50 font-sans text-gray-800">
   <div class="max-w-6xl mx-auto px-4 py-10">
-<img src="{{ site.baseurl }}/images/logo.jpg" alt="LEGOLAND Fun">
+    
+    <!-- Logo with spacing -->
+    <div class="flex justify-center mb-10">
+      <img src="{{ site.baseurl }}/images/logo.jpg" alt="LEGOLAND Logo" class="max-w-xs w-full">
+    </div>
 
-    <div class="grid md:grid-cols-2 gap-10 items-start">
+    <!-- Text and Images Layout -->
+    <div class="grid md:grid-cols-2 gap-12 items-start">
       <div class="space-y-6 text-lg leading-relaxed">
         <p>
-          
-          
           Ready to unleash your inner kid (or just <em>be</em> a kid)? 😄 At LEGOLAND California in sunny Carlsbad, you’ll find a brick-built wonderland packed with over 60 rides, jaw-dropping attractions, and totally LEGO-tastic experiences.
         </p>
         <p>
@@ -47,11 +50,12 @@ permalink: aboutthepark/home/
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <img src="{{ site.baseurl }}/images/park.webp" alt="LEGOLAND fun" class="rounded-xl shadow-lg w-full h-auto">
-        <img src="{{ site.baseurl }}/images/legoland...jpg" alt="Water Park fun" class="rounded-xl shadow-lg w-full h-auto">
-        <img src="{{ site.baseurl }}/images/vv.webp" alt="Dragon Coaster" class="rounded-xl shadow-lg w-full h-auto">
-        <img src="{{ site.baseurl }}/images/california.jpg" alt="MINILAND USA" class="rounded-xl shadow-lg w-full h-auto">
+      <!-- Centered Image Grid -->
+      <div class="grid grid-cols-2 gap-4 justify-items-center">
+        <img src="{{ site.baseurl }}/images/park.webp" alt="LEGOLAND fun">
+        <img src="{{ site.baseurl }}/images/legoland...jpg" alt="Water Park fun" class="rounded-xl shadow-lg w-48 md:w-60 h-auto">
+        <img src="{{ site.baseurl }}/images/vv.webp" alt="Dragon Coaster" class="rounded-xl shadow-lg w-48 md:w-60 h-auto">
+        <img src="{{ site.baseurl }}/images/california.jpg" alt="MINILAND USA" class="rounded-xl shadow-lg w-48 md:w-60 h-auto">
       </div>
     </div>
   </div>
