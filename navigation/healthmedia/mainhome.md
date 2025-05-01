@@ -3,28 +3,13 @@ layout: post
 title: About the park 
 permalink: aboutthepark/home/
 ---
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LEGOLAND California</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .animated-title {
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-  </style>
-</head>
+  </head>
 <body class="bg-yellow-50 font-sans text-gray-800">
   <div class="max-w-6xl mx-auto px-4 py-10">
     
@@ -47,6 +32,16 @@ permalink: aboutthepark/home/
         </p>
         <p>
           From rollercoasters to robots to ridiculously awesome brick builds—LEGOLAND CA is more than a theme park. It's your next epic adventure. Let’s goooo! 🚀🎈
+
+
+
+
+
+          about social media optimization: 
+
+          Social Media Optimization (SMO) is the process of improving a brand’s online presence through strategic use of social media platforms like Instagram, TikTok, X, and Facebook. It involves creating engaging content, using effective hashtags, analyzing peak posting times, and encouraging user interaction to maximize visibility and audience reach.
+
+            For businesses, SMO is incredibly valuable—it helps drive traffic to websites, builds brand awareness, and fosters customer loyalty. By analyzing what content performs best and when, companies can tailor their posts for higher engagement, ultimately leading to more conversions, better marketing ROI, and stronger customer relationships.
         </p>
       </div>
 
