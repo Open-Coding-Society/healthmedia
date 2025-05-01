@@ -7,11 +7,11 @@ authors: Michelle Kuruvilla, Rutvik Chavda, Ava S
 
 ## Introduction to Binary (Base-2)
 
-Binary is a number system that only uses **two digits**:  
+Binary is a number system that only uses **two digits**: . 
 - `0` (Off)  
 - `1` (On)  
 
-It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s.
+It is the fundamental language of computers, where every piece of data is stored and processed as combinations of 0s and 1s. Each binary digit (called a bit) represents a power of 2, depending on its position in the sequence. By combining multiple bits, computers can represent and manipulate everything from numbers and letters to complex images and sounds. Larger units like bytes (8 bits) are used to handle more information, enabling all modern technology to work behind the scenes!
 
 [Binary Numbers](https://www.youtube.com/watch?v=zDNaUi2cjv4)
 
@@ -37,7 +37,8 @@ It is the fundamental language of computers, where every piece of data is stored
 | 10 | `1010` |
 ```
 
-
+Pop Quiz For 0.01 extra credit... raise your hand if you think you know:
+What would 11 be written in binary according to the pattern above?
 ---
 
 
@@ -154,13 +155,6 @@ They have to answer as fast as possible, and if they are correct, they get a poi
 
 Binary subtraction follows similar rules but includes **borrowing**:
 
-| A | B | Difference | Borrow |
-|---|---|-----------|--------|
-| 0 | 0 |  0        |  0     |
-| 0 | 1 |  1        |  1     |
-| 1 | 0 |  1        |  0     |
-| 1 | 1 |  0        |  0     |
-
 
 **Example:**  
 
@@ -175,8 +169,9 @@ Binary subtraction follows similar rules but includes **borrowing**:
 
 
 ```py
+import random
+
 def binary_subtraction(bin1, bin2):
-    # Make sure both binaries have the same length
     max_len = max(len(bin1), len(bin2))
     bin1 = bin1.zfill(max_len)
     bin2 = bin2.zfill(max_len)
@@ -184,7 +179,6 @@ def binary_subtraction(bin1, bin2):
     result = ''
     borrow = 0
 
-    # Subtract from right to left
     for i in range(max_len-1, -1, -1):
         bit1 = int(bin1[i])
         bit2 = int(bin2[i])
@@ -196,26 +190,38 @@ def binary_subtraction(bin1, bin2):
             borrow = 0
         elif sub == -1:
             result = '1' + result
-            borrow = 1  # Pop left
+            borrow = 1
         elif sub == -2:
             result = '0' + result
-            borrow = 1  # Pop left
+            borrow = 1
 
-    # Remove leading zeros
     result = result.lstrip('0') or '0'
     return result
 
-# --- DRIVER CODE FOR STUDENTS ---
-print("Binary Subtraction Practice 🖥️")
-bin1 = input("Enter the first binary number: ")
-bin2 = input("Enter the second binary number: ")
+=print("🧠 Binary Subtraction Challenge! 🧠")
+score = 0
+total_questions = 3
 
-# Make sure first number is bigger or equal
-if int(bin1, 2) < int(bin2, 2):
-    print("First number must be greater than or equal to second number!")
-else:
-    answer = binary_subtraction(bin1, bin2)
-    print(f"{bin1} - {bin2} = {answer}")
+for question_num in range(1, total_questions + 1):
+    num1 = random.randint(8, 63)
+    num2 = random.randint(0, num1)
+
+    bin1 = bin(num1)[2:]
+    bin2 = bin(num2)[2:]
+
+    print(f"\nProblem {question_num}: {bin1} - {bin2}")
+    user_answer = input("Your answer: ").strip()
+
+    correct_answer = binary_subtraction(bin1, bin2)
+
+    if user_answer == correct_answer:
+        print("✅ Correct!")
+        score += 1
+    else:
+        print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+print(f"\n🎯 You got {score}/{total_questions} correct!")
+print("Thanks for practicing!")
 ```
 
 
@@ -323,12 +329,15 @@ By mastering binary math and logic gates, you are building the foundation for un
 
 
 ```PY
+import random
+import time
+
 def binary_addition(a, b):
     return bin(int(a, 2) + int(b, 2))[2:]
 
 def binary_subtraction(a, b):
     if int(a, 2) < int(b, 2):
-        return "Error: cannot subtract larger from smaller."
+        return "Error"
     return bin(int(a, 2) - int(b, 2))[2:]
 
 def decimal_to_binary(n):
@@ -337,27 +346,74 @@ def decimal_to_binary(n):
 def binary_to_decimal(b):
     return int(b, 2)
 
-# --- DRIVER CODE ---
-print("Welcome to Binary Bootcamp 🧠")
-print("1: Add Binaries\n2: Subtract Binaries\n3: Convert Decimal ➡ Binary\n4: Convert Binary ➡ Decimal")
-choice = input("Choose an option (1-4): ")
+def binary_battle_royale():
+    print("👾 Welcome to Binary Battle Royale! 👾")
+    score = 0
+    total_rounds = 3
 
-if choice == '1':
-    a = input("Enter first binary: ")
-    b = input("Enter second binary: ")
-    print("Result:", binary_addition(a, b))
-elif choice == '2':
-    a = input("Enter first binary: ")
-    b = input("Enter second binary: ")
-    print("Result:", binary_subtraction(a, b))
-elif choice == '3':
-    n = int(input("Enter decimal number: "))
-    print("Binary:", decimal_to_binary(n))
-elif choice == '4':
-    b = input("Enter binary number: ")
-    print("Decimal:", binary_to_decimal(b))
-else:
-    print("Invalid choice. Try again.")
+    for round_num in range(1, total_rounds + 1):
+        print(f"\n⚡ Round {round_num} ⚡")
+        mode = random.choice(["addition", "subtraction", "dec_to_bin", "bin_to_dec"])
+
+        if mode == "addition":
+            num1 = bin(random.randint(0, 15))[2:]
+            num2 = bin(random.randint(0, 15))[2:]
+            print(f"Add these two binary numbers: {num1} + {num2}")
+            user_answer = input("Your answer (binary): ").strip()
+            correct_answer = binary_addition(num1, num2)
+            if user_answer == correct_answer:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+        elif mode == "subtraction":
+            num1_val = random.randint(8, 31)
+            num2_val = random.randint(0, num1_val)
+            num1 = bin(num1_val)[2:]
+            num2 = bin(num2_val)[2:]
+            print(f"Subtract these two binary numbers: {num1} - {num2}")
+            user_answer = input("Your answer (binary): ").strip()
+            correct_answer = binary_subtraction(num1, num2)
+            if user_answer == correct_answer:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+        elif mode == "dec_to_bin":
+            decimal_number = random.randint(0, 31)
+            print(f"Convert this decimal number to binary: {decimal_number}")
+            user_answer = input("Your answer (binary): ").strip()
+            correct_answer = decimal_to_binary(decimal_number)
+            if user_answer == correct_answer:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+        elif mode == "bin_to_dec":
+            binary_number = bin(random.randint(0, 31))[2:]
+            print(f"Convert this binary number to decimal: {binary_number}")
+            user_answer = input("Your answer (decimal): ").strip()
+            correct_answer = str(binary_to_decimal(binary_number))
+            if user_answer == correct_answer:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {correct_answer}.")
+
+    print("\n🏆 Game Over! 🏆")
+    print(f"Your final score: {score}/{total_rounds}")
+    if score == total_rounds:
+        print("🌟 Amazing job! You're a Binary Master!")
+    elif score >= total_rounds // 2:
+        print("👍 Good effort! Keep practicing!")
+    else:
+        print("💡 Don't worry — review the rules and try again!")
+
+# --- Start the game ---
+binary_battle_royale()
 ```
 
 
