@@ -15,7 +15,7 @@ permalink: aboutthepark/home/
     
     <!-- Logo with spacing -->
     <div class="flex justify-center mb-10">
-      <img src="{{ site.baseurl }}/images/logo.jpg" alt="LEGOLAND Logo" class="max-w-xs w-full">
+<img src="{{ site.baseurl }}/images/logo.jpg" alt="LEGOLAND Logo">
     </div>
 
     <!-- Text and Images Layout -->
