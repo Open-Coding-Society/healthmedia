@@ -35,6 +35,15 @@ permalink: /photoanalysis/
       font-size: 14px;
       color: #333;
     }
+    #logList {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    #logList li {
+      margin-bottom: 8px;
+      padding: 6px;
+      border-bottom: 1px solid #ddd;
+    }
   </style>
 </head>
 
@@ -42,15 +51,21 @@ permalink: /photoanalysis/
   <div class="container">
     <h2>Upload a Photo to Predict Likes</h2>
     <input type="file" accept="image/*" id="photoInput" />
-    <img id="preview" style="display: none;" />
+    <img id="preview" />
     <button onclick="predictLikes()">Predict</button>
     <div class="results" id="results"></div>
+    <hr />
+    <div class="results" id="logs">
+      <h4>Prediction Log:</h4>
+      <ul id="logList"></ul>
+    </div>
   </div>
 
   <script>
     const preview = document.getElementById('preview');
     const input = document.getElementById('photoInput');
     const results = document.getElementById('results');
+    const logList = document.getElementById('logList');
 
     // Preview uploaded photo
     input.addEventListener('change', function () {
@@ -90,9 +105,26 @@ permalink: /photoanalysis/
           return;
         }
 
+        // Show results
         results.innerHTML = `
-          <strong>Predicted Likes:</strong> ${Math.round(data.predicted_likes)}}<br>
+          <strong>Predicted Likes:</strong> ${Math.round(data.predicted_likes)}<br>
+          <strong>Rating Score:</strong> ${data.rating_score.toFixed(2)}<br>
+          <strong>Performance:</strong> <span style="font-weight:bold; color:${
+            data.rating_label === 'Excellent' ? 'green' :
+            data.rating_label === 'Good' ? 'blue' :
+            data.rating_label === 'Moderate' ? 'orange' : 'red'
+          }">${data.rating_label}</span>
         `;
+
+        // Add to log
+        const logItem = document.createElement('li');
+        logItem.innerHTML = `
+          Likes: ${Math.round(data.predicted_likes)},
+          Score: ${data.rating_score.toFixed(2)},
+          Label: ${data.rating_label}
+        `;
+        logList.prepend(logItem); // Add to top
+
       } catch (err) {
         console.error('Error contacting backend:', err);
         results.innerHTML = `<span style="color:red;">Unable to contact prediction server.</span>`;
@@ -101,33 +133,3 @@ permalink: /photoanalysis/
   </script>
 </body>
 
-<title>Performance Based on Like Count</title>
-
-<h2 style="text-align:center;">Likes and Ratings</h2>
-
-<table>
-    <thead>
-        <tr>
-            <th># of Likes</th>
-            <th>Rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0-100</td>
-            <td>Mediocre 😐</td>
-        </tr>
-        <tr>
-            <td>101-500</td>
-            <td>Good 🙂</td>
-        </tr>
-        <tr>
-            <td>501-2000</td>
-            <td>Great 😊</td>
-        </tr>
-        <tr>
-            <td>2000+</td>
-            <td>Amazing 🤩</td>
-        </tr>
-    </tbody>
-</table>
