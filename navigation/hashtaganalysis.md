@@ -48,8 +48,8 @@ permalink: /hashtaganalysis/
     <h2>Hashtag Likes Predictor</h2>
     <textarea id="hashtagInput" rows="4">#legoland #legolandcalifornia #buildthefun #familyadventure #themeparkfun #miniland #bricklife</textarea>
     <br />
-    <button onclick="analyzeHashtags()">Predict Views</button>
-    <div id="result">Predicted Views: --</div>
+    <button onclick="analyzeHashtags()">Predict Likes</button>
+    <div id="result">Predicted Likes: --</div>
   </div>
 
   <script>
@@ -58,7 +58,7 @@ permalink: /hashtaganalysis/
 
       try {
         // Make API request to your Flask backend
-        const res = await fetch('/api/hashtag-analysis', {
+        const res = await fetch('/api/hashtag', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
