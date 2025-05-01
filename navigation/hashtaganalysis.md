@@ -4,7 +4,6 @@ title: Hashtag Analysis
 permalink: /hashtaganalysis/
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
