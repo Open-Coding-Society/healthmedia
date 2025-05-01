@@ -27,13 +27,13 @@ permalink: aboutthepark/home/
 </head>
 <body class="bg-yellow-50 font-sans text-gray-800">
   <div class="max-w-6xl mx-auto px-4 py-10">
-    <h1 class="text-4xl md:text-6xl font-bold text-center text-yellow-400 animated-title mb-12">
-      🎢 Welcome to LEGOLAND® California! 🎉
-    </h1>
+<img src="{{ site.baseurl }}/images/logo.jpg" alt="LEGOLAND Fun">
 
     <div class="grid md:grid-cols-2 gap-10 items-start">
       <div class="space-y-6 text-lg leading-relaxed">
         <p>
+          
+          
           Ready to unleash your inner kid (or just <em>be</em> a kid)? 😄 At LEGOLAND California in sunny Carlsbad, you’ll find a brick-built wonderland packed with over 60 rides, jaw-dropping attractions, and totally LEGO-tastic experiences.
         </p>
         <p>
