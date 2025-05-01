@@ -4,7 +4,6 @@ title: About the park
 permalink: aboutthepark/home/
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -27,35 +26,33 @@ permalink: aboutthepark/home/
   </style>
 </head>
 <body class="bg-yellow-50 font-sans text-gray-800">
-  <div class="max-w-5xl mx-auto p-6">
-    <h1 class="text-4xl md:text-6xl font-bold text-center text-yellow-400 animated-title mb-6">
-    🎢 Welcome to LEGOLAND® California! 🎉
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <h1 class="text-4xl md:text-6xl font-bold text-center text-yellow-400 animated-title mb-12">
+      🎢 Welcome to LEGOLAND® California! 🎉
     </h1>
-    
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="space-y-4">
-        <p class="text-lg leading-relaxed">
-          Ready to unleash your inner kid (or just <em>be</em> a kid)? 😄 At LEGOLAND California in sunny Carlsbad, you’ll find a brick-built wonderland packed with over 60 rides, jaw-dropping attractions, and totally LEGO-tastic experiences. Whether you’re racing through LEGO® NINJAGO® World like a ninja 🥷, exploring pirate-infested waters 🚤, or getting soaked at the LEGOLAND Water Park 💦, there’s <strong>never</strong> a dull moment.
+
+    <div class="grid md:grid-cols-2 gap-10 items-start">
+      <div class="space-y-6 text-lg leading-relaxed">
+        <p>
+          Ready to unleash your inner kid (or just <em>be</em> a kid)? 😄 At LEGOLAND California in sunny Carlsbad, you’ll find a brick-built wonderland packed with over 60 rides, jaw-dropping attractions, and totally LEGO-tastic experiences.
         </p>
-        <p class="text-lg leading-relaxed">
-          MINILAND USA is an absolute must-see—seriously, they’ve recreated entire cities with millions of LEGO bricks 🏙️🧱 (yes, millions). Got younger siblings or LEGO-obsessed friends? The rides are perfect for all ages, and trust us, adults have just as much fun 😉.
+        <p>
+          Whether you're racing through LEGO® NINJAGO® World 🥷, exploring pirate-infested waters 🚤, or getting soaked at the Water Park 💦 — it’s non-stop fun for all ages.
         </p>
-        <p class="text-lg leading-relaxed">
-          And if you're not ready to leave the magic behind, check into the colorful LEGOLAND Hotel or Castle Hotel 🏰 for a sleepover where the fun <em>literally</em> never ends. Wake up, hit the park again, repeat. 🎠✨
+        <p>
+          Don’t miss MINILAND USA, where entire cities are recreated with millions of LEGO bricks 🏙️. You can even sleep like royalty at the LEGOLAND Hotels 🏰 for a 24/7 LEGO adventure!
         </p>
-        <p class="text-lg leading-relaxed">
-          From rollercoasters to robots to ridiculously awesome brick builds—LEGOLAND CA is more than a theme park. It's your next epic adventure. Let’s goooo! 🚀🧃🎈
+        <p>
+          From rollercoasters to robots to ridiculously awesome brick builds—LEGOLAND CA is more than a theme park. It's your next epic adventure. Let’s goooo! 🚀🎈
         </p>
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
-  <img src="{{ site.baseurl }}/images/park.webp" alt="LEGOLAND fun" class="rounded-2xl shadow-lg object-cover">
-  <img src="{{ site.baseurl }}/images/legoland...jpg" alt="Water Park fun" class="rounded-2xl shadow-lg object-cover">
-  <img src="{{ site.baseurl }}/images/vv.webp" alt="Dragon Coaster" class="rounded-2xl shadow-lg object-cover">
-  <img src="{{ site.baseurl }}/images/california.jpg" alt="MINILAND USA" class="rounded-2xl shadow-lg object-cover">
-</div>
-
-
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <img src="{{ site.baseurl }}/images/park.webp" alt="LEGOLAND fun" class="rounded-xl shadow-lg w-full h-auto">
+        <img src="{{ site.baseurl }}/images/legoland...jpg" alt="Water Park fun" class="rounded-xl shadow-lg w-full h-auto">
+        <img src="{{ site.baseurl }}/images/vv.webp" alt="Dragon Coaster" class="rounded-xl shadow-lg w-full h-auto">
+        <img src="{{ site.baseurl }}/images/california.jpg" alt="MINILAND USA" class="rounded-xl shadow-lg w-full h-auto">
+      </div>
     </div>
   </div>
 </body>
