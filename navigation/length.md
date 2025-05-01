@@ -7,161 +7,76 @@ search_exclude: true
 ---
 
 <style>
-/* same styles as before — no changes needed here */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#resultBox {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+    font-size: 1.2em;
+}
 </style>
 
 <div class="container">
-    <div class="earth-icon"></div>
-    <h1>Video Length and Engagement Insights!</h1>
-    <div class="form-container">
-        <h2>Add a New Video Length Insight</h2>
-        <form id="lengthForm">
-            <label for="videoLength">Video Length (in minutes):</label>
-            <input type="number" step="0.1" id="videoLength" name="videoLength" required>
-            <label for="engagement">Engagement (likes + comments + shares):</label>
-            <input type="number" id="engagement" name="engagement" required>
-            <button type="submit">Add Insight</button>
-        </form>
-    </div>
-```javascript
-// Add error handling for fetch requests
-async function fetchLengths() {
-    try {
-        const res = await fetch(`${API_BASE}/lengths`);
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const data = await res.json();
-        displayLengths(data);
-        drawChart(data);
-    } catch (error) {
-        console.error('Error fetching lengths:', error);
-    }
-}
+    <h1>Video Engagement Lookup</h1>
 
-async function fetchBestLength() {
-    try {
-        const res = await fetch(`${API_BASE}/lengths/best`);
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const data = await res.json();
-        const bestText = data.video_length
-            ? `${data.video_length} minutes with ${data.efficiency.toFixed(2)} engagement/min`
-            : "No best length found.";
-        document.getElementById('bestLengthText').textContent = bestText;
-    } catch (error) {
-        console.error('Error fetching best length:', error);
-    }
-}
+    <form id="lookupForm">
+        <label for="videoLength">Enter a Video Length (in minutes):</label>
+        <input type="number" id="videoLength" required>
+        <button type="submit">Fetch Engagement Insight</button>
+    </form>
 
-// Improve form submission handling
-document.getElementById('lengthForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const videoLength = parseFloat(document.getElementById('videoLength').value);
-    const engagement = parseInt(document.getElementById('engagement').value);
-    if (isNaN(videoLength) || isNaN(engagement)) {
-        alert('Please enter valid numbers for video length and engagement.');
-        return;
-    }
-    try {
-        const res = await fetch(`${API_BASE}/lengths`, {
-            method: 'POST', // Change to POST to create a new resource
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ video_length: videoLength, engagement: engagement })
-        });
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        fetchLengths();
-        fetchBestLength();
-        document.getElementById('lengthForm').reset();
-    } catch (error) {
-        console.error('Error submitting form:', error);
-    }
-});
-```    <div class="best-length" id="bestLengthBox">
-        <h2>🔥 Most Efficient Length</h2>
-        <p id="bestLengthText">Loading...</p>
-    </div>
+    <div id="errorMsg" style="color: red; margin-top: 10px;"></div>
 
-    <div class="chart-container">
-        <h2>📊 Engagement vs Length</h2>
-        <canvas id="lengthChart"></canvas>
-    </div>
-
-    <div class="length-grid" id="lengthGrid"></div>
-
-    
+    <div id="resultBox"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const API_BASE = "http://127.0.0.1:8402/api";
+document.getElementById('lookupForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const videoLength = parseFloat(document.getElementById('videoLength').value);
+    const resultBox = document.getElementById('resultBox');
+    const errorMsg = document.getElementById('errorMsg');
+    errorMsg.innerText = '';
+    resultBox.innerText = 'Analyzing engagement potential...';
 
-    async function fetchLengths() {
-        const res = await fetch(`${API_BASE}/lengths`);
-        const data = await res.json();
-        displayLengths(data);
-        drawChart(data);
-    }
+    setTimeout(() => {
+        let message;
 
-    async function fetchBestLength() {
-        const res = await fetch(`${API_BASE}/lengths/best`);
-        const data = await res.json();
-        const bestText = data.video_length
-            ? `${data.video_length} minutes with ${data.efficiency.toFixed(2)} engagement/min`
-            : "No best length found.";
-        document.getElementById('bestLengthText').textContent = bestText;
-    }
+        if (videoLength <= 0) {
+            message = "Please enter a valid video length greater than zero.";
+        } else if (videoLength < 1) {
+            message = "Very short videos may not provide enough time to engage viewers.";
+        } else if (videoLength >= 1 && videoLength < 2) {
+            message = "Short-form videos like this often get quick engagement — great for grabbing attention.";
+        } else if (videoLength >= 2 && videoLength <= 3) {
+            message = "This is a strong duration for social media — likely to maximize engagement.";
+        } else if (videoLength > 3 && videoLength <= 5) {
+            message = "Slightly longer videos can perform well if the content remains tight and focused.";
+        } else if (videoLength > 5 && videoLength <= 8) {
+            message = "Longer content can still perform if it's high quality, but attention may drop off.";
+        } else {
+            message = "This video may be too long for typical platforms like Instagram — consider trimming for better engagement.";
+        }
 
-    function displayLengths(lengths) {
-        const grid = document.getElementById('lengthGrid');
-        grid.innerHTML = '';
-        lengths.forEach(length => {
-            const card = document.createElement('div');
-            card.className = 'length-card';
-            card.innerHTML = `
-                <h2>${length.video_length} min</h2>
-                <p>Engagement: ${length.engagement}</p>`;
-            grid.appendChild(card);
-        });
-    }
-
-    function drawChart(lengths) {
-        const ctx = document.getElementById('lengthChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Engagement vs Video Length',
-                    data: lengths.map(d => ({ x: d.video_length, y: d.engagement })),
-                    backgroundColor: '#4CAF50'
-                }]
-            },
-            options: {
-                scales: {
-                    x: { title: { display: true, text: 'Video Length (minutes)' }},
-                    y: { title: { display: true, text: 'Engagement' }}
-                }
-            }
-        });
-    }
-
-    document.getElementById('lengthForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const videoLength = parseFloat(document.getElementById('videoLength').value);
-        const engagement = parseInt(document.getElementById('engagement').value);
-        await fetch(`${API_BASE}/lengths`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ video_length: videoLength, engagement: engagement })
-        });
-        fetchLengths();
-        fetchBestLength();
-        document.getElementById('lengthForm').reset();
-    });
-
-    fetchLengths();
-    fetchBestLength();
+        resultBox.innerText = `For a ${videoLength}-minute video: ${message}`;
+    }, 800);
+});
 </script>
