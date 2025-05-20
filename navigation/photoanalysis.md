@@ -108,7 +108,7 @@ permalink: /photoanalysis/
         // Show results
         results.innerHTML = `
           <strong>Predicted Likes:</strong> ${Math.round(data.predicted_likes)}<br>
-          <strong>Rating Score:</strong> ${data.rating_score.toFixed(2)}<br>
+          <strong>Rating Score:</strong> ${data.rating_score.toFixed(2)}%<br>
           <strong>Performance:</strong> <span style="font-weight:bold; color:${
             data.rating_label === 'Excellent' ? 'green' :
             data.rating_label === 'Good' ? 'blue' :
@@ -119,9 +119,7 @@ permalink: /photoanalysis/
         // Add to log
         const logItem = document.createElement('li');
         logItem.innerHTML = `
-          Likes: ${Math.round(data.predicted_likes)},
-          Score: ${data.rating_score.toFixed(2)},
-          Label: ${data.rating_label}
+          The average number of likes on your previous post was TODO. Based on this, we expect your current photo to receive ${Math.round(data.predicted_likes)} likes. This would achieve a score of ${data.rating_score.toFixed(2)}% which we rate ${data.rating_label}.  
         `;
         logList.prepend(logItem); // Add to top
 
