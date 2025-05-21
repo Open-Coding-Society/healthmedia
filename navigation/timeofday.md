@@ -23,6 +23,11 @@ permalink: /timeofday/
 
 <body>
     <h1>Posting Time Of Day</h1>
+    <div class="container">
+      <label for="timeInput"><strong>Select Time of Day:</strong></label><br><br>
+      <input type="time" id="timeInput" name="timeInput">
+    </div>
+    <br><br>
     <br>
     <br>
     <h1>Top 3 times to upload</h1>
@@ -55,6 +60,10 @@ permalink: /timeofday/
 </table>
 
   <script type="module">
+    document.getElementById('timeInput').addEventListener('change', function () {
+    const selectedTime = this.value;
+    console.log("Selected time:", selectedTime); // You can process it here
+  });
   fetch('http://127.0.0.1:8887/api/optimaltime')
     .then(response => response.json())
     .then(data => {
