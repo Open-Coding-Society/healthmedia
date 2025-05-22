@@ -9,7 +9,6 @@ permalink: /hashtaganalysis/
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hashtag Engagement Analyzer</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     .container {
       width: 400px;
@@ -43,12 +42,24 @@ permalink: /hashtaganalysis/
     .metric {
       margin-top: 10px;
     }
-    #barChart {
-      margin-top: 30px;
+
+    .gauge {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      margin: 30px auto 10px;
+    }
+    .gauge svg {
       width: 100%;
-      max-width: 380px;
-      margin-left: auto;
-      margin-right: auto;
+      height: 100%;
+    }
+    .gauge-text {
+      font-size: 20px;
+      font-weight: bold;
+      position: absolute;
+      top: 55px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   </style>
 </head>
@@ -64,13 +75,18 @@ permalink: /hashtaganalysis/
       <div class="metric" id="likes">Average Likes: --</div>
       <div class="metric" id="views">Total Estimated Views: --</div>
       <div class="metric" id="score">Average Success Score: --</div>
-      <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="gauge">
+      <svg viewBox="0 0 100 50">
+        <path id="gauge-arc" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#eee" stroke-width="10"/>
+        <path id="gauge-fill" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#00cc66" stroke-width="10" stroke-dasharray="0 251" />
+      </svg>
+      <div class="gauge-text" id="gaugeLabel">-- / 10</div>
     </div>
   </div>
 
   <script>
-    let chartInstance = null;
-
     async function analyzeHashtags() {
       const input = document.getElementById('hashtagInput').value;
 
@@ -94,66 +110,33 @@ permalink: /hashtaganalysis/
           document.getElementById('views').textContent = `Total Estimated Views: ${estViews.toLocaleString()}`;
           document.getElementById('score').textContent = `Average Success Score: ${score} / 10`;
 
-          // Draw or update chart
-          const ctx = document.getElementById('barChart').getContext('2d');
-          if (chartInstance) chartInstance.destroy();
+          // Update gauge
+          const gauge = document.getElementById('gauge-fill');
+          const dash = (score / 10) * 251;
+          gauge.setAttribute('stroke-dasharray', `${dash} 251`);
 
-          chartInstance = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: ['Avg Likes', 'Est. Views', 'Success Score'],
-              datasets: [{
-                label: 'Hashtag Performance',
-                data: [avgLikes, estViews, score],
-                backgroundColor: [
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)'
-                ],
-                borderColor: [
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              responsive: true,
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  ticks: {
-                    precision: 0
-                  }
-                }
-              },
-              plugins: {
-                legend: {
-                  display: false
-                },
-                tooltip: {
-                  callbacks: {
-                    label: function(context) {
-                      return `${context.dataset.label}: ${context.raw.toLocaleString()}`;
-                    }
-                  }
-                }
-              }
-            }
-          });
+          // Optional: change color based on score
+          let color = "#ff4d4d"; // red
+          if (score >= 7) color = "#00cc66"; // green
+          else if (score >= 4) color = "#ffcc00"; // yellow
+          gauge.setAttribute('stroke', color);
+
+          document.getElementById('gaugeLabel').textContent = `${score} / 10`;
+
         } else {
           document.getElementById('likes').textContent = 'Error: ' + (data.error || 'Invalid input');
           document.getElementById('views').textContent = '';
           document.getElementById('score').textContent = '';
-          if (chartInstance) chartInstance.destroy();
+          document.getElementById('gauge-fill').setAttribute('stroke-dasharray', `0 251`);
+          document.getElementById('gaugeLabel').textContent = '-- / 10';
         }
       } catch (err) {
+        console.error('Fetch error:', err);
         document.getElementById('likes').textContent = 'Error analyzing hashtags.';
         document.getElementById('views').textContent = '';
         document.getElementById('score').textContent = '';
-        console.error('Fetch error:', err);
-        if (chartInstance) chartInstance.destroy();
+        document.getElementById('gauge-fill').setAttribute('stroke-dasharray', `0 251`);
+        document.getElementById('gaugeLabel').textContent = '-- / 10';
       }
     }
   </script>
