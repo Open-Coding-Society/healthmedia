@@ -119,7 +119,7 @@ permalink: /photoanalysis/
         // Add to log
         const logItem = document.createElement('li');
         logItem.innerHTML = `
-          The average number of likes on your previous post was 490 likes. Based on this, we expect your current photo to receive ${Math.round(data.predicted_likes)} likes. This would achieve a score of ${data.rating_score.toFixed(2)}% which we rate ${data.rating_label}.  
+          The average number of likes on your previous post was 1122 likes. Based on this, we expect your current photo to receive ${Math.round(data.predicted_likes)} likes. This would achieve a score of ${data.rating_score.toFixed(2)}% which we rate ${data.rating_label}.  
         `;
         logList.prepend(logItem); // Add to top
 
