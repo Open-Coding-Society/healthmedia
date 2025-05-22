@@ -115,7 +115,7 @@ search_exclude: true
     transform: scale(1.05);
   }
 
-  /* Changed the color here to black for better readabilityk */
+  /* Changesd the color here to black for better readabilityk */
   #result {
     margin-top: 1.5rem;
     font-size: 1.2rem;
