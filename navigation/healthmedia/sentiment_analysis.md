@@ -10,39 +10,65 @@ permalink: sentiment/analysis/
     <h1>Instagram Comments Sentiment Analysis</h1>
     
     <div class="input-section">
-        <h2>Analyze by Username</h2>
+        <h2>Upload CSV File</h2>
         <div class="input-group">
-            <label for="username">Instagram Username:</label>
-            <input type="text" id="username" placeholder="Enter Instagram username (without @)">
+            <label for="csv-file">Upload CSV file containing comments:</label>
+            <input type="file" id="csv-file" accept=".csv" />
+            <small>CSV format: Name,ProfileUrl,ProfileId,Avatar,Comment,Likes,Date</small>
         </div>
-        <button id="analyze-username">Analyze Last 3 Posts</button>
-        <div id="loading">Loading... This may take a moment to fetch and analyze the comments.</div>
+        <button id="analyze-csv">Analyze Comments</button>
+        <div id="loading">Loading... Analyzing comments sentiment...</div>
     </div>
 
     <div id="results" style="display: none;">
-        <h2>Results for <span id="result-username"></span></h2>
+        <h2>Sentiment Analysis Results</h2>
         
-        <div id="posts-container">
-            <!-- Posts will be inserted here dynamically -->
-        </div>
-
         <div class="sentiment-summary">
-            <h3>Overall Sentiment Summary</h3>
-            <p>Average sentiment across all posts: <span id="average-sentiment"></span></p>
+            <h3>Overall Summary</h3>
             <p>Total comments analyzed: <span id="total-comments"></span></p>
+            <p>Average polarity: <span id="average-polarity"></span></p>
+            <p>Average subjectivity: <span id="average-subjectivity"></span></p>
+            <div class="sentiment-breakdown">
+                <p>Positive comments: <span id="positive-count"></span> (<span id="positive-percent"></span>%)</p>
+                <p>Neutral comments: <span id="neutral-count"></span> (<span id="neutral-percent"></span>%)</p>
+                <p>Negative comments: <span id="negative-count"></span> (<span id="negative-percent"></span>%)</p>
+            </div>
             <div class="chart-container">
                 <canvas id="sentimentChart"></canvas>
+            </div>
+        </div>
+
+        <div class="comments-section">
+            <h3>Individual Comment Analysis</h3>
+            <div class="filter-section">
+                <label for="sentiment-filter">Filter by sentiment:</label>
+                <select id="sentiment-filter">
+                    <option value="all">All Comments</option>
+                    <option value="positive">Positive Only</option>
+                    <option value="neutral">Neutral Only</option>
+                    <option value="negative">Negative Only</option>
+                </select>
+                <label for="sort-by">Sort by:</label>
+                <select id="sort-by">
+                    <option value="polarity-desc">Most Positive First</option>
+                    <option value="polarity-asc">Most Negative First</option>
+                    <option value="likes-desc">Most Liked First</option>
+                    <option value="date-desc">Most Recent First</option>
+                </select>
+            </div>
+            <div id="comments-container">
+                <!-- Individual comment results will be inserted here -->
             </div>
         </div>
     </div>
 </div>
 
 <style>
-/* Scoped styles for the sentiment analysis tool - only affects elements inside .sentiment-container */
+/* Scoped styles for the sentiment analysis tool */
 .sentiment-container {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     color: #000;
@@ -51,7 +77,6 @@ permalink: sentiment/analysis/
     background-color: #fff;
 }
 
-/* Scope all typography styles to only affect elements inside the container */
 .sentiment-container h1,
 .sentiment-container h2,
 .sentiment-container h3,
@@ -69,11 +94,147 @@ permalink: sentiment/analysis/
     margin-bottom: 20px;
 }
 
-.sentiment-container .sentiment-box {
+.sentiment-container .input-group {
+    margin-bottom: 15px;
+}
+
+.sentiment-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000;
+}
+
+.sentiment-container input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #000;
+}
+
+.sentiment-container select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #000;
+    margin-right: 10px;
+}
+
+.sentiment-container small {
+    color: #666;
+    font-style: italic;
+}
+
+.sentiment-container button {
+    background-color: #4267B2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sentiment-container button:hover {
+    background-color: #365899;
+}
+
+.sentiment-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.sentiment-container #loading {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+    color: #000;
+    font-style: italic;
+}
+
+.sentiment-container .sentiment-summary {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.sentiment-container .sentiment-breakdown {
+    margin: 15px 0;
+}
+
+.sentiment-container .chart-container {
+    margin-top: 20px;
+    height: 300px;
+    background-color: #fff;
     padding: 10px;
     border-radius: 5px;
-    margin-top: 10px;
+    border: 1px solid #eee;
+}
+
+.sentiment-container .comments-section {
+    margin-top: 30px;
+}
+
+.sentiment-container .filter-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.sentiment-container .comment-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.sentiment-container .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.sentiment-container .comment-author {
     font-weight: bold;
+    color: #4267B2;
+}
+
+.sentiment-container .comment-stats {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.sentiment-container .comment-text {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.sentiment-container .comment-sentiment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.sentiment-container .sentiment-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 11px;
 }
 
 .sentiment-container .positive {
@@ -91,103 +252,23 @@ permalink: sentiment/analysis/
     color: #c62828;
 }
 
-.sentiment-container .input-group {
-    margin-bottom: 15px;
-}
-
-.sentiment-container label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #000;
-}
-
-.sentiment-container input,
-.sentiment-container select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: #000;
-}
-
-.sentiment-container button {
-    background-color: #4267B2;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.sentiment-container button:hover {
-    background-color: #365899;
-}
-
-.sentiment-container .sentiment-result {
-    margin-top: 20px;
-    color: #000;
-}
-
-.sentiment-container .post-container {
-    border: 1px solid #eee;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #000;
-}
-
-.sentiment-container .post-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    color: #000;
-}
-
-.sentiment-container .sentiment-summary {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    border: 1px solid #eee;
-    color: #000;
-}
-
-.sentiment-container #loading {
-    display: none;
-    text-align: center;
-    margin: 20px 0;
-    color: #000;
-    font-style: italic;
-}
-
-.sentiment-container .chart-container {
-    margin-top: 20px;
-    height: 300px;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #eee;
-}
-
-.sentiment-container a {
-    color: #4267B2;
-    text-decoration: none;
-}
-
-.sentiment-container a:hover {
-    text-decoration: underline;
+.sentiment-container .sentiment-scores {
+    font-family: monospace;
+    color: #666;
+    font-size: 11px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-    .sentiment-container .post-header {
+    .sentiment-container .filter-section {
         flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .sentiment-container .comment-sentiment {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
     }
     
     .sentiment-container .chart-container {
@@ -199,286 +280,254 @@ permalink: sentiment/analysis/
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const analyzeButton = document.getElementById('analyze-username');
-    const usernameInput = document.getElementById('username');
-    const resultsDiv = document.getElementById('results');
-    const resultUsername = document.getElementById('result-username');
-    const postsContainer = document.getElementById('posts-container');
-    const averageSentiment = document.getElementById('average-sentiment');
-    const totalComments = document.getElementById('total-comments');
+    const fileInput = document.getElementById('csv-file');
+    const analyzeButton = document.getElementById('analyze-csv');
     const loadingDiv = document.getElementById('loading');
+    const resultsDiv = document.getElementById('results');
+    const commentsContainer = document.getElementById('comments-container');
+    const sentimentFilter = document.getElementById('sentiment-filter');
+    const sortBy = document.getElementById('sort-by');
     
+    let analysisResults = [];
     let sentimentChart = null;
     
-    // Change this to your deployed backend URL when you have one
-    const BACKEND_URL = 'https://your-backend-url.com';
+    // Replace with your actual backend URL
+    const API_BASE_URL = 'http://127.0.0.1:5001';  // Updated to match your backend URL
+    
+    // Test API connection
+    async function testAPIConnection() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/health`);
+            if (!response.ok) {
+                console.error('API Health Check Failed:', response.status);
+                return false;
+            }
+            const data = await response.json();
+            console.log('API Connection OK:', data);
+            return true;
+        } catch (error) {
+            console.error('API Connection Error:', error);
+            return false;
+        }
+    }
 
     analyzeButton.addEventListener('click', async function() {
-        const username = usernameInput.value.trim();
-        if (!username) {
-            alert('Please enter a valid Instagram username');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert('Please select a CSV file first');
             return;
         }
         
-        // Show loading indicator
+        if (!file.name.toLowerCase().endsWith('.csv')) {
+            alert('Please select a valid CSV file');
+            return;
+        }
+        
+        // Test API connection first
+        const apiConnected = await testAPIConnection();
+        if (!apiConnected) {
+            alert('Cannot connect to the backend API. Please make sure your backend server is running and the API_BASE_URL is correct.');
+            return;
+        }
+        
         loadingDiv.style.display = 'block';
         resultsDiv.style.display = 'none';
-        postsContainer.innerHTML = '';
+        analyzeButton.disabled = true;
         
         try {
-            // For GitHub Pages demo, we'll use mock data initially
-            // In production, replace this with your actual API call
-            // const response = await fetch(`${BACKEND_URL}/api/analyze-user-posts?username=${username}`);
+            // Create FormData to send file
+            const formData = new FormData();
+            formData.append('file', file);
             
-            // DEMO DATA - Replace with actual API call when backend is deployed
-            const data = getMockData(username);
+            console.log('Sending file to:', `${API_BASE_URL}/api/sentiment/upload`);
             
-            // Hide loading indicator
-            loadingDiv.style.display = 'none';
-            
-            if (data.error) {
-                alert(data.error);
-                return;
-            }
-            
-            // Show results
-            resultUsername.textContent = username;
-            resultsDiv.style.display = 'block';
-            
-            // Process and display each post
-            let allSentiments = [];
-            let totalCommentCount = 0;
-            
-            data.posts.forEach((post, index) => {
-                const postDiv = document.createElement('div');
-                postDiv.className = 'post-container';
-                
-                // Create post header
-                const postHeader = document.createElement('div');
-                postHeader.className = 'post-header';
-                postHeader.innerHTML = `
-                    <h3>Post #${index + 1}</h3>
-                    <span>Date: ${new Date(post.timestamp * 1000).toLocaleDateString()}</span>
-                `;
-                
-                // Create sentiment info
-                const sentimentInfo = document.createElement('div');
-                sentimentInfo.className = 'sentiment-result';
-                
-                let sentimentClass = '';
-                if (post.average_sentiment > 0.05) sentimentClass = 'positive';
-                else if (post.average_sentiment < -0.05) sentimentClass = 'negative';
-                else sentimentClass = 'neutral';
-                
-                sentimentInfo.innerHTML = `
-                    <p>Analyzed ${post.comments.length} comments</p>
-                    <p>Post URL: <a href="${post.post_url}" target="_blank">${post.post_url}</a></p>
-                    <div class="sentiment-box ${sentimentClass}">
-                        Average Sentiment: ${post.average_sentiment.toFixed(2)}
-                        (${sentimentClass.charAt(0).toUpperCase() + sentimentClass.slice(1)})
-                    </div>
-                `;
-                
-                // Add comments summary
-                const commentsSummary = document.createElement('div');
-                commentsSummary.innerHTML = `
-                    <h4>Comments Breakdown:</h4>
-                    <p>Positive comments: ${post.sentiment_counts.positive}</p>
-                    <p>Neutral comments: ${post.sentiment_counts.neutral}</p>
-                    <p>Negative comments: ${post.sentiment_counts.negative}</p>
-                `;
-                
-                // Combine all elements
-                postDiv.appendChild(postHeader);
-                postDiv.appendChild(sentimentInfo);
-                postDiv.appendChild(commentsSummary);
-                postsContainer.appendChild(postDiv);
-                
-                // Collect data for overall summary
-                allSentiments.push(post.average_sentiment);
-                totalCommentCount += post.comments.length;
-                
-                // Store sentiment data for each comment
-                post.comments.forEach(comment => {
-                    allSentiments.push(comment.sentiment);
-                });
+            // Send file to backend API
+            const response = await fetch(`${API_BASE_URL}/api/sentiment/upload`, {
+                method: 'POST',
+                body: formData,
+                // Don't set Content-Type header - let browser set it for FormData
             });
             
-            // Calculate and display overall average
-            const overallAverage = allSentiments.reduce((acc, val) => acc + val, 0) / allSentiments.length;
-            let overallSentimentText = '';
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
             
-            if (overallAverage > 0.05) overallSentimentText = 'Positive';
-            else if (overallAverage < -0.05) overallSentimentText = 'Negative';
-            else overallSentimentText = 'Neutral';
+            if (!response.ok) {
+                const responseText = await response.text();
+                console.error('Error response:', responseText);
+                
+                // Try to parse as JSON, fallback to text
+                let errorMessage;
+                try {
+                    const errorData = JSON.parse(responseText);
+                    errorMessage = errorData.error || 'Server error occurred';
+                } catch {
+                    errorMessage = `Server returned HTML instead of JSON. Check if your backend is running correctly. Status: ${response.status}`;
+                }
+                throw new Error(errorMessage);
+            }
             
-            averageSentiment.textContent = `${overallAverage.toFixed(2)} (${overallSentimentText})`;
-            totalComments.textContent = totalCommentCount;
+            const responseText = await response.text();
+            console.log('Raw response:', responseText);
             
-            // Create chart
-            createSentimentChart(data.posts);
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error('JSON Parse Error:', parseError);
+                throw new Error('Server returned invalid JSON. Please check if your backend is running correctly.');
+            }
+            
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            
+            // Store results for filtering and sorting
+            analysisResults = data;
+            
+            // Display results
+            displayResults();
             
         } catch (error) {
-            loadingDiv.style.display = 'none';
+            console.error('Full error:', error);
             alert('Error: ' + error.message);
+        } finally {
+            loadingDiv.style.display = 'none';
+            analyzeButton.disabled = false;
         }
     });
     
-    function createSentimentChart(posts) {
+    function displayResults() {
+        const summary = analysisResults.summary;
+        const comments = analysisResults.comments;
+        
+        // Update summary display
+        document.getElementById('total-comments').textContent = summary.total_comments;
+        document.getElementById('average-polarity').textContent = summary.average_polarity;
+        document.getElementById('average-subjectivity').textContent = summary.average_subjectivity;
+        document.getElementById('positive-count').textContent = summary.sentiment_counts.positive;
+        document.getElementById('positive-percent').textContent = summary.sentiment_percentages.positive;
+        document.getElementById('neutral-count').textContent = summary.sentiment_counts.neutral;
+        document.getElementById('neutral-percent').textContent = summary.sentiment_percentages.neutral;
+        document.getElementById('negative-count').textContent = summary.sentiment_counts.negative;
+        document.getElementById('negative-percent').textContent = summary.sentiment_percentages.negative;
+        
+        // Create chart
+        createSentimentChart(summary.sentiment_counts);
+        
+        // Display individual comments
+        displayComments();
+        
+        // Show results
+        resultsDiv.style.display = 'block';
+    }
+    
+    function createSentimentChart(counts) {
         const ctx = document.getElementById('sentimentChart').getContext('2d');
         
-        // Destroy previous chart if it exists
         if (sentimentChart) {
             sentimentChart.destroy();
         }
         
-        // Prepare data for chart
-        const labels = posts.map((_, index) => `Post ${index + 1}`);
-        const sentimentData = posts.map(post => post.average_sentiment);
-        const positiveData = posts.map(post => post.sentiment_counts.positive);
-        const neutralData = posts.map(post => post.sentiment_counts.neutral);
-        const negativeData = posts.map(post => post.sentiment_counts.negative);
-        
-        // Create new chart
         sentimentChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'doughnut',
             data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Average Sentiment',
-                        data: sentimentData,
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1,
-                        type: 'line',
-                        yAxisID: 'y1'
-                    },
-                    {
-                        label: 'Positive Comments',
-                        data: positiveData,
-                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Neutral Comments',
-                        data: neutralData,
-                        backgroundColor: 'rgba(255, 206, 86, 0.5)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Negative Comments',
-                        data: negativeData,
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }
-                ]
+                labels: ['Positive', 'Neutral', 'Negative'],
+                datasets: [{
+                    data: [counts.positive, counts.neutral, counts.negative],
+                    backgroundColor: [
+                        'rgba(76, 175, 80, 0.7)',
+                        'rgba(255, 235, 59, 0.7)',
+                        'rgba(244, 67, 54, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(76, 175, 80, 1)',
+                        'rgba(255, 235, 59, 1)',
+                        'rgba(244, 67, 54, 1)'
+                    ],
+                    borderWidth: 2
+                }]
             },
             options: {
                 responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Number of Comments'
-                        }
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
                     },
-                    y1: {
-                        position: 'right',
-                        beginAtZero: false,
-                        min: -1,
-                        max: 1,
-                        title: {
-                            display: true,
-                            text: 'Sentiment Score'
-                        }
+                    title: {
+                        display: true,
+                        text: 'Sentiment Distribution'
                     }
                 }
             }
         });
     }
     
-    // Function to generate mock data for demo purposes
-    // Remove this when connecting to a real backend
-    function getMockData(username) {
-        const now = Math.floor(Date.now() / 1000);
+    function displayComments(filterType = 'all', sortType = 'polarity-desc') {
+        let filteredResults = filterType === 'all' ? 
+            [...analysisResults.comments] : 
+            analysisResults.comments.filter(item => item.category === filterType);
         
-        // For demo purposes, generating random data
-        function generateMockComments(count) {
-            const mockComments = [];
-            const sampleTexts = [
-                "This is amazing! Love your content!",
-                "Not sure about this one...",
-                "Absolutely fantastic post",
-                "Could be better honestly",
-                "Just ok",
-                "This changed my perspective!",
-                "Meh, seen better",
-                "You always deliver quality content!",
-                "Disappointing content",
-                "Can't believe how good this is"
-            ];
-            
-            for (let i = 0; i < count; i++) {
-                const text = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
-                let sentiment;
-                
-                // Assign sentiment based on text content
-                if (text.includes("amazing") || text.includes("fantastic") || 
-                    text.includes("Love") || text.includes("quality") || 
-                    text.includes("good") || text.includes("changed my perspective")) {
-                    sentiment = Math.random() * 0.5 + 0.3; // Random from 0.3 to 0.8
-                } else if (text.includes("better") || text.includes("Meh") || 
-                           text.includes("Disappointing") || text.includes("Not sure")) {
-                    sentiment = Math.random() * -0.6 - 0.1; // Random from -0.1 to -0.7
-                } else {
-                    sentiment = Math.random() * 0.2 - 0.1; // Random from -0.1 to 0.1
-                }
-                
-                mockComments.push({
-                    text: text,
-                    username: "user" + Math.floor(Math.random() * 1000),
-                    timestamp: now - (i * 3600),
-                    sentiment: sentiment,
-                    category: sentiment > 0.05 ? "positive" : 
-                              sentiment < -0.05 ? "negative" : "neutral"
-                });
+        // Sort results
+        filteredResults.sort((a, b) => {
+            switch(sortType) {
+                case 'polarity-desc':
+                    return b.polarity - a.polarity;
+                case 'polarity-asc':
+                    return a.polarity - b.polarity;
+                case 'likes-desc':
+                    return (b.likes || 0) - (a.likes || 0);
+                case 'date-desc':
+                    return new Date(b.date || 0) - new Date(a.date || 0);
+                default:
+                    return 0;
             }
-            
-            return mockComments;
-        }
+        });
         
-        // Generate 3 mock posts with random comments
-        const posts = [];
-        for (let i = 0; i < 3; i++) {
-            const commentsCount = Math.floor(Math.random() * 10) + 5; // 5-15 comments
-            const comments = generateMockComments(commentsCount);
-            
-            // Calculate sentiment counts
-            const sentimentCounts = {
-                positive: comments.filter(c => c.category === "positive").length,
-                neutral: comments.filter(c => c.category === "neutral").length,
-                negative: comments.filter(c => c.category === "negative").length
-            };
-            
-            // Calculate average sentiment
-            const avgSentiment = comments.reduce((sum, c) => sum + c.sentiment, 0) / comments.length;
-            
-            posts.push({
-                shortcode: `fake_shortcode_${username}_${i}`,
-                post_url: `https://www.instagram.com/p/fake_${username}_${i}/`,
-                timestamp: now - ((i + 1) * 86400), // 1 day apart
-                comments: comments,
-                average_sentiment: avgSentiment,
-                sentiment_counts: sentimentCounts
-            });
-        }
+        commentsContainer.innerHTML = '';
         
-        return { posts };
+        filteredResults.forEach(item => {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment-item';
+            
+            const headerHtml = `
+                <div class="comment-header">
+                    <span class="comment-author">${item.name || 'Anonymous'}</span>
+                    <div class="comment-stats">
+                        ${item.likes ? `<span>❤️ ${item.likes}</span>` : ''}
+                        ${item.date ? `<span>${item.date}</span>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            commentDiv.innerHTML = `
+                ${headerHtml}
+                <div class="comment-text">"${item.comment}"</div>
+                <div class="comment-sentiment">
+                    <span class="sentiment-badge ${item.category}">
+                        ${item.category.toUpperCase()}
+                    </span>
+                    <span class="sentiment-scores">
+                        Polarity: ${item.polarity} | Subjectivity: ${item.subjectivity}
+                    </span>
+                </div>
+            `;
+            
+            commentsContainer.appendChild(commentDiv);
+        });
+        
+        if (filteredResults.length === 0) {
+            commentsContainer.innerHTML = '<p>No comments match the selected filter.</p>';
+        }
     }
+    
+    // Filter and sort functionality
+    sentimentFilter.addEventListener('change', function() {
+        displayComments(this.value, sortBy.value);
+    });
+    
+    sortBy.addEventListener('change', function() {
+        displayComments(sentimentFilter.value, this.value);
+    });
 });
 </script>
