@@ -38,7 +38,7 @@ show_reading_time: false
 // Import fetchOptions from config.js
 import {pythonURI, fetchOptions } from '{{site.baseurl}}/assets/api/config.js';
 // Import functions from config.js
-import { putUpdate, postUpdate, deleteData, logoutUser } from "{{site.baseurl}}/assets/js/api/profile.js";
+import { putUpdate, postUpdate, deleteData, logoutUser } from "{{site.baseurl}}/assets/api/profile.js";
 
 
 // Function to update table with fetched data
