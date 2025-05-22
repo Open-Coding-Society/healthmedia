@@ -36,7 +36,7 @@ show_reading_time: false
 
 <script type="module">
 // Import fetchOptions from config.js
-import {pythonURI, fetchOptions } from '{{site.baseurl}}/assets/js/api/config.js';
+import {pythonURI, fetchOptions } from '{{site.baseurl}}/assets/api/config.js';
 // Import functions from config.js
 import { putUpdate, postUpdate, deleteData, logoutUser } from "{{site.baseurl}}/assets/js/api/profile.js";
 
