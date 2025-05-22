@@ -125,6 +125,145 @@ export async function logoutUser() {
             }
          }
 
+         import {fetchOptions, pythonURI } from './config.js';
+
+// Update User Data with "Put"
+export function putUpdate(options) {
+    const requestOptions = {
+        ...fetchOptions,
+        method: 'PUT',
+        cache: options.cache,
+        body: JSON.stringify(options.body)
+    };
+
+    fetch(options.URL, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                const errorMsg = 'Error: ' + response.status;
+                console.log(errorMsg);
+                return;
+            }
+            options.callback();
+        })
+        .catch(error => {
+            console.log('Possible CORS or Service Down error: ' + error);
+        });
+}
+
+// Update User Data with "POST" 
+export function postUpdate(options) {
+    const requestOptions = {
+        ...fetchOptions,
+        method: 'POST',
+        cache: options.cache,
+        body: JSON.stringify(options.body)
+    };
+
+    // Clear the message area
+    if (options.message && document.getElementById(options.message)) {
+        document.getElementById(options.message).textContent = "";
+    }
+
+    fetch(options.URL, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                const errorMsg = 'Error: ' + response.status;
+                console.log(errorMsg);
+                if (options.message && document.getElementById(options.message)) {
+                    document.getElementById(options.message).textContent = errorMsg;
+                }
+                return;
+            }
+            options.callback();
+        })
+        .catch(error => {
+            console.log('Possible CORS or Service Down error: ' + error);
+        });
+}
+
+export function deleteData(options) {
+    const requestOptions = {
+        ...fetchOptions,
+        method: 'DELETE',
+        cache: options.cache,
+        body: JSON.stringify(options.body)
+    };
+
+    fetch(options.URL, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                const errorMsg = 'Error: ' + response.status;
+                console.log(errorMsg);
+                return;
+            }
+            options.callback();
+        })
+        .catch(error => {
+            console.log('Possible CORS or Service Down error: ' + error);
+        });
+}
+
+// FIXED LOGOUT FUNCTION
+export async function logoutUser() {
+    const URL = pythonURI + '/logout'; // Use the correct logout endpoint
+    
+    try {
+        const response = await fetch(URL, {
+            method: 'GET', // Your Flask logout route uses GET
+            credentials: 'include'
+        });
+        
+        if (response.ok) {
+            // Clear local storage
+            localStorage.removeItem('authenticated');
+            // Redirect to login page
+            window.location.href = "/healthmedia/login";
+        } else {
+            console.error('Logout failed:', response.status);
+        }
+    } catch (error) {
+        console.error('Error during logout:', error.message);
+    }
+}
+
+// ADD MISSING FUNCTIONS THAT profile.md expects:
+
+// Function to fetch UID from backend
+export async function fetchUid() {
+    const URL = pythonURI + "/api/id";
+
+    try {
+        const response = await fetch(URL, fetchOptions);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch UID: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.uid;
+    } catch (error) {
+        console.error('Error fetching UID:', error.message);
+        return null;
+    }
+}
+
+// Function to fetch Name from backend
+export async function fetchName() {
+    const URL = pythonURI + "/api/id";
+
+    try {
+        const response = await fetch(URL, fetchOptions);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch Name: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.name;
+    } catch (error) {
+        console.error('Error fetching Name:', error.message);
+        return null;
+    }
+}
+
 // session
 // asynchronous session response
 //session call api----?
