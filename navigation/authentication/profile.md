@@ -35,95 +35,103 @@ show_reading_time: false
 </div>
 
 <script type="module">
-// Import fetchOptions from config.js
+// Import fetchOptions from config.js - FIXED IMPORT PATHS
 import {pythonURI, fetchOptions } from '{{site.baseurl}}/assets/api/config.js';
-// Import functions from config.js
-import { putUpdate, postUpdate, deleteData, logoutUser } from "{{site.baseurl}}/assets/api/profile.js";
-
+// Import functions from profile.js - FIXED IMPORT PATHS
+import { putUpdate, postUpdate, deleteData, logoutUser, fetchUid, fetchName } from "{{site.baseurl}}/assets/api/profile.js";
 
 // Function to update table with fetched data
 function updateTableWithData(data) {
    const tableBody = document.getElementById('profileResult');
+   if (!tableBody) return; // Guard against missing element
+   
    tableBody.innerHTML = '';
 
-   data.sections.forEach((section, index) => {
-       const tr = document.createElement('tr');
-       const themeCell = document.createElement('td');
-       const nameCell = document.createElement('td');
+   if (data.sections) {
+       data.sections.forEach((section, index) => {
+           const tr = document.createElement('tr');
+           const themeCell = document.createElement('td');
+           const nameCell = document.createElement('td');
 
-       themeCell.textContent = section.theme;
-       nameCell.textContent = section.name;
+           themeCell.textContent = section.theme;
+           nameCell.textContent = section.name;
 
-       const trashIcon = document.createElement('i');
-       trashIcon.className = 'fas fa-trash-alt trash-icon';
-       trashIcon.style.marginLeft = '10px';
-       themeCell.appendChild(trashIcon);
+           const trashIcon = document.createElement('i');
+           trashIcon.className = 'fas fa-trash-alt trash-icon';
+           trashIcon.style.marginLeft = '10px';
+           themeCell.appendChild(trashIcon);
 
-       trashIcon.addEventListener('click', async function (event) {
-           event.preventDefault();
-           const URL = pythonURI + "/api/user/section";
-           // Remove the row from the table
-           tr.remove();
-
-           const options = {
-               URL,
-               body: { sections: [section.theme] },
-               message: 'profile-message',
-           };
-
-           try {
-               await deleteData(options);
-           } catch (error) {
-               console.error('Error deleting section:', error.message);
-               document.getElementById('profile-message').textContent = 'Error deleting section: ' + error.message;
-           }
-       });
-
-      yearCell.classList.add('editable'); // Make year cell editable
-      yearCell.innerHTML = `${section.year} <i class="fas fa-pencil-alt edit-icon" style="margin-left: 10px;"></i>`;
-
-       // Make the year cell editable
-       yearCell.addEventListener('click', function () {
-           const input = document.createElement('input');
-           input.type = 'text';
-           input.value = section.year;
-           input.className = 'edit-input';
-           yearCell.innerHTML = '';
-           yearCell.appendChild(input);
-
-           input.focus();
-
-           input.addEventListener('blur', async function () {
-               const newYear = input.value;
+           trashIcon.addEventListener('click', async function (event) {
+               event.preventDefault();
                const URL = pythonURI + "/api/user/section";
+               // Remove the row from the table
+               tr.remove();
+
                const options = {
                    URL,
-                   body: { section: { theme: section.theme, year: newYear } },
+                   body: { sections: [section.theme] },
                    message: 'profile-message',
+                   callback: () => console.log('Section deleted')
                };
 
                try {
-                   await putUpdate(options);
+                   await deleteData(options);
                } catch (error) {
-                   console.error('Error updating year:', error.message);
-                   document.getElementById('profile-message').textContent = 'Error updating year: ' + error.message;
-               }
-
-               yearCell.textContent = newYear;
-           });
-
-           input.addEventListener('keydown', function (event) {
-               if (event.key === 'Enter') {
-                   input.blur();
+                   console.error('Error deleting section:', error.message);
+                   document.getElementById('profile-message').textContent = 'Error deleting section: ' + error.message;
                }
            });
+
+           // Add year cell if it exists
+           if (section.year) {
+               const yearCell = document.createElement('td');
+               yearCell.classList.add('editable');
+               yearCell.innerHTML = `${section.year} <i class="fas fa-pencil-alt edit-icon" style="margin-left: 10px;"></i>`;
+
+               // Make the year cell editable
+               yearCell.addEventListener('click', function () {
+                   const input = document.createElement('input');
+                   input.type = 'text';
+                   input.value = section.year;
+                   input.className = 'edit-input';
+                   yearCell.innerHTML = '';
+                   yearCell.appendChild(input);
+
+                   input.focus();
+
+                   input.addEventListener('blur', async function () {
+                       const newYear = input.value;
+                       const URL = pythonURI + "/api/user/section";
+                       const options = {
+                           URL,
+                           body: { section: { theme: section.theme, year: newYear } },
+                           message: 'profile-message',
+                           callback: () => yearCell.textContent = newYear
+                       };
+
+                       try {
+                           await putUpdate(options);
+                       } catch (error) {
+                           console.error('Error updating year:', error.message);
+                           document.getElementById('profile-message').textContent = 'Error updating year: ' + error.message;
+                       }
+                   });
+
+                   input.addEventListener('keydown', function (event) {
+                       if (event.key === 'Enter') {
+                           input.blur();
+                       }
+                   });
+               });
+               
+               tr.appendChild(yearCell);
+           }
+
+           tr.appendChild(themeCell);
+           tr.appendChild(nameCell);
+           tableBody.appendChild(tr);
        });
-       tr.appendChild(themeCell);
-       tr.appendChild(nameCell);
-
-       tableBody.appendChild(tr);
-   });
-
+   }
 }
 
 // Function to fetch user profile data
@@ -151,6 +159,8 @@ function displayUserProfile(profileData) {
         const img = document.createElement('img');
         img.src = `data:image/jpeg;base64,${profileData.pfp}`;
         img.alt = 'Profile Picture';
+        img.style.maxWidth = '200px';
+        img.style.maxHeight = '200px';
         profileImageBox.innerHTML = ''; // Clear existing content
         profileImageBox.appendChild(img); // Append new image element
     } else {
@@ -163,14 +173,19 @@ function displayUserProfile(profileData) {
 
 // Function to save profile picture
 window.saveProfilePicture = async function () {
-
     const fileInput = document.getElementById('profilePicture');
     const file = fileInput.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function() {
             const profileImageBox = document.getElementById('profileImageBox');
-            profileImageBox.innerHTML = `<img src="${reader.result}" alt="Profile Picture">`;
+            const img = document.createElement('img');
+            img.src = reader.result;
+            img.alt = 'Profile Picture';
+            img.style.maxWidth = '200px';
+            img.style.maxHeight = '200px';
+            profileImageBox.innerHTML = '';
+            profileImageBox.appendChild(img);
         };
         reader.readAsDataURL(file);
     }
@@ -181,10 +196,9 @@ window.saveProfilePicture = async function () {
         const base64String = await convertToBase64(file);
         await sendProfilePicture(base64String);
         console.log('Profile picture uploaded successfully!');
-
     } catch (error) {
         console.error('Error uploading profile picture:', error.message);
-        // Handle error display or fallback mechanism
+        document.getElementById('profile-message').textContent = 'Error uploading profile picture: ' + error.message;
     }
 }
 
@@ -209,7 +223,8 @@ async function sendProfilePicture(base64String) {
        message: 'profile-message', // Adjust the message area as needed
        callback: () => {
            console.log('Profile picture uploaded successfully!');
-           // Handle success response as needed
+           document.getElementById('profile-message').textContent = 'Profile picture uploaded successfully!';
+           document.getElementById('profile-message').style.color = 'green';
        }
    };
 
@@ -220,7 +235,8 @@ async function sendProfilePicture(base64String) {
        document.getElementById('profile-message').textContent = 'Error uploading profile picture: ' + error.message;
    }
 }
-  // Function to update UI with new UID and change placeholder
+
+// Function to update UI with new UID and change placeholder
 window.updateUidField = function(newUid) {
   const uidInput = document.getElementById('newUid');
   uidInput.value = newUid;
@@ -242,12 +258,12 @@ window.changeUid = async function(uid) {
        const options = {
            URL,
            body: { uid },
-           message: 'uid-message', // Adjust the message area as needed
+           message: 'profile-message', // Adjust the message area as needed
            callback: () => {
                alert("You updated your Github ID, so you will automatically be logged out. Be sure to remember your new github id to log in!");
                console.log('UID updated successfully!');
                window.updateUidField(uid);
-               window.location.href = '/portfolio_2025/login'
+               window.location.href = '/healthmedia/login'
            }
        };
 
@@ -255,7 +271,7 @@ window.changeUid = async function(uid) {
            await putUpdate(options);
        } catch (error) {
            console.error('Error updating UID:', error.message);
-           document.getElementById('uid-message').textContent = 'Error updating UID: ' + error.message;
+           document.getElementById('profile-message').textContent = 'Error updating UID: ' + error.message;
        }
    }
 }
@@ -267,21 +283,20 @@ window.changePassword = async function(password) {
        const options = {
            URL,
            body: { password },
-           message: 'password-message', // Adjust the message area as needed
+           message: 'profile-message', // Adjust the message area as needed
            callback: () => {
                console.log('Password updated successfully!');
-               window.location.href = '/portfolio_2025/login'
-
+               alert("You updated your password, so you will automatically be logged out. Be sure to remember your password!");
+               window.location.href = '/healthmedia/login'
            }
        };
 
        try {
-            alert("You updated your password, so you will automatically be logged out. Be sure to remember your password!");
            await putUpdate(options);
            await logoutUser();
        } catch (error) {
            console.error('Error updating password:', error.message);
-           document.getElementById('password-message').textContent = 'Error updating password: ' + error.message;
+           document.getElementById('profile-message').textContent = 'Error updating password: ' + error.message;
        }
    }
 }
@@ -293,17 +308,19 @@ window.changeName = async function(name) {
        const options = {
            URL,
            body: { name },
-           message: 'name-message',
+           message: 'profile-message',
            callback: () => {
                console.log('Name updated successfully!');
                window.updateNameField(name);
+               document.getElementById('profile-message').textContent = 'Name updated successfully!';
+               document.getElementById('profile-message').style.color = 'green';
            }
        };
        try {
            await putUpdate(options);
        } catch (error) {
            console.error('Error updating Name:', error.message);
-           document.getElementById('name-message').textContent = 'Error updating Name: ' + error.message;
+           document.getElementById('profile-message').textContent = 'Error updating Name: ' + error.message;
        }
    }
 }
@@ -311,49 +328,34 @@ window.changeName = async function(name) {
 // Event listener to trigger updateUid function when UID field is changed
 document.getElementById('newUid').addEventListener('change', function() {
     const uid = this.value;
-    window.changeUid(uid);
-
+    if (uid.trim()) {
+        window.changeUid(uid);
+    }
 });
 
 // Event listener to trigger updateName function when Name field is changed
 document.getElementById('newName').addEventListener('change', function() {
     const name = this.value;
-    window.changeName(name);
-
+    if (name.trim()) {
+        window.changeName(name);
+    }
 });
 
 document.getElementById('newPassword').addEventListener('change', function() {
     const password = this.value;
-    window.changePassword(password);
-
+    if (password.trim()) {
+        window.changePassword(password);
+    }
 });
 
-// Function to fetch Name from backend
-window.fetchName = async function() {
-    const URL = pythonURI + "/api/user"; // Adjusted endpoint
-
-    try {
-        const response = await fetch(URL, fetchOptions);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch Name: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return data.name;
-    } catch (error) {
-        console.error('Error fetching Name:', error.message);
-        return null;
-    }
-};
-
-// Function to set placeholders for UID and Name
+// Function to set placeholders for UID and Name - UPDATED TO USE IMPORTED FUNCTIONS
 window.setPlaceholders = async function() {
     const uidInput = document.getElementById('newUid');
     const nameInput = document.getElementById('newName');
 
     try {
-        const uid = await window.fetchUid();
-        const name = await window.fetchName();
+        const uid = await fetchUid();
+        const name = await fetchName();
 
         if (uid !== null) {
             uidInput.placeholder = uid;
