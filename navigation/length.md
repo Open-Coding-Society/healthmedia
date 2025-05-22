@@ -1,4 +1,4 @@
---- 
+---
 layout: post
 title: Video Length and Engagement Insights!
 permalink: /lengths
@@ -145,7 +145,7 @@ search_exclude: true
   <div class="form-container">
     <h2>Predict Engagement for a Video Length</h2>
     <form id="predictForm">
-      <label for="video_length">Video Length (seconds):</label>
+      <label for="video_length">Video Length (second):</label>
       <input type="number" id="video_length" name="video_length" required min="1" max="3600" placeholder="e.g., 60">
       <button type="submit">Predict</button>
     </form>
