@@ -1,4 +1,4 @@
----
+--- 
 layout: post
 title: Video Length and Engagement Insights!
 permalink: /lengths
@@ -28,6 +28,7 @@ search_exclude: true
     border: 3px solid #ffb3b3;
     transition: transform 0.3s ease;
   }
+
   .container:hover {
     transform: translateY(-5px);
     box-shadow: 0 16px 36px rgba(255, 102, 102, 0.5);
@@ -42,6 +43,7 @@ search_exclude: true
     position: relative;
     box-shadow: 0 4px 8px rgba(255, 102, 102, 0.5);
   }
+
   .video-icon::before {
     content: '';
     position: absolute;
@@ -92,6 +94,7 @@ search_exclude: true
     font-weight: 500;
     transition: border-color 0.3s ease;
   }
+
   input[type="number"]:focus {
     outline: none;
     border-color: #ff6666;
@@ -110,24 +113,29 @@ search_exclude: true
     box-shadow: 0 4px 12px #ff5959cc;
     transition: background 0.3s ease, transform 0.2s ease;
   }
+
   button:hover {
     background: linear-gradient(135deg, #ff4747, #ff1a1a);
     transform: scale(1.05);
   }
 
-  /* Changesd the color here to black for better readabilityk */
   #result {
     margin-top: 1.5rem;
     font-size: 1.2rem;
-    color: #000;
     font-weight: 600;
     min-height: 4rem;
     transition: color 0.3s ease;
-  }
-  #result.error {
-    color: #cc1a1a;
+    color: #000;
   }
 
+  #result p {
+    color: #000 !important;
+    margin: 0.5rem 0;
+  }
+
+  #result.error {
+    color: #cc1a1a !important;
+  }
 </style>
 
 <div class="container">
