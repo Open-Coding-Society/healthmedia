@@ -2,7 +2,7 @@ export const baseurl = "/healthmedia";
 
 export var pythonURI;
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-    pythonURI = "http://localhost:8402";  // Use port 8402 here as you requested
+    pythonURI = "http://localhost:8887";  // Use port 8402 here as you requested
 } else {
     pythonURI = "https://flask2025.nighthawkcodingsociety.com";
 }
