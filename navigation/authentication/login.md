@@ -98,7 +98,7 @@ show_reading_time: false
 </div>
 
 <script type="module">
-    import { login, pythonURI, fetchOptions } from '{{site.baseurl}}/assets/js/api/config.js';
+    import { login, pythonURI, fetchOptions } from '{{site.baseurl}}/assets/api/config.js';
 
     // Function to handle Python login
     window.pythonLogin = function() {
