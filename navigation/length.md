@@ -10,9 +10,9 @@ search_exclude: true
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
 
   body {
-    background: #fff8f0;
+    background: #f0fff8;
     font-family: 'Quicksand', sans-serif;
-    color: #444;
+    color: #003d33;
     margin: 0;
     padding: 2rem 1rem;
   }
@@ -20,28 +20,28 @@ search_exclude: true
   .container {
     max-width: 480px;
     margin: 0 auto;
-    background: #ffffff;
+    background: #e6fff5;
     border-radius: 18px;
-    box-shadow: 0 12px 28px rgba(255, 153, 153, 0.3);
+    box-shadow: 0 12px 28px rgba(0, 153, 153, 0.2);
     padding: 2.5rem 2rem;
     text-align: center;
-    border: 3px solid #ffb3b3;
+    border: 3px solid #99ffcc;
     transition: transform 0.3s ease;
   }
 
   .container:hover {
     transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(255, 102, 102, 0.5);
+    box-shadow: 0 16px 36px rgba(0, 204, 204, 0.4);
   }
 
   .video-icon {
     width: 72px;
     height: 72px;
     margin: 0 auto 1rem;
-    background: #ff6666;
+    background: #33cccc;
     border-radius: 50%;
     position: relative;
-    box-shadow: 0 4px 8px rgba(255, 102, 102, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 153, 153, 0.3);
   }
 
   .video-icon::before {
@@ -51,7 +51,7 @@ search_exclude: true
     left: 26px;
     border-style: solid;
     border-width: 14px 0 14px 24px;
-    border-color: transparent transparent transparent #fff;
+    border-color: transparent transparent transparent #e6fff5;
     filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
   }
 
@@ -59,15 +59,15 @@ search_exclude: true
     font-weight: 700;
     font-size: 2.2rem;
     margin-bottom: 1rem;
-    color: #cc4747;
-    text-shadow: 1px 1px 2px #f7d1d1;
+    color: #00796b;
+    text-shadow: 1px 1px 2px #b2dfdb;
   }
 
   .form-container h2 {
     font-weight: 600;
     font-size: 1.4rem;
     margin-bottom: 1rem;
-    color: #ff6666;
+    color: #009688;
   }
 
   form {
@@ -80,7 +80,7 @@ search_exclude: true
   label {
     font-weight: 600;
     font-size: 1.1rem;
-    color: #b34747;
+    color: #00695c;
     align-self: flex-start;
   }
 
@@ -88,7 +88,7 @@ search_exclude: true
     width: 100%;
     max-width: 260px;
     padding: 0.5rem 0.75rem;
-    border: 2px solid #ffb3b3;
+    border: 2px solid #99ffcc;
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 500;
@@ -97,12 +97,12 @@ search_exclude: true
 
   input[type="number"]:focus {
     outline: none;
-    border-color: #ff6666;
-    box-shadow: 0 0 8px #ff6666aa;
+    border-color: #33cccc;
+    box-shadow: 0 0 8px #33cccc88;
   }
 
   button {
-    background: linear-gradient(135deg, #ff8a8a, #ff4747);
+    background: linear-gradient(135deg, #66ffcc, #33cccc);
     border: none;
     color: white;
     font-weight: 700;
@@ -110,12 +110,12 @@ search_exclude: true
     padding: 0.6rem 1.8rem;
     border-radius: 20px;
     cursor: pointer;
-    box-shadow: 0 4px 12px #ff5959cc;
+    box-shadow: 0 4px 12px #33cccc88;
     transition: background 0.3s ease, transform 0.2s ease;
   }
 
   button:hover {
-    background: linear-gradient(135deg, #ff4747, #ff1a1a);
+    background: linear-gradient(135deg, #33cccc, #00b3b3);
     transform: scale(1.05);
   }
 
@@ -125,16 +125,16 @@ search_exclude: true
     font-weight: 600;
     min-height: 4rem;
     transition: color 0.3s ease;
-    color: #000;
+    color: #004d40;
   }
 
   #result p {
-    color: #000 !important;
+    color: #004d40 !important;
     margin: 0.5rem 0;
   }
 
   #result.error {
-    color: #cc1a1a !important;
+    color: #00695c !important;
   }
 </style>
 
