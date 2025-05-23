@@ -97,7 +97,7 @@ permalink: /frequencyM/
       border-radius: 8px;
       background: #eef6ff;
       font-weight: 500;
-      color: #004080;
+      color:rgb(0, 0, 0);
     }
     .challenge-box {
       margin-top: 1rem;
@@ -293,3 +293,4 @@ permalink: /frequencyM/
   </script>
 </body>
 </html>
+
