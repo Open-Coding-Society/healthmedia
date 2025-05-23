@@ -4,8 +4,11 @@ title: Photo Analysis
 permalink: /photoanalysis/
 ---
 
+
 #### Upload a photo you would like to post, and receive a prediction of how many likes it will get (media performance)!
 
+
+<div markdown="0">
 <head>
   <title>Photo Upload - Predict Likes</title>
   <style>
@@ -47,12 +50,13 @@ permalink: /photoanalysis/
   </style>
 </head>
 
+
 <body>
   <div class="container">
     <h2>Upload a Photo to Predict Likes</h2>
     <input type="file" accept="image/*" id="photoInput" />
     <img id="preview" />
-    <button onclick="predictLikes()">Predict</button>
+    <button id="predictButton">Predict</button>
     <div class="results" id="results"></div>
     <hr />
     <div class="results" id="logs">
@@ -61,11 +65,14 @@ permalink: /photoanalysis/
     </div>
   </div>
 
+
   <script>
     const preview = document.getElementById('preview');
     const input = document.getElementById('photoInput');
     const results = document.getElementById('results');
     const logList = document.getElementById('logList');
+    const predictButton = document.getElementById('predictButton');
+
 
     // Preview uploaded photo
     input.addEventListener('change', function () {
@@ -81,6 +88,11 @@ permalink: /photoanalysis/
       }
     });
 
+
+    // Add event listener to the button
+    predictButton.addEventListener('click', predictLikes);
+
+
     // Send photo to backend and display predicted likes
     async function predictLikes() {
       const file = input.files[0];
@@ -89,8 +101,10 @@ permalink: /photoanalysis/
         return;
       }
 
+
       const formData = new FormData();
       formData.append('image', file);
+
 
       try {
         const res = await fetch('http://localhost:5001/api/predict-likes', {
@@ -98,12 +112,15 @@ permalink: /photoanalysis/
           body: formData
         });
 
+
         const data = await res.json();
+
 
         if (data.error) {
           results.innerHTML = `<span style="color:red;">Error: ${data.error}</span>`;
           return;
         }
+
 
         // Show results
         results.innerHTML = `
@@ -111,10 +128,11 @@ permalink: /photoanalysis/
           <strong>Rating Score:</strong> ${data.rating_score.toFixed(2)}%<br>
           <strong>Performance:</strong> <span style="font-weight:bold; color:${
             data.rating_label === 'Excellent' ? '#2e7d32' :
-            data.rating_label === 'Good' ? '1565c0' :
-            data.rating_label === 'Moderate' ? '#ef6c00' : 
+            data.rating_label === 'Good' ? '#1565c0' :
+            data.rating_label === 'Moderate' ? '#ef6c00' : '#757575'
           }">${data.rating_label}</span>
         `;
+
 
         // Add to log
         const logItem = document.createElement('li');
@@ -123,6 +141,7 @@ permalink: /photoanalysis/
         `;
         logList.prepend(logItem); // Add to top
 
+
       } catch (err) {
         console.error('Error contacting backend:', err);
         results.innerHTML = `<span style="color:red;">Unable to contact prediction server.</span>`;
@@ -130,4 +149,9 @@ permalink: /photoanalysis/
     }
   </script>
 </body>
+</div>
+
+
+
+
 
