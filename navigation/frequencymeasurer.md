@@ -95,9 +95,9 @@ permalink: /frequencyM/
       margin-top: 1rem;
       padding: 1rem;
       border-radius: 8px;
-      background:rgb(24, 24, 26);
+      background:rgb(9, 135, 78);
       font-weight: 500;
-      color:rgb(1, 1, 1);
+      color:rgb(238, 230, 230);
     }
     .challenge-box {
       margin-top: 1rem;
