@@ -1,7 +1,7 @@
 ---
 layout: post
-title: About the park 
-permalink: aboutthepark/home/
+title: About Legoland California 
+permalink: aboutlegolandcalifornia/home/
 ---
 <html lang="en">
 <head>
