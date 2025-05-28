@@ -11,7 +11,7 @@ body {
     font-family: 'Poppins', sans-serif !important;
     background: #ffffff;
     background-color: #dadada;
-    color: #dadada;
+    color: #2e2e2e;
     min-height: 100vh;
     overflow-x: hidden;
     display: flex;
@@ -24,12 +24,16 @@ code{
 }
 
 p,li,span{
-    color:#000000;
+    color:#0e0e0e;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Poppins', sans-serif !important;
     color: #000000;
+}
+h1{
+    background-color: rgb(255, 235, 155);
+    border-radius: 10px;
 }
 
 /* Header */
