@@ -59,7 +59,7 @@ hide: true
   }
 
   .feature {
-    background-color: #f7f7f7; /* Light background for each feature */
+    background-color:rgb(255, 235, 155); /* Light background for each feature */
     border: 2px solid #f1c232; /* Light Lego yellow border */
     padding: 20px;
     border-radius: 12px;
