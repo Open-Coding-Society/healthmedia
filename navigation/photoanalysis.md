@@ -107,7 +107,7 @@ permalink: /photoanalysis/
 
 
       try {
-        const res = await fetch('http://localhost:5001/api/predict-likes', {
+        const res = await fetch('http://localhost:8887/api/predict-likes', {
           method: 'POST',
           body: formData
         });

@@ -12,7 +12,7 @@ permalink: sentiment/analysis/
     <div class="input-section">
         <h2>Upload CSV File</h2>
         <div class="input-group">
-            <label for="csv-file">Upload CSV file containing comments:</label>
+            <label for="csv-file">Upload CSV file containing comments: This can be obtained at the website https://easycomment.ai/en/export-instagram-comments. Enter the instagram post shortcode.</label>
             <input type="file" id="csv-file" accept=".csv" />
             <small>CSV format: Name,ProfileUrl,ProfileId,Avatar,Comment,Likes,Date</small>
         </div>
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let sentimentChart = null;
     
     // Replace with your actual backend URL
-    const API_BASE_URL = 'http://127.0.0.1:5001';  // Updated to match your backend URL
+    const API_BASE_URL = 'http://127.0.0.1:8887';  // Updated to match your backend URL
     
     // Test API connection
     async function testAPIConnection() {
