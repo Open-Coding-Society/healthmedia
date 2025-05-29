@@ -1,183 +1,269 @@
 ---
 layout: post
-title: Video Length and Engagement Insights!
+title: Video Length & Engagement Analysis
 permalink: /lengths
 menu: nav/home.html
 search_exclude: true
 ---
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
+<style>
   body {
-    background: #f0fff8;
+    background: #f9fcfb;
     font-family: 'Quicksand', sans-serif;
-    color: #003d33;
-    margin: 0;
+    color: #004d40;
     padding: 2rem 1rem;
   }
 
   .container {
-    max-width: 480px;
-    margin: 0 auto;
-    background: #e6fff5;
-    border-radius: 18px;
-    box-shadow: 0 12px 28px rgba(0, 153, 153, 0.2);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    border: 3px solid #99ffcc;
-    transition: transform 0.3s ease;
-  }
-
-  .container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(0, 204, 204, 0.4);
-  }
-
-  .video-icon {
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 1rem;
-    background: #33cccc;
-    border-radius: 50%;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 153, 153, 0.3);
-  }
-
-  .video-icon::before {
-    content: '';
-    position: absolute;
-    top: 22px;
-    left: 26px;
-    border-style: solid;
-    border-width: 14px 0 14px 24px;
-    border-color: transparent transparent transparent #e6fff5;
-    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+    max-width: 700px;
+    margin: auto;
+    background: #e0f2f1;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 150, 136, 0.2);
+    padding: 2rem;
   }
 
   h1 {
-    font-weight: 700;
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
     color: #00796b;
-    text-shadow: 1px 1px 2px #b2dfdb;
-  }
-
-  .form-container h2 {
-    font-weight: 600;
-    font-size: 1.4rem;
+    text-align: center;
+    font-size: 2.4rem;
     margin-bottom: 1rem;
-    color: #009688;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
+    margin-bottom: 2rem;
   }
 
   label {
     font-weight: 600;
-    font-size: 1.1rem;
-    color: #00695c;
-    align-self: flex-start;
   }
 
   input[type="number"] {
-    width: 100%;
-    max-width: 260px;
-    padding: 0.5rem 0.75rem;
-    border: 2px solid #99ffcc;
+    padding: 0.6rem;
+    border: 2px solid #80cbc4;
     border-radius: 12px;
     font-size: 1rem;
-    font-weight: 500;
-    transition: border-color 0.3s ease;
-  }
-
-  input[type="number"]:focus {
-    outline: none;
-    border-color: #33cccc;
-    box-shadow: 0 0 8px #33cccc88;
+    color: black !important;
   }
 
   button {
-    background: linear-gradient(135deg, #66ffcc, #33cccc);
-    border: none;
+    background: #26a69a;
     color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 0.6rem 1.8rem;
-    border-radius: 20px;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 12px;
+    font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 12px #33cccc88;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease;
   }
 
   button:hover {
-    background: linear-gradient(135deg, #33cccc, #00b3b3);
-    transform: scale(1.05);
+    background: #009688;
   }
 
-  #result {
+  #results {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: black !important;
+  }
+
+  #results h2 {
     margin-top: 1.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    min-height: 4rem;
-    transition: color 0.3s ease;
+    margin-bottom: 0.5rem;
     color: #004d40;
   }
 
-  #result p {
-    color: #004d40 !important;
-    margin: 0.5rem 0;
+  .metric {
+    margin-bottom: 0.4rem;
   }
 
-  #result.error {
-    color: #00695c !important;
+  canvas {
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+
+  /* FORCE ALL TEXT INSIDE #RESULTS TO BE BLACK */
+  #results, #results * {
+    color: black !important;
   }
 </style>
 
 <div class="container">
-  <div class="video-icon"></div>
-  <h1>Explore Video Length and Engagement Insights!</h1>
+  <h1>📊 Predict Video Engagement</h1>
 
-  <div class="form-container">
-    <h2>Predict Engagement for a Video Length</h2>
-    <form id="predictForm">
-      <label for="video_length">Video Length (second):</label>
-      <input type="number" id="video_length" name="video_length" required min="1" max="3600" placeholder="e.g., 60">
-      <button type="submit">Predict</button>
-    </form>
-    <div id="result"></div>
+  <form id="predictForm" aria-label="Video length input form">
+    <label for="video_length">Enter video length (seconds):</label>
+    <input 
+      type="number" 
+      id="video_length" 
+      min="1" max="3600" 
+      placeholder="e.g. 60" 
+      required 
+      aria-required="true"
+    >
+    <button type="submit" aria-label="Analyze video engagement">Analyze</button>
+  </form>
+
+  <div id="results" style="display:none;" aria-live="polite" aria-atomic="true">
+    <!-- Results and charts will appear here -->
   </div>
 </div>
 
-<script type="module">
-  const URL = "http://127.0.0.1:8887/api/lengths";
+<!-- Load Chart.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  document.getElementById('predictForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    const videoLength = parseInt(document.getElementById('video_length').value);
-    const resultDiv = document.getElementById('result');
-    resultDiv.textContent = 'Loading...';
+<script type="module">
+  const API_URL = "http://127.0.0.1:8887/api/lengths/predict";
+  const form = document.getElementById("predictForm");
+  const resultsDiv = document.getElementById("results");
+  let engagementChart, sentimentChart;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const lengthInput = document.getElementById("video_length");
+    const length = lengthInput.value.trim();
+
+    if (!length || length < 1 || length > 3600) {
+      resultsDiv.style.display = "block";
+      resultsDiv.innerHTML = `<p style="color:red;">❌ Please enter a valid video length between 1 and 3600 seconds.</p>`;
+      return;
+    }
+
+    resultsDiv.style.display = "block";
+    resultsDiv.innerHTML = "<p>Loading...</p>";
 
     try {
-      const response = await fetch(`${URL}/predict?video_length_seconds=${videoLength}`);
-      if (!response.ok) throw new Error('Failed to get prediction');
+      const response = await fetch(`${API_URL}?video_length_seconds=${length}`);
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
       const data = await response.json();
 
-      resultDiv.innerHTML = `
-        <p><strong>Input Length:</strong> ${data.input_length} seconds</p>
-        <p><strong>Closest Match:</strong> ${data.closest_match_length} seconds</p>
-        <p><strong>Predicted Engagement:</strong> ${data.predicted_engagement}</p>
+      if (data.error) throw new Error(data.error);
+
+      // Build HTML results summary
+      const summaryHTML = `
+        <h2>Engagement Overview</h2>
+        <p class="metric"><strong>Closest Match:</strong> ${data.closest_match} sec</p>
+        <p class="metric"><strong>Engagement Quality:</strong> ${data.engagement_quality}</p>
+        <p class="metric"><strong>Views:</strong> ${data.views.toLocaleString()}</p>
+        <p class="metric"><strong>Likes:</strong> ${data.likes.toLocaleString()}</p>
+        <p class="metric"><strong>Comments:</strong> ${data.comments.toLocaleString()}</p>
+        <p class="metric"><strong>Watch Time:</strong> ${data.watch_time_seconds} sec</p>
+
+        <h2>Audience Metrics</h2>
+        <p class="metric"><strong>Retention:</strong> ${data.avg_retention_percent}%</p>
+        <p class="metric"><strong>Drop-off Rate:</strong> ${data.drop_off_rate}%</p>
+
+        <h2>Performance</h2>
+        <p class="metric"><strong>Click-Through Rate (CTR):</strong> ${data.click_through_rate_percent}%</p>
+        <p class="metric"><strong>Weekly Views Increase:</strong> ${data.avg_weekly_views_increase}</p>
+        <p class="metric"><strong>Share Rate:</strong> ${data.share_rate_percent}%</p>
+
+        <h2>Metadata</h2>
+        <p class="metric"><strong>Tags:</strong> ${data.tags || "N/A"}</p>
+        <p class="metric"><strong>Category:</strong> ${data.category || "N/A"}</p>
+        <p class="metric"><strong>Thumbnail CTR:</strong> ${data.thumbnail_click_rate_percent}%</p>
+        <p class="metric"><strong>Contains Hook:</strong> ${data.contains_hook ? "Yes" : "No"}</p>
       `;
-      resultDiv.classList.remove('error');
+
+      // Sentiment HTML summary
+      const sentimentHTML = `
+        <h2>Sentiment Summary</h2>
+        <canvas id="sentimentChart" aria-label="Sentiment distribution chart" role="img"></canvas>
+      `;
+
+      // Engagement metrics chart
+      const engagementHTML = `
+        <h2>Engagement Metrics Chart</h2>
+        <canvas id="engagementChart" aria-label="Engagement metrics chart" role="img"></canvas>
+      `;
+
+      resultsDiv.innerHTML = summaryHTML + sentimentHTML + engagementHTML;
+
+      // Setup Sentiment Pie Chart
+      const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+      if (sentimentChart) sentimentChart.destroy();
+      sentimentChart = new Chart(sentimentCtx, {
+        type: 'pie',
+        data: {
+          labels: ['Positive 👍', 'Neutral 😐', 'Negative 👎'],
+          datasets: [{
+            data: [
+              data.sentiment.positive || 0,
+              data.sentiment.neutral || 0,
+              data.sentiment.negative || 0
+            ],
+            backgroundColor: ['#4caf50', '#ffc107', '#f44336'],
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: {
+              display: false,
+              text: 'Sentiment Distribution'
+            }
+          }
+        }
+      });
+
+      // Setup Engagement Bar Chart
+      const engagementCtx = document.getElementById('engagementChart').getContext('2d');
+      if (engagementChart) engagementChart.destroy();
+      engagementChart = new Chart(engagementCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Views', 'Likes', 'Comments', 'Watch Time (sec)', 'Retention %', 'Drop-off %', 'CTR %', 'Share Rate %'],
+          datasets: [{
+            label: 'Metrics',
+            data: [
+              data.views,
+              data.likes,
+              data.comments,
+              data.watch_time_seconds,
+              data.avg_retention_percent,
+              data.drop_off_rate,
+              data.click_through_rate_percent,
+              data.share_rate_percent
+            ],
+            backgroundColor: '#26a69a'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                // Format big numbers nicely
+                callback: function(value) {
+                  if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                  if (value >= 1000) return (value / 1000).toFixed(1) + 'K';
+                  return value;
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: false,
+            }
+          }
+        }
+      });
+
     } catch (error) {
-      console.error('Error:', error);
-      resultDiv.textContent = 'Error fetching prediction. Try again!';
-      resultDiv.classList.add('error');
+      resultsDiv.innerHTML = `<p style="color:red;">❌ Error: ${error.message}</p>`;
+      console.error(error);
     }
   });
 </script>
