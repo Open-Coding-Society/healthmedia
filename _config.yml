@@ -16,31 +16,14 @@ header_pages:
 - navigation/aboutus.md
 - navigation/mainhome.md
 - navigation/teamteach/mainhome.md
-- navigation/hashtaganalysis.md
-- navigation/photoanalysis.md
-- navigation/timeofday.md
-- navigation/frequencymeasurer.md
-- navigation/sentiment_analysis.md
-- navigation/length.md
 - navigation/blog.md
 - navigation/search.md
-
-defaults:
-  - scope:
-      path: ""
-    values: 
-      layout: default
 
 # Site author
 author:
   name: LEGOLAND Analytics Team
   email: team@legolandanalytics.com
 
-# Social media links
-social:
-  github: your-github-username
-  twitter: legolandca
-  instagram: legolandca
 
 # SEO settings
 lang: en
