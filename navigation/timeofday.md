@@ -15,7 +15,7 @@ permalink: /timeofday/
       border-radius: 25px;
     }
 
-    input {
+    select {
       border-radius: 25px;
       padding: 5px;
     }
@@ -29,10 +29,12 @@ permalink: /timeofday/
 <body>
   <h1>Posting Time Of Day</h1>
 
-  <!-- Time Input UI -->
+  <!-- Time Selection UI -->
   <div class="container">
     <label for="timeInput"><strong>Select Time of Day:</strong></label><br><br>
-    <input type="time" id="timeInput" name="timeInput">
+    <select id="timeInput" name="timeInput">
+      <option value="">-- Select Hour --</option>
+    </select>
     <div id="estimateContainer" style="display:none;">
       <p><strong>Estimated Likes/Views:</strong> <span id="estimateOutput">...</span></p>
     </div>
@@ -71,16 +73,34 @@ permalink: /timeofday/
   <script type="module">
     let hourlyAverages = {};
 
-    // Fetch hourly averages once and store them
+    function formatHour(hour) {
+      const h = parseInt(hour);
+      const period = h >= 12 ? 'PM' : 'AM';
+      const formattedHour = h % 12 === 0 ? 12 : h % 12;
+      return `${formattedHour} ${period}`;
+    }
+
+    function populateDropdown(averages) {
+      const select = document.getElementById('timeInput');
+      const sortedHours = Object.keys(averages).map(h => parseInt(h)).sort((a, b) => a - b);
+
+      sortedHours.forEach(hour => {
+        const option = document.createElement('option');
+        option.value = hour;
+        option.textContent = formatHour(hour);
+        select.appendChild(option);
+      });
+    }
+
     fetch('http://127.0.0.1:8887/api/optimaltime')
       .then(response => response.json())
       .then(data => {
         hourlyAverages = data.hourly_averages;
 
-        const tableBody = document.querySelector('#averagesTable tbody');
-        const averages = hourlyAverages;
+        populateDropdown(hourlyAverages);
 
-        const averageEntries = Object.entries(averages).map(([hour, avg]) => [parseInt(hour), avg]);
+        const tableBody = document.querySelector('#averagesTable tbody');
+        const averageEntries = Object.entries(hourlyAverages).map(([hour, avg]) => [parseInt(hour), avg]);
 
         const top3 = [...averageEntries].sort((a, b) => b[1] - a[1]).slice(0, 3);
         const rankings = ["1st", "2nd", "3rd"];
@@ -104,9 +124,7 @@ permalink: /timeofday/
 
         document.querySelector('h1:nth-of-type(2)').after(topList);
 
-        const sortedHours = averageEntries.sort((a, b) => a[0] - b[0]);
-
-        sortedHours.forEach(([hour, avg]) => {
+        averageEntries.sort((a, b) => a[0] - b[0]).forEach(([hour, avg]) => {
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${formatHour(hour)}</td>
@@ -142,30 +160,19 @@ permalink: /timeofday/
         console.error('Error loading posts table:', error);
       });
 
-    function formatHour(hour) {
-      const h = parseInt(hour);
-      const period = h >= 12 ? 'PM' : 'AM';
-      const formattedHour = h % 12 === 0 ? 12 : h % 12;
-      return `${formattedHour} ${period}`;
-    }
-
-    // Time input -> show estimate
+    // Show estimated likes/views when hour is selected
     const timeInput = document.getElementById('timeInput');
     const estimateContainer = document.getElementById('estimateContainer');
     const estimateOutput = document.getElementById('estimateOutput');
 
     timeInput.addEventListener('change', () => {
-      const time = timeInput.value;
-      if (!time) return;
-
-      const hour = parseInt(time.split(':')[0]);
-      if (hour in hourlyAverages) {
+      const hour = parseInt(timeInput.value);
+      if (!isNaN(hour) && hour in hourlyAverages) {
         const estimate = hourlyAverages[hour];
         estimateOutput.textContent = estimate.toFixed(2);
         estimateContainer.style.display = 'block';
       } else {
-        estimateOutput.textContent = 'No data';
-        estimateContainer.style.display = 'block';
+        estimateContainer.style.display = 'none';
       }
     });
   </script>
