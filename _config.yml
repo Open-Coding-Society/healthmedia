@@ -1,7 +1,7 @@
 # Fixed _config.yml
 title: LEGOLAND Media Analytics
-github_repo: "legoland-media" 
-baseurl: "/legoland-media"
+github_repo: "healthmedia" 
+baseurl: "/healthmedia"
 description: "Social Media Analytics for LEGOLAND California"
 future: true
 remote_theme: jekyll/minima
