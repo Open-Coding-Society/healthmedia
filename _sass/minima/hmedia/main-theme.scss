@@ -163,24 +163,20 @@ tr:nth-child(even):hover {
 
 /* Responsive Navigation */
 .site-header {
-    background: rgba(171, 171, 171, 0.297);
-    box-shadow: 0px 2px 5px rgba(52, 52, 52, 0.274);
-    z-index: 1000;
-    position: fixed;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 5%;
-    flex-wrap: wrap;
+  background: rgba(171, 171, 171, 0.297);
+  box-shadow: 0px 2px 5px rgba(52, 52, 52, 0.274);
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .site-nav {
-    position:absolute;
-    display: inline-block;
-    flex-wrap: wrap;
-    float: right !important;
-    background-color: #00000000;
-    padding-right: 1%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .drawer-container{
@@ -224,6 +220,27 @@ tr:nth-child(even):hover {
     text-decoration: none !important;
 }
 
+.wrapper.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  min-width: 120px;
+}
 
 
 .hero {
