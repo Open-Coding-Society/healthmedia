@@ -147,7 +147,7 @@ search_exclude: true
 
       if (data.error) throw new Error(data.error);
 
-      // Build HTML results summary
+      // Build HTML results summary!
       const summaryHTML = `
         <h2>Engagement Overview</h2>
         <p class="metric"><strong>Closest Match:</strong> ${data.closest_match} sec</p>
