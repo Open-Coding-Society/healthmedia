@@ -218,11 +218,6 @@ body, html {
     </div>
   </a>
 
-  <a href="{{site.baseurl}}/frequencyM" class="feature-link">
-    <div class="feature">
-      <h3>Post Frequency</h3>
-      <p>Tracks how often posts are made and correlates this frequency with user engagement, helping to identify the best posting cadence.</p>
-      </div>
-      </a>
+
 </section>
 
