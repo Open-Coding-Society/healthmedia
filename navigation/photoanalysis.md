@@ -161,7 +161,7 @@ permalink: /photoanalysis/
      <div id="ratingExplanation" data-aos="fade-up">
       <strong>***What does Rating Score mean?</strong><br>
       This score compares your photo’s predicted likes to the average in our dataset.<br>
-      <strong>100%</strong> = average performance. Higher is better, lower means fewer expected likes. Based on Legoland California's previous posted photos on Instagram, the average number of likes was 1122 likes per post.
+      <strong>100%</strong> = average performance. Higher is better, lower means fewer expected likes. Based on Legoland California's previous posted photos on Instagram, the average number of likes was 1127 likes per post.
     </div>
 
   </div>
