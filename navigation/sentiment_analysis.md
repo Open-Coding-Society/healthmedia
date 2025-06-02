@@ -12,7 +12,7 @@ permalink: sentiment/analysis/
     <div class="input-section">
         <h2>Upload CSV File</h2>
         <div class="input-group">
-            <label for="csv-file">Upload CSV file containing comments: This can be obtained at the website https://easycomment.ai/en/export-instagram-comments. Enter the instagram post shortcode.</label>
+            <label for="csv-file">Upload CSV file containing comments: This can be obtained at the website https://easycomment.ai/en/export-instagram-comments. Enter the instagram post shortcode Example: Instagram.com/p/DKSeWbvy9rU, DKSeWbvy9rU would be the shortcode..</label>
             <input type="file" id="csv-file" accept=".csv" />
             <small>CSV format: Name,ProfileUrl,ProfileId,Avatar,Comment,Likes,Date</small>
         </div>
