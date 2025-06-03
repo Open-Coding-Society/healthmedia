@@ -4,12 +4,11 @@ title: About Legoland California
 permalink: aboutlegolandcalifornia/home/
 ---
 <html lang="en">
-<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LEGOLAND California</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  </head>
+  
 <body class="bg-yellow-50 font-sans text-gray-800">
   <div class="max-w-6xl mx-auto px-4 py-10">
     

@@ -5,7 +5,7 @@ permalink: /hashtaganalysis/
 ---
 
 <html lang="en">
-<head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hashtag Engagement Analyzer</title>
@@ -62,9 +62,9 @@ permalink: /hashtaganalysis/
       transform: translateX(-50%);
     }
   </style>
-</head>
 
-<body>
+
+
   <div class="container">
     <h2>Hashtag Engagement Analyzer</h2>
     <textarea id="hashtagInput" rows="4">#legoland #legolandcalifornia #buildthefun #familyadventure #themeparkfun #miniland #bricklife</textarea>
@@ -140,5 +140,5 @@ permalink: /hashtaganalysis/
       }
     }
   </script>
-</body>
+
 </html>

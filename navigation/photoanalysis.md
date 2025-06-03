@@ -125,7 +125,7 @@ permalink: /photoanalysis/
   </style>
 </head>
 
-<body>
+
   <div class="container">
     <h2 data-aos="fade-down">Upload a Photo to Predict Likes</h2>
 
@@ -349,5 +349,5 @@ permalink: /photoanalysis/
       document.body.removeChild(link);
     }
   </script>
-</body>
+
 
