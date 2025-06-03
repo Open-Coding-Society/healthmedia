@@ -4,10 +4,8 @@ title: Social Media Engagement Analyzer
 permalink: /timeofday/
 ---
 
-<head>
-  <title>Social Media Engagement Analyzer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to bottom right, #f0f8ff, #e6f7ff);
@@ -38,6 +36,10 @@ permalink: /timeofday/
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
+    }
+
+    .full-width-section {
+      grid-column: 1 / -1;
     }
 
     .section {
@@ -194,9 +196,87 @@ permalink: /timeofday/
       margin-bottom: 1rem;
     }
 
-    .tip-list {
+    /* Post Length Analysis Styles */
+    .post-length-section {
+      margin-top: 2rem;
+    }
+
+    .length-display {
+      background: #f0f8ff;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .prediction-result {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .prediction-score {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .prediction-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .length-insights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .insight-card {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      border-left: 4px solid #0074d9;
+    }
+
+    .insight-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0074d9;
+    }
+
+    .insight-label {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.25rem;
+    }
+
+    .recommendations {
+      background: #e8f5e8;
+      border: 1px solid #c3e6c3;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .recommendations h4 {
+      color: #2d5a2d;
+      margin-bottom: 0.75rem;
+    }
+
+    .recommendations ul {
+      margin: 0;
       padding-left: 1.2rem;
-      margin-top: 0.5rem;
+    }
+
+    .recommendations li {
+      color: #2d5a2d;
+      margin-bottom: 0.5rem;
     }
 
     .button-row {
@@ -235,9 +315,8 @@ permalink: /timeofday/
       }
     }
   </style>
-</head>
 
-<body>
+
   <div class="main-header">
     <h1>📊 Social Media Engagement Analyzer</h1>
     <p>Optimize your posting strategy with time analysis and frequency tracking</p>
@@ -321,6 +400,91 @@ permalink: /timeofday/
       </div>
 
       <div class="challenge-box" id="challengeBox" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- Post Length Analysis Section -->
+  <div class="container">
+    <div class="section full-width-section post-length-section">
+      <h2>🎬 Video Post Length Analysis</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+        <div>
+          <label for="videoLength"><strong>Video Length (seconds):</strong></label>
+          <input type="number" id="videoLength" min="1" max="3600" placeholder="Enter video duration in seconds" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; box-sizing: border-box;">
+          
+          <label for="videoType"><strong>Video Type:</strong></label>
+          <select id="videoType" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; box-sizing: border-box;">
+            <option value="story">Story/Short</option>
+            <option value="reel">Reel</option>
+            <option value="post">Regular Post</option>
+            <option value="igtv">IGTV/Long Form</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="platform"><strong>Platform:</strong></label>
+          <select id="platform" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; box-sizing: border-box;">
+            <option value="instagram">Instagram</option>
+            <option value="tiktok">TikTok</option>
+            <option value="youtube">YouTube Shorts</option>
+            <option value="twitter">Twitter</option>
+            <option value="facebook">Facebook</option>
+          </select>
+          
+          <div class="length-display">
+            <strong>Duration: </strong><span id="durationDisplay">0:00</span>
+          </div>
+        </div>
+      </div>
+
+      <button id="analyzeBtn" type="button" style="width: 100%; background-color: #667eea; margin-bottom: 1.5rem;">Analyze Video Engagement Potential</button>
+
+      <div id="predictionResult" style="display:none;">
+        <div class="prediction-result">
+          <div class="prediction-score" id="engagementScore">-</div>
+          <div class="prediction-label">Predicted Engagement Score</div>
+        </div>
+
+        <div class="length-insights">
+          <div class="insight-card">
+            <div class="insight-value" id="optimalRange">-</div>
+            <div class="insight-label">Optimal Length Range</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-value" id="currentCategory">-</div>
+            <div class="insight-label">Video Category</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-value" id="completionRate">-</div>
+            <div class="insight-label">Est. Completion Rate</div>
+          </div>
+        </div>
+
+        <div class="recommendations" id="recommendationsBox">
+          <h4>💡 Video Length Optimization Tips</h4>
+          <ul id="recommendationsList">
+            <!-- Recommendations will be populated here -->
+          </ul>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <h3>📊 Historical Video Performance by Length</h3>
+          <table id="videoStatsTable" style="width: 100%; margin-top: 1rem;">
+            <thead>
+              <tr>
+                <th>Length Range</th>
+                <th>Avg Engagement</th>
+                <th>Completion Rate</th>
+                <th>Best Performing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -586,5 +750,188 @@ permalink: /timeofday/
     btnNo.addEventListener("click", () => {
       hideTips();
     });
+
+    // Video Post Length Analysis Logic
+    const videoLength = document.getElementById('videoLength');
+    const videoType = document.getElementById('videoType');
+    const platform = document.getElementById('platform');
+    const durationDisplay = document.getElementById('durationDisplay');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const predictionResult = document.getElementById('predictionResult');
+    const engagementScore = document.getElementById('engagementScore');
+    const optimalRange = document.getElementById('optimalRange');
+    const currentCategory = document.getElementById('currentCategory');
+    const completionRate = document.getElementById('completionRate');
+    const recommendationsList = document.getElementById('recommendationsList');
+    const videoStatsTable = document.getElementById('videoStatsTable');
+
+    // Real-time duration display update
+    videoLength.addEventListener('input', () => {
+      const seconds = parseInt(videoLength.value) || 0;
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      durationDisplay.textContent = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    });
+
+    // Platform-specific video length analysis
+    function analyzeVideoLength(length, type, platformType) {
+      if (!length || length <= 0) return null;
+
+      let score, category, optimal, completion, recommendations;
+      
+      // Platform-specific optimal lengths based on research
+      const platformOptimal = {
+        'instagram': {
+          'story': { min: 7, max: 15, optimal: 10 },
+          'reel': { min: 15, max: 30, optimal: 21 },
+          'post': { min: 30, max: 60, optimal: 45 },
+          'igtv': { min: 60, max: 600, optimal: 120 }
+        },
+        'tiktok': {
+          'story': { min: 9, max: 15, optimal: 12 },
+          'reel': { min: 15, max: 30, optimal: 24 },
+          'post': { min: 15, max: 60, optimal: 30 },
+          'igtv': { min: 60, max: 180, optimal: 90 }
+        },
+        'youtube': {
+          'story': { min: 15, max: 60, optimal: 30 },
+          'reel': { min: 15, max: 60, optimal: 40 },
+          'post': { min: 30, max: 60, optimal: 45 },
+          'igtv': { min: 60, max: 300, optimal: 120 }
+        },
+        'twitter': {
+          'story': { min: 6, max: 20, optimal: 12 },
+          'reel': { min: 6, max: 140, optimal: 45 },
+          'post': { min: 6, max: 140, optimal: 30 },
+          'igtv': { min: 60, max: 140, optimal: 90 }
+        },
+        'facebook': {
+          'story': { min: 10, max: 30, optimal: 20 },
+          'reel': { min: 15, max: 90, optimal: 60 },
+          'post': { min: 30, max: 240, optimal: 90 },
+          'igtv': { min: 60, max: 1200, optimal: 300 }
+        }
+      };
+
+      const optimalData = platformOptimal[platformType][type];
+      const optimalLength = optimalData.optimal;
+      const minLength = optimalData.min;
+      const maxLength = optimalData.max;
+
+      // Calculate engagement score based on distance from optimal
+      const distanceFromOptimal = Math.abs(length - optimalLength);
+      const maxDistance = Math.max(optimalLength - minLength, maxLength - optimalLength);
+      score = Math.max(40, 100 - (distanceFromOptimal / maxDistance) * 60);
+
+      // Determine category
+      if (length < minLength) {
+        category = "Too Short";
+        completion = "95%";
+      } else if (length <= optimalLength * 1.2) {
+        category = "Optimal";
+        completion = "85%";
+      } else if (length <= maxLength) {
+        category = "Long";
+        completion = "70%";
+      } else {
+        category = "Too Long";
+        completion = "45%";
+      }
+
+      optimal = `${minLength}-${maxLength}s (ideal: ${optimalLength}s)`;
+
+      // Generate platform and length-specific recommendations
+      recommendations = [];
+      
+      if (length < minLength) {
+        recommendations.push(`Extend video to at least ${minLength} seconds for better ${platformType} performance`);
+        recommendations.push("Add more content or slow down pacing to reach optimal length");
+      } else if (length > maxLength) {
+        recommendations.push(`Consider shortening to under ${maxLength} seconds for ${platformType}`);
+        recommendations.push("Break longer content into multiple parts or series");
+      } else {
+        recommendations.push(`Great length for ${platformType} ${type}! This should perform well`);
+      }
+
+      // Add platform-specific tips
+      if (platformType === 'tiktok') {
+        recommendations.push("Hook viewers in first 3 seconds for TikTok algorithm");
+      } else if (platformType === 'instagram' && type === 'reel') {
+        recommendations.push("Use trending audio and quick cuts for Instagram Reels");
+      } else if (platformType === 'youtube') {
+        recommendations.push("Optimize for watch time and retention for YouTube algorithm");
+      }
+
+      return { score: Math.round(score), category, optimal, completion, recommendations };
+    }
+
+    // Historical video performance data (would normally come from API)
+    function populateVideoStats(platformType) {
+      const statsData = {
+        'instagram': [
+          { range: '7-15s', engagement: '8.2%', completion: '92%', bestPerforming: 'Stories' },
+          { range: '15-30s', engagement: '12.4%', completion: '85%', bestPerforming: 'Reels' },
+          { range: '30-60s', engagement: '9.1%', completion: '72%', bestPerforming: 'Posts' },
+          { range: '60s+', engagement: '6.8%', completion: '58%', bestPerforming: 'IGTV' }
+        ],
+        'tiktok': [
+          { range: '9-15s', engagement: '14.2%', completion: '89%', bestPerforming: 'Quick hits' },
+          { range: '15-30s', engagement: '18.7%', completion: '81%', bestPerforming: 'Trends' },
+          { range: '30-60s', engagement: '11.3%', completion: '65%', bestPerforming: 'Tutorials' },
+          { range: '60s+', engagement: '7.9%', completion: '45%', bestPerforming: 'Storytelling' }
+        ],
+        'youtube': [
+          { range: '15-30s', engagement: '9.8%', completion: '88%', bestPerforming: 'Shorts' },
+          { range: '30-60s', engagement: '13.2%', completion: '79%', bestPerforming: 'Quick tips' },
+          { range: '60-120s', engagement: '10.4%', completion: '68%', bestPerforming: 'How-tos' },
+          { range: '120s+', engagement: '8.1%', completion: '52%', bestPerforming: 'Deep dives' }
+        ]
+      };
+
+      const data = statsData[platformType] || statsData['instagram'];
+      const tbody = videoStatsTable.querySelector('tbody');
+      tbody.innerHTML = '';
+      
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row.range}</td>
+          <td>${row.engagement}</td>
+          <td>${row.completion}</td>
+          <td>${row.bestPerforming}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    analyzeBtn.addEventListener('click', () => {
+      const length = parseInt(videoLength.value);
+      const type = videoType.value;
+      const platformType = platform.value;
+      
+      if (!length || length <= 0) {
+        alert('Please enter a valid video length in seconds!');
+        return;
+      }
+      
+      const analysis = analyzeVideoLength(length, type, platformType);
+      
+      if (analysis) {
+        engagementScore.textContent = analysis.score;
+        currentCategory.textContent = analysis.category;
+        optimalRange.textContent = analysis.optimal;
+        completionRate.textContent = analysis.completion;
+        
+        recommendationsList.innerHTML = '';
+        analysis.recommendations.forEach(rec => {
+          const li = document.createElement('li');
+          li.textContent = rec;
+          recommendationsList.appendChild(li);
+        });
+        
+        populateVideoStats(platformType);
+        predictionResult.style.display = 'block';
+        predictionResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
   </script>
-</body>
