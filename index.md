@@ -8,11 +8,6 @@ hide: true
 
 <style>
   /* Overall page style!!*/
-  title {
-    text-align: left; /* Align title to the left */
-    display: block;
-  }
-  
   body {
     background-color: #fafafa; /* Light gray background for clean look */
     font-family: 'Arial', sans-serif;
@@ -92,16 +87,6 @@ hide: true
     overflow: hidden;
     white-space: nowrap;
     /*border-right: .15em solid #ffcc00;*/
-    animation: typing 3.5s steps(30) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
-  }
-
-  @keyframes typing {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
   }
 
   @keyframes blinkCaret {
@@ -167,18 +152,18 @@ body, html {
 
 <div class="container">
   <div class="title-container">
-    <h1 class="fade-in-up">Welcome to LEGOLAND Media</h1>
+    <h1>Welcome to LEGOLAND Media</h1>
   </div>
 
 <div class="container">
   <div class="title-container">
-    <h2 class="fade-in-up">Why Us?</h2>
+    <h2>Why Us?</h2>
     <p>By providing real-time, data-driven insights, this project helps businesses fine-tune their content strategy for better engagement. It goes beyond simple performance metrics by examining multiple dimensions, from when and how often posts are made to the overall sentiment of user interactions. With these insights, businesses can make informed decisions that directly impact reach and engagement on social media platforms.</p>
   </div>
 <br>
 <div class="container">
   <div class="title-container">
-    <h2 class="fade-in-up">Our Mission</h2>
+    <h2>Our Mission</h2>
     <p>This project provides a comprehensive video analytics solution that not only analyzes post length, hashtag effectiveness, and photo brightness, but also delves into post frequency, time of day for posting, and sentiment analysis. The goal is to provide businesses and content creators of Legoland California with a full-spectrum understanding of what drives engagement and how to optimize content strategies.</p>
   </div>
 
