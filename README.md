@@ -1,8 +1,8 @@
 # Introduction
 
-Nighthawk Pages is a project designed to support students in their Computer Science and Software Engineering education. It offers a wide range of resources including tech talks, code examples, and educational blogs.
+This project is designed to optimize Legoland's social media engagement by analyzing key variables that influence post performance. Using data-driven insights, the site explores factors such as hashtag effectiveness, post length, posting frequency, time of day, sentiment analysis, and photo characteristics.
 
-GitHub Pages can be customized by the blogger to support computer science learnings as the student works through the pathway of using Javascript, Python/Flask, Java/Spring.  
+By combining these elements into a centralized platform, this project aims to identify trends and patterns that can improve audience engagement and guide future content strategy. It includes interactive visualizations, backend data processing tools, and actionable summaries to support social media decision-making.
 
 ## Student Requirements
 
