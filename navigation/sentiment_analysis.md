@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let sentimentChart = null;
     
     // Replace with your actual backend URL
-    const API_BASE_URL = 'http://127.0.0.1:8887';  // Updated to match your backend URL
+    const API_BASE_URL = 'http://127.0.0.1:8891';  // Updated to match your backend URL
     
     // Test API connection
     async function testAPIConnection() {
