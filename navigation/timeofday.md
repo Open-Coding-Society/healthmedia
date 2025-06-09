@@ -493,7 +493,7 @@ permalink: /timeofday/
     let hourlyAverages = {};
 
     // Fetch hourly averages once and store them
-    fetch('http://127.0.0.1:8887/api/optimaltime')
+    fetch('http://127.0.0.1:8891/api/optimaltime')
       .then(response => response.json())
       .then(data => {
         hourlyAverages = data.hourly_averages;
@@ -541,7 +541,7 @@ permalink: /timeofday/
         alert('Failed to load average data from the server.');
       });
 
-    fetch('http://127.0.0.1:8887/api/timeofdayposts')
+    fetch('http://127.0.0.1:8891/api/timeofdayposts')
       .then(response => response.json())
       .then(data => {
         const postTable = document.querySelector('#postsTable tbody');

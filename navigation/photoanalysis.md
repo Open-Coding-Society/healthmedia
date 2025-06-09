@@ -238,7 +238,7 @@ permalink: /photoanalysis/
         formData.append('image', file);
 
         try {
-          const res = await fetch('http://localhost:8887/api/predict-likes', {
+          const res = await fetch('http://localhost:8891/api/predict-likes', {
             method: 'POST',
             body: formData
           });

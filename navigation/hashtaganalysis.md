@@ -91,7 +91,7 @@ permalink: /hashtaganalysis/
       const input = document.getElementById('hashtagInput').value;
 
       try {
-        const res = await fetch('http://localhost:8887/api/hashtag', {
+        const res = await fetch('http://localhost:8891/api/hashtag', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

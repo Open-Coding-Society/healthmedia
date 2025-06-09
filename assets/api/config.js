@@ -4,8 +4,8 @@ export var pythonURI;
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
     pythonURI = "http://localhost:8891";  // Use port 8402 here as you requested
 } else {
-    pythonURI = "https://flask2025.nighthawkcodingsociety.com";
-}
+    pythonURI = "https://healthmedia.opencodingsociety.com"; }
+
 
 export var javaURI;
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
