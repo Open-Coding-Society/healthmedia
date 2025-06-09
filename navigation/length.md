@@ -120,7 +120,12 @@ search_exclude: true
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script type="module">
-  const API_URL = "http://127.0.0.1:8891/api/lengths/predict";
+  // Define pythonURI locally
+  const pythonURI = (location.hostname === "localhost" || location.hostname === "127.0.0.1") 
+      ? "http://localhost:8891" 
+      : "https://healthmedia.opencodingsociety.com";
+
+  const API_URL = `${pythonURI}/api/lengths/predict`;
   const form = document.getElementById("predictForm");
   const resultsDiv = document.getElementById("results");
   let engagementChart, sentimentChart;

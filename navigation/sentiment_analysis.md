@@ -280,6 +280,11 @@ permalink: sentiment/analysis/
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Define pythonURI locally
+    const pythonURI = (location.hostname === "localhost" || location.hostname === "127.0.0.1") 
+        ? "http://localhost:8891" 
+        : "https://healthmedia.opencodingsociety.com";
+
     const fileInput = document.getElementById('csv-file');
     const analyzeButton = document.getElementById('analyze-csv');
     const loadingDiv = document.getElementById('loading');
@@ -291,8 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let analysisResults = [];
     let sentimentChart = null;
     
-    // Replace with your actual backend URL
-    const API_BASE_URL = 'http://127.0.0.1:8891';  // Updated to match your backend URL
+    const API_BASE_URL = pythonURI;
     
     // Test API connection
     async function testAPIConnection() {
