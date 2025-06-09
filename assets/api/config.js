@@ -11,7 +11,7 @@ export var javaURI;
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
     javaURI = "http://localhost:8085";
 } else {
-    javaURI = "https://spring2025.nighthawkcodingsociety.com";
+    javaURI = "https://healthmedia.opencodingsociety.com";
 }
 
 export const fetchOptions = {
