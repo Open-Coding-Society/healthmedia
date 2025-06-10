@@ -280,24 +280,10 @@ permalink: sentiment/analysis/
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Better environment detection
-    const isLocalDevelopment = location.hostname === "localhost" || 
-                              location.hostname === "127.0.0.1" || 
-                              location.port === "4000" || 
-                              location.protocol === "file:";
+    // FORCE PRODUCTION URL - NO LOCALHOST DETECTION
+    const pythonURI = "https://healthmedia.opencodingsociety.com";
     
-    const pythonURI = isLocalDevelopment 
-        ? "http://localhost:8891" 
-        : "https://healthmedia.opencodingsociety.com";
-
-    console.log('Current location:', {
-        hostname: location.hostname,
-        port: location.port,
-        protocol: location.protocol,
-        href: location.href
-    });
-    console.log('Detected environment:', isLocalDevelopment ? 'development' : 'production');
-    console.log('Using API URL:', pythonURI);
+    console.log('FORCED API URL:', pythonURI);
 
     const fileInput = document.getElementById('csv-file');
     const analyzeButton = document.getElementById('analyze-csv');
@@ -312,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const API_BASE_URL = pythonURI;
     
-    // Enhanced API connection test
+    // Test API connection
     async function testAPIConnection() {
         try {
             console.log(`Testing connection to: ${API_BASE_URL}/api/health`);
@@ -323,16 +309,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                },
-                // Remove credentials for health check
-                // credentials: 'include'
+                }
             });
             
             console.log('Health check response:', {
                 status: response.status,
                 statusText: response.statusText,
-                ok: response.ok,
-                headers: Object.fromEntries(response.headers.entries())
+                ok: response.ok
             });
             
             if (!response.ok) {
@@ -344,11 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('API Health Check Success:', data);
             return true;
         } catch (error) {
-            console.error('API Connection Error Details:', {
-                message: error.message,
-                name: error.name,
-                stack: error.stack
-            });
+            console.error('API Connection Error Details:', error);
             return false;
         }
     }
@@ -369,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Testing API connection...');
         const apiConnected = await testAPIConnection();
         if (!apiConnected) {
-            alert(`Cannot connect to the backend API at ${API_BASE_URL}. Please check:\n\n1. Is your backend server running?\n2. Is the URL ${API_BASE_URL} correct?\n3. Are there any CORS issues?\n\nCheck the browser console for more details.`);
+            alert(`Cannot connect to the backend API at ${API_BASE_URL}. Please check if your backend server is running.`);
             return;
         }
         
@@ -378,73 +357,37 @@ document.addEventListener('DOMContentLoaded', function() {
         analyzeButton.disabled = true;
         
         try {
-            // Create FormData to send file
             const formData = new FormData();
             formData.append('file', file);
             
             console.log('Sending file to:', `${API_BASE_URL}/api/sentiment/upload`);
             
-            // Send file to backend API with enhanced error handling
             const response = await fetch(`${API_BASE_URL}/api/sentiment/upload`, {
                 method: 'POST',
                 mode: 'cors',
-                body: formData,
-                // Don't set Content-Type header for FormData
-                // Let the browser set it automatically with boundary
+                body: formData
             });
             
-            console.log('Upload response:', {
-                status: response.status,
-                statusText: response.statusText,
-                ok: response.ok,
-                headers: Object.fromEntries(response.headers.entries())
-            });
+            console.log('Upload response status:', response.status);
             
             if (!response.ok) {
                 const responseText = await response.text();
-                console.error('Error response body:', responseText);
-                
-                let errorMessage;
-                try {
-                    const errorData = JSON.parse(responseText);
-                    errorMessage = errorData.error || `Server error: ${response.status}`;
-                } catch {
-                    errorMessage = `Server returned ${response.status}: ${response.statusText}`;
-                }
-                throw new Error(errorMessage);
+                console.error('Error response:', responseText);
+                throw new Error(`Server error: ${response.status}`);
             }
             
-            const responseText = await response.text();
-            console.log('Raw response:', responseText);
-            
-            let data;
-            try {
-                data = JSON.parse(responseText);
-            } catch (parseError) {
-                console.error('JSON Parse Error:', parseError);
-                console.error('Response that failed to parse:', responseText);
-                throw new Error('Server returned invalid JSON response');
-            }
+            const data = await response.json();
             
             if (data.error) {
                 throw new Error(data.error);
             }
             
-            // Store results for filtering and sorting
             analysisResults = data;
-            
-            // Display results
             displayResults();
             
         } catch (error) {
-            console.error('Full error details:', {
-                message: error.message,
-                name: error.name,
-                stack: error.stack
-            });
-            
-            let userMessage = 'Error analyzing sentiment: ' + error.message;
-            alert(userMessage);
+            console.error('Error:', error);
+            alert('Error analyzing sentiment: ' + error.message);
         } finally {
             loadingDiv.style.display = 'none';
             analyzeButton.disabled = false;
@@ -455,7 +398,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const summary = analysisResults.summary;
         const comments = analysisResults.comments;
         
-        // Update summary display
         document.getElementById('total-comments').textContent = summary.total_comments;
         document.getElementById('average-polarity').textContent = summary.average_polarity;
         document.getElementById('average-subjectivity').textContent = summary.average_subjectivity;
@@ -466,13 +408,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('negative-count').textContent = summary.sentiment_counts.negative;
         document.getElementById('negative-percent').textContent = summary.sentiment_percentages.negative;
         
-        // Create chart
         createSentimentChart(summary.sentiment_counts);
-        
-        // Display individual comments
         displayComments();
-        
-        // Show results
         resultsDiv.style.display = 'block';
     }
     
@@ -523,7 +460,6 @@ document.addEventListener('DOMContentLoaded', function() {
             [...analysisResults.comments] : 
             analysisResults.comments.filter(item => item.category === filterType);
         
-        // Sort results
         filteredResults.sort((a, b) => {
             switch(sortType) {
                 case 'polarity-desc':
@@ -576,7 +512,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Filter and sort functionality
     sentimentFilter.addEventListener('change', function() {
         displayComments(this.value, sortBy.value);
     });
@@ -585,3 +520,5 @@ document.addEventListener('DOMContentLoaded', function() {
         displayComments(sentimentFilter.value, this.value);
     });
 });
+
+
