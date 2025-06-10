@@ -88,9 +88,7 @@ permalink: /hashtaganalysis/
 
   <script type="module">
     // Define pythonURI locally
-    const pythonURI = (location.hostname === "localhost" || location.hostname === "127.0.0.1") 
-        ? "http://localhost:8891" 
-        : "https://healthmedia.opencodingsociety.com";
+    const pythonURI = "https://healthmedia.opencodingsociety.com";
 
     async function analyzeHashtags() {
       const input = document.getElementById('hashtagInput').value;
