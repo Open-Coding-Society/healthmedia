@@ -280,10 +280,24 @@ permalink: sentiment/analysis/
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Define pythonURI locally
-    const pythonURI = (location.hostname === "localhost" || location.hostname === "127.0.0.1") 
+    // Better environment detection
+    const isLocalDevelopment = location.hostname === "localhost" || 
+                              location.hostname === "127.0.0.1" || 
+                              location.port === "4000" || 
+                              location.protocol === "file:";
+    
+    const pythonURI = isLocalDevelopment 
         ? "http://localhost:8891" 
         : "https://healthmedia.opencodingsociety.com";
+
+    console.log('Current location:', {
+        hostname: location.hostname,
+        port: location.port,
+        protocol: location.protocol,
+        href: location.href
+    });
+    console.log('Detected environment:', isLocalDevelopment ? 'development' : 'production');
+    console.log('Using API URL:', pythonURI);
 
     const fileInput = document.getElementById('csv-file');
     const analyzeButton = document.getElementById('analyze-csv');
@@ -298,19 +312,43 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const API_BASE_URL = pythonURI;
     
-    // Test API connection
+    // Enhanced API connection test
     async function testAPIConnection() {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/health`);
+            console.log(`Testing connection to: ${API_BASE_URL}/api/health`);
+            
+            const response = await fetch(`${API_BASE_URL}/api/health`, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                // Remove credentials for health check
+                // credentials: 'include'
+            });
+            
+            console.log('Health check response:', {
+                status: response.status,
+                statusText: response.statusText,
+                ok: response.ok,
+                headers: Object.fromEntries(response.headers.entries())
+            });
+            
             if (!response.ok) {
-                console.error('API Health Check Failed:', response.status);
+                console.error('API Health Check Failed:', response.status, response.statusText);
                 return false;
             }
+            
             const data = await response.json();
-            console.log('API Connection OK:', data);
+            console.log('API Health Check Success:', data);
             return true;
         } catch (error) {
-            console.error('API Connection Error:', error);
+            console.error('API Connection Error Details:', {
+                message: error.message,
+                name: error.name,
+                stack: error.stack
+            });
             return false;
         }
     }
@@ -328,9 +366,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Test API connection first
+        console.log('Testing API connection...');
         const apiConnected = await testAPIConnection();
         if (!apiConnected) {
-            alert('Cannot connect to the backend API. Please make sure your backend server is running and the API_BASE_URL is correct.');
+            alert(`Cannot connect to the backend API at ${API_BASE_URL}. Please check:\n\n1. Is your backend server running?\n2. Is the URL ${API_BASE_URL} correct?\n3. Are there any CORS issues?\n\nCheck the browser console for more details.`);
             return;
         }
         
@@ -345,27 +384,32 @@ document.addEventListener('DOMContentLoaded', function() {
             
             console.log('Sending file to:', `${API_BASE_URL}/api/sentiment/upload`);
             
-            // Send file to backend API
+            // Send file to backend API with enhanced error handling
             const response = await fetch(`${API_BASE_URL}/api/sentiment/upload`, {
                 method: 'POST',
+                mode: 'cors',
                 body: formData,
-                // Don't set Content-Type header - let browser set it for FormData
+                // Don't set Content-Type header for FormData
+                // Let the browser set it automatically with boundary
             });
             
-            console.log('Response status:', response.status);
-            console.log('Response headers:', response.headers);
+            console.log('Upload response:', {
+                status: response.status,
+                statusText: response.statusText,
+                ok: response.ok,
+                headers: Object.fromEntries(response.headers.entries())
+            });
             
             if (!response.ok) {
                 const responseText = await response.text();
-                console.error('Error response:', responseText);
+                console.error('Error response body:', responseText);
                 
-                // Try to parse as JSON, fallback to text
                 let errorMessage;
                 try {
                     const errorData = JSON.parse(responseText);
-                    errorMessage = errorData.error || 'Server error occurred';
+                    errorMessage = errorData.error || `Server error: ${response.status}`;
                 } catch {
-                    errorMessage = `Server returned HTML instead of JSON. Check if your backend is running correctly. Status: ${response.status}`;
+                    errorMessage = `Server returned ${response.status}: ${response.statusText}`;
                 }
                 throw new Error(errorMessage);
             }
@@ -378,7 +422,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 data = JSON.parse(responseText);
             } catch (parseError) {
                 console.error('JSON Parse Error:', parseError);
-                throw new Error('Server returned invalid JSON. Please check if your backend is running correctly.');
+                console.error('Response that failed to parse:', responseText);
+                throw new Error('Server returned invalid JSON response');
             }
             
             if (data.error) {
@@ -392,8 +437,14 @@ document.addEventListener('DOMContentLoaded', function() {
             displayResults();
             
         } catch (error) {
-            console.error('Full error:', error);
-            alert('Error: ' + error.message);
+            console.error('Full error details:', {
+                message: error.message,
+                name: error.name,
+                stack: error.stack
+            });
+            
+            let userMessage = 'Error analyzing sentiment: ' + error.message;
+            alert(userMessage);
         } finally {
             loadingDiv.style.display = 'none';
             analyzeButton.disabled = false;
@@ -534,4 +585,3 @@ document.addEventListener('DOMContentLoaded', function() {
         displayComments(sentimentFilter.value, this.value);
     });
 });
-</script>
