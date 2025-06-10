@@ -86,12 +86,17 @@ permalink: /hashtaganalysis/
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    // Define pythonURI locally
+    const pythonURI = (location.hostname === "localhost" || location.hostname === "127.0.0.1") 
+        ? "http://localhost:8891" 
+        : "https://healthmedia.opencodingsociety.com";
+
     async function analyzeHashtags() {
       const input = document.getElementById('hashtagInput').value;
 
       try {
-        const res = await fetch('http://localhost:8891/api/hashtag', {
+        const res = await fetch(`${pythonURI}/api/hashtag`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -139,6 +144,9 @@ permalink: /hashtaganalysis/
         document.getElementById('gaugeLabel').textContent = '-- / 10';
       }
     }
+
+    // Make function globally available
+    window.analyzeHashtags = analyzeHashtags;
   </script>
 </body>
 </html>

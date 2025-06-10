@@ -280,6 +280,11 @@ permalink: sentiment/analysis/
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // FORCE PRODUCTION URL - NO LOCALHOST DETECTION
+    const pythonURI = "https://healthmedia.opencodingsociety.com";
+    
+    console.log('FORCED API URL:', pythonURI);
+
     const fileInput = document.getElementById('csv-file');
     const analyzeButton = document.getElementById('analyze-csv');
     const loadingDiv = document.getElementById('loading');
@@ -291,22 +296,38 @@ document.addEventListener('DOMContentLoaded', function() {
     let analysisResults = [];
     let sentimentChart = null;
     
-    // Replace with your actual backend URL
-    const API_BASE_URL = 'http://127.0.0.1:8891';  // Updated to match your backend URL
+    const API_BASE_URL = pythonURI;
     
     // Test API connection
     async function testAPIConnection() {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/health`);
+            console.log(`Testing connection to: ${API_BASE_URL}/api/health`);
+            
+            const response = await fetch(`${API_BASE_URL}/api/health`, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            console.log('Health check response:', {
+                status: response.status,
+                statusText: response.statusText,
+                ok: response.ok
+            });
+            
             if (!response.ok) {
-                console.error('API Health Check Failed:', response.status);
+                console.error('API Health Check Failed:', response.status, response.statusText);
                 return false;
             }
+            
             const data = await response.json();
-            console.log('API Connection OK:', data);
+            console.log('API Health Check Success:', data);
             return true;
         } catch (error) {
-            console.error('API Connection Error:', error);
+            console.error('API Connection Error Details:', error);
             return false;
         }
     }
@@ -324,9 +345,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Test API connection first
+        console.log('Testing API connection...');
         const apiConnected = await testAPIConnection();
         if (!apiConnected) {
-            alert('Cannot connect to the backend API. Please make sure your backend server is running and the API_BASE_URL is correct.');
+            alert(`Cannot connect to the backend API at ${API_BASE_URL}. Please check if your backend server is running.`);
             return;
         }
         
@@ -335,61 +357,37 @@ document.addEventListener('DOMContentLoaded', function() {
         analyzeButton.disabled = true;
         
         try {
-            // Create FormData to send file
             const formData = new FormData();
             formData.append('file', file);
             
             console.log('Sending file to:', `${API_BASE_URL}/api/sentiment/upload`);
             
-            // Send file to backend API
             const response = await fetch(`${API_BASE_URL}/api/sentiment/upload`, {
                 method: 'POST',
-                body: formData,
-                // Don't set Content-Type header - let browser set it for FormData
+                mode: 'cors',
+                body: formData
             });
             
-            console.log('Response status:', response.status);
-            console.log('Response headers:', response.headers);
+            console.log('Upload response status:', response.status);
             
             if (!response.ok) {
                 const responseText = await response.text();
                 console.error('Error response:', responseText);
-                
-                // Try to parse as JSON, fallback to text
-                let errorMessage;
-                try {
-                    const errorData = JSON.parse(responseText);
-                    errorMessage = errorData.error || 'Server error occurred';
-                } catch {
-                    errorMessage = `Server returned HTML instead of JSON. Check if your backend is running correctly. Status: ${response.status}`;
-                }
-                throw new Error(errorMessage);
+                throw new Error(`Server error: ${response.status}`);
             }
             
-            const responseText = await response.text();
-            console.log('Raw response:', responseText);
-            
-            let data;
-            try {
-                data = JSON.parse(responseText);
-            } catch (parseError) {
-                console.error('JSON Parse Error:', parseError);
-                throw new Error('Server returned invalid JSON. Please check if your backend is running correctly.');
-            }
+            const data = await response.json();
             
             if (data.error) {
                 throw new Error(data.error);
             }
             
-            // Store results for filtering and sorting
             analysisResults = data;
-            
-            // Display results
             displayResults();
             
         } catch (error) {
-            console.error('Full error:', error);
-            alert('Error: ' + error.message);
+            console.error('Error:', error);
+            alert('Error analyzing sentiment: ' + error.message);
         } finally {
             loadingDiv.style.display = 'none';
             analyzeButton.disabled = false;
@@ -400,7 +398,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const summary = analysisResults.summary;
         const comments = analysisResults.comments;
         
-        // Update summary display
         document.getElementById('total-comments').textContent = summary.total_comments;
         document.getElementById('average-polarity').textContent = summary.average_polarity;
         document.getElementById('average-subjectivity').textContent = summary.average_subjectivity;
@@ -411,13 +408,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('negative-count').textContent = summary.sentiment_counts.negative;
         document.getElementById('negative-percent').textContent = summary.sentiment_percentages.negative;
         
-        // Create chart
         createSentimentChart(summary.sentiment_counts);
-        
-        // Display individual comments
         displayComments();
-        
-        // Show results
         resultsDiv.style.display = 'block';
     }
     
@@ -468,7 +460,6 @@ document.addEventListener('DOMContentLoaded', function() {
             [...analysisResults.comments] : 
             analysisResults.comments.filter(item => item.category === filterType);
         
-        // Sort results
         filteredResults.sort((a, b) => {
             switch(sortType) {
                 case 'polarity-desc':
@@ -521,7 +512,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Filter and sort functionality
     sentimentFilter.addEventListener('change', function() {
         displayComments(this.value, sortBy.value);
     });
@@ -530,4 +520,5 @@ document.addEventListener('DOMContentLoaded', function() {
         displayComments(sentimentFilter.value, this.value);
     });
 });
-</script>
+
+

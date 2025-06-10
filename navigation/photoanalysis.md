@@ -160,13 +160,18 @@ permalink: /photoanalysis/
 
      <div id="ratingExplanation" data-aos="fade-up">
       <strong>***What does Rating Score mean?</strong><br>
-      This score compares your photo’s predicted likes to the average in our dataset.<br>
+      This score compares your photo's predicted likes to the average in our dataset.<br>
       <strong>100%</strong> = average performance. Higher is better, lower means fewer expected likes. Based on Legoland California's previous posted photos on Instagram, the average number of likes was 1127 likes per post.
     </div>
 
   </div>
 
-  <script>
+  <script type="module">
+    // Define pythonURI locally
+    const pythonURI = (location.hostname === "localhost" || location.hostname === "127.0.0.1") 
+        ? "http://localhost:8891" 
+        : "https://healthmedia.opencodingsociety.com";
+
     AOS.init();
 
     const preview = document.getElementById('preview');
@@ -238,7 +243,7 @@ permalink: /photoanalysis/
         formData.append('image', file);
 
         try {
-          const res = await fetch('http://localhost:8891/api/predict-likes', {
+          const res = await fetch(`${pythonURI}/api/predict-likes`, {
             method: 'POST',
             body: formData
           });
@@ -348,6 +353,8 @@ permalink: /photoanalysis/
       link.click();
       document.body.removeChild(link);
     }
+
+    // Make functions globally available
+    window.clearPredictions = clearPredictions;
+    window.exportToCSV = exportToCSV;
   </script>
-
-
